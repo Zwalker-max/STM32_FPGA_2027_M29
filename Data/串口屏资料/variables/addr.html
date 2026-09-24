@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>addr-设备地址 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="spax-字符显示横向间距" href="spax.html" />
+    <link rel="prev" title="tch0~tch3-实时触摸坐标" href="tch0-tch3.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">系统变量</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">常用变量</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id3">不常用变量</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="scache.html">scache-串口发送缓冲区使能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thc.html">thc-触摸绘图时的画笔色</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thdra.html">thdra-触摸绘图功能开关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tch0-tch3.html">tch0~tch3-实时触摸坐标</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">addr-设备地址</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">addr-示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spax.html">spax-字符显示横向间距</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spay.html">spay-字符显示纵向间距</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sendxy.html">sendxy-实时发送触摸坐标功能开关</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">系统变量</a> &raquo;</li>
+      <li>addr-设备地址</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="addr">
+<h1>addr-设备地址<a class="headerlink" href="#addr" title="此标题的永久链接"></a></h1>
+<p>给串口屏配置一个地址，可以通过地址来将数据发给不同的串口屏，该指令仅对串口屏实物有效，对模拟器无效，模拟器的地址始终为0</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>如果你只接了1个屏，不建议配置设备地址。</p>
+<p>对于k系列和T系列，断电重启依然有效。对于X系列（X2，X3，X5），addr不支持掉电保存，需要在program.s中进行配置</p>
+<p>有效地址范围为256-2815，(即0x0100-0x0aff),0为无地址,65535为广播地址，广播地址只能用于广播数据，不能配置某个设备为广播地址，出厂默认地址为0,即没有地址。</p>
+<p>向一个有地址的设备发送指令时，需要在指令前加上2字节的地址数据，以hex方式发送,2字节小端模式,比如设备配置的地址为addr=256,那么发送给他指令时需要在指令前面增加两个字节:0x00 0x01(注意，配置的时候是0x0100,发送指令的时候是低位在前，所以是0x00 0x01跟配置的写法是相反的)。</p>
+<p>该配置只能在实物上有效，模拟器是无法测试的。</p>
+</div>
+<section id="id1">
+<h2>addr-示例<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//十进制写法</span>
+<span class="n">addr</span><span class="o">=</span><span class="mi">256</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/addr_1.png" src="../_images/addr_1.png" />
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//十六进制写法</span>
+<span class="n">addr</span><span class="o">=</span><span class="mh">0x0100</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/addr_2.png" src="../_images/addr_2.png" />
+<p>以上两条写法是同一个意思，配置的是同一个地址，配置之后有断电保存功能。</p>
+<p>当用户想一个串口同时控制多个串口屏独立工作的时候，可以给每个屏设置不同的地址。(注意，在TTL/RS232通信时不能直接将多个触摸屏的TX连接到一起，这样会导致短路。但是可以将多个触摸屏的RX连接到一起，接用户设备串口的TX。)</p>
+<p>或者用户使用485总线与屏幕通信，且485总线上存在多个设备的时候，可以给屏幕设置地址。</p>
+<p>配置了地址的屏幕在联机时会显示地址</p>
+<img alt="../_images/addr1.png" src="../_images/addr1.png" />
+<p>例如，现在将两个触摸屏的RX并联到一起，然后与电脑串口（TTL电平）的TX连接。设置串口屏A的地址0x100(addr=256)，设置串口屏B的地址为0x200（addr=512）。</p>
+<p>单片机c语言操作串口发送命令详解：( \x开头为十六进制数据 )</p>
+<p>发送给地址0x0100的代码如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//控制串口屏A页面上的t0控件显示内容为：addr is 256
+printf(&quot;\x00\x01t0.txt=\&quot;addr is 256\&quot;\xFF\xFF\xFF&quot;)
+</pre></div>
+</div>
+<p>单片机上发出的数据为：</p>
+<img alt="../_images/addr2.png" src="../_images/addr2.png" />
+<p>发送给地址0x0200的代码如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//控制串口屏B页面上的t0控件显示内容为：addr is 512
+printf(&quot;\x00\x02t0.txt=\&quot;addr is 512\&quot;\xFF\xFF\xFF&quot;)
+</pre></div>
+</div>
+<p>单片机上发出的数据为：</p>
+<img alt="../_images/addr3.png" src="../_images/addr3.png" />
+<p>广播发送（所有串口屏都能收到,地址为:FFFF）的代码如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//控制所有串口屏页面上的t0控件显示内容为：broadcast addr
+printf(&quot;\xFF\xFFt0.txt=\&quot;broadcast addr\&quot;\xFF\xFF\xFF&quot;)
+</pre></div>
+</div>
+<p>单片机上发出的数据为：</p>
+<img alt="../_images/addr4.png" src="../_images/addr4.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tch0-tch3.html" class="btn btn-neutral float-left" title="tch0~tch3-实时触摸坐标" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="spax.html" class="btn btn-neutral float-right" title="spax-字符显示横向间距" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

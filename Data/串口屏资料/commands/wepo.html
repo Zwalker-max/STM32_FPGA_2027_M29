@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wepo-写入数据到掉电存储空间 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="repo-从掉电存储空间读取数据" href="repo.html" />
+    <link rel="prev" title="call-宏调用" href="call.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">基本指令集</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">常用指令集</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id3">高级指令</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">wepo-写入数据到掉电存储空间</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#wepo-1">wepo-示例1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wepo-2">wepo-示例2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wepo-3">wepo-示例3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">wepo-应用实例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">wepo-问答测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">wepo指令-样例工程下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">wepo指令-相关链接</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="repo.html">repo-从掉电存储空间读取数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wept.html">wept-通过串口透传数据到掉电存储空间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rept.html">rept-从掉电存储空间读取数据并透传发送到串口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beep.html">beep-蜂鸣器鸣叫</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfgpio.html">cfgpio-扩展IO模式配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="setlayer.html">setlayer-运行中改变控件图层顺序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">move-控件移动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="play.html">play-音频播放</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">文件操作指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">不常用指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#crc">CRC校验指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#gui">GUI绘图指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hmi">HMI颜色代号表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">关于废弃指令的说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">指令集</a> &raquo;</li>
+      <li>wepo-写入数据到掉电存储空间</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wepo">
+<h1>wepo-写入数据到掉电存储空间<a class="headerlink" href="#wepo" title="此标题的永久链接"></a></h1>
+<p>(仅k0系列/x系列支持)</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>第一次使用掉电存储空间前（新屏幕），必须对掉电存储空间进行初始化 <a class="reference internal" href="../QA/QA36.html#id1"><span class="std std-ref">如何对掉电存储空间进行初始化</span></a>  。</p>
+<p>未初始化的掉电存储空间里面有什么数据是不确定的，可能会导致程序运行出错，例如会导致模拟器中的效果与串口屏实物的效果不一致。</p>
+<p>存储空间的读写范围是0-1023,当读写的是val属性时,最后一个读写的位置是1020,因为当读写1020时,其读写范围是1020-1023。</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">危险</p>
+<p>危险提示！！！</p>
+<p>掉电存储空间写入寿命有限，请勿频繁擦写，只建议存储低频次修改的数据，例如用户名，密码等，写入消耗掉电存储空间寿命，读取不消耗掉电存储空间寿命</p>
+<p>K0系列是板子上有物理eeprom，所以每个byte标称100W次写入寿命</p>
+<p>X系列使用flash来模拟eeprom，10W次寿命</p>
+<p>掉电存储空间就像1张纸一样，读取不消耗寿命，但是写入时需要擦除，此时纸张越来越薄，直到有一天纸张破了，就无法写入了，这将会导致屏幕功能异常！！！</p>
+<p>不建议用户使用掉电存储空间来记录开关机时间！！！</p>
+<p>如果以1秒1次的速度向eeprom写入数据，一天将会写入86400次左右，大约1-10天的时间便会将掉电存储空间的寿命用尽！！！</p>
+<p>写入数据后不能马上从原有位置读取数据,需等待几秒后再读取  <a class="reference internal" href="../QA/QA137.html#wepo"><span class="std std-ref">为什么wepo写入后不允许立刻读取或者断电</span></a></p>
+<p>写入数据后不允许立刻断电,需等待几秒后再断电</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wepo</span><span class="o">-</span><span class="n">att</span><span class="p">,</span><span class="n">add</span>
+
+<span class="n">att</span><span class="p">:</span><span class="n">变量</span><span class="o">/</span><span class="n">常量</span>
+
+<span class="n">add</span><span class="p">:</span> <span class="n">用户存储区位置</span><span class="p">(</span><span class="n">从0开始</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="wepo-1">
+<h2>wepo-示例1<a class="headerlink" href="#wepo-1" title="此标题的永久链接"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//将t0.txt的内容写入用户存储区的第10位置,在储存区中的占用空间为t0.txt的最大设置值+1，即t0的txt_maxl属性的值+1
+//例如控件的txt_maxl等于10，则使用wepo写入时总共需要占用11个字节，占用的地址为10-20
+//下一个写入的地址至少为21，否则会覆盖之前的数据导致数据丢失
+wepo t0.txt,10
+</pre></div>
+</div>
+<img alt="../_images/wepo_1.jpg" src="../_images/wepo_1.jpg" />
+</section>
+<section id="wepo-2">
+<h2>wepo-示例2<a class="headerlink" href="#wepo-2" title="此标题的永久链接"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//将字符串“abcd”写入用户存储区的第10位置，在储存区中占用大小为5字节
+//（“abcd”共4字节加上0x00共5字节），实际占用地址为30-34
+//下一个写入的地址至少为35，否则会覆盖之前的数据导致数据丢失
+wepo &quot;abcd&quot;,30
+</pre></div>
+</div>
+<img alt="../_images/wepo_2.jpg" src="../_images/wepo_2.jpg" />
+</section>
+<section id="wepo-3">
+<h2>wepo-示例3<a class="headerlink" href="#wepo-3" title="此标题的永久链接"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//将数值125写入用户存储区的第10位置
+//数值类型在储存区中占用大小固定为4字节，实际占用地址为40-43
+//下一个写入的地址至少为44，否则会覆盖之前的数据导致数据丢失
+wepo 125,40
+</pre></div>
+</div>
+<img alt="../_images/wepo_3.jpg" src="../_images/wepo_3.jpg" />
+<p>备注:</p>
+<p>1.写入内容为变量字符串（例如wepo t0.txt,0）的时候，在储存区中的占用空间为此控件的最大字符数+1；</p>
+<p>2.写入内容为常量字符串（例如wepo “abcd”,0）的时候，在储存区中的占用空间为此常量字符串的实际字符数+1,多出来的一个字节是为了存储字符串结束符0x00。</p>
+<p>3.写入内容为变量数值（例如wepo n0.val,0）或常量数值（例如wepo 123,0）的时候，在储存区中的占用空间统一为4字节。</p>
+<p>4.使用用户存储区读写操作过程中请切记规划好数据区位置，以免位置交错引起数据覆盖错乱。</p>
+<p>5.用户存储区大小为1k，位置为0-1023</p>
+</section>
+<section id="id1">
+<h2>wepo-应用实例<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>存储多个val属性</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//实际写入40-43，共4字节的掉电存储空间空间</span>
+<span class="n">wepo</span><span class="w"> </span><span class="n">n0</span><span class="p">.</span><span class="n">val</span><span class="p">,</span><span class="mi">40</span><span class="w"></span>
+
+<span class="c1">//实际写入44-47，共4字节的掉电存储空间空间</span>
+<span class="n">wepo</span><span class="w"> </span><span class="n">n1</span><span class="p">.</span><span class="n">val</span><span class="p">,</span><span class="mi">44</span><span class="w"></span>
+
+<span class="c1">//实际写入48-51，共4字节的掉电存储空间空间</span>
+<span class="n">wepo</span><span class="w"> </span><span class="n">n2</span><span class="p">.</span><span class="n">val</span><span class="p">,</span><span class="mi">48</span><span class="w"></span>
+
+<span class="c1">//实际写入52-55，共4字节的掉电存储空间空间</span>
+<span class="n">wepo</span><span class="w"> </span><span class="n">n3</span><span class="p">.</span><span class="n">val</span><span class="p">,</span><span class="mi">52</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/wepo_4.jpg" src="../_images/wepo_4.jpg" />
+<p>存储多个txt属性</p>
+<p>假设所有的txt_maxl均为10,每次写入txt属性时，还需要加上字符串结束符 \0 ,因此每次会占用11个字节的掉电存储空间空间</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//实际写入40-50，共11字节的掉电存储空间空间</span>
+<span class="n">wepo</span><span class="w"> </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">40</span><span class="w"></span>
+
+<span class="c1">//实际写入51-61，共11字节的掉电存储空间空间</span>
+<span class="n">wepo</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">51</span><span class="w"></span>
+
+<span class="c1">//实际写入62-72，共11字节的掉电存储空间空间</span>
+<span class="n">wepo</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">62</span><span class="w"></span>
+
+<span class="c1">//实际写入73-83，共11字节的掉电存储空间空间</span>
+<span class="n">wepo</span><span class="w"> </span><span class="n">t3</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">73</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/wepo_5.jpg" src="../_images/wepo_5.jpg" />
+<p>使用名称组存储n0-n9多个连续的val属性,请确保n0-n9的id号是连续的</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">eepAddr</span><span class="p">.</span><span class="n">val</span><span class="o">=</span><span class="mi">40</span><span class="w"></span>
+<span class="k">for</span><span class="p">(</span><span class="n">sys0</span><span class="o">=</span><span class="n">n0</span><span class="p">.</span><span class="n">id</span><span class="p">;</span><span class="n">sys0</span><span class="o">&lt;=</span><span class="n">n9</span><span class="p">.</span><span class="n">id</span><span class="p">;</span><span class="n">sys0</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">wepo</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">sys0</span><span class="p">].</span><span class="n">val</span><span class="p">,</span><span class="n">eepAddr</span><span class="p">.</span><span class="n">val</span><span class="w"></span>
+<span class="w">    </span><span class="n">eepAddr</span><span class="p">.</span><span class="n">val</span><span class="o">+=</span><span class="mi">4</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>怎么写进去的数据就怎么读出来，以字符串方式写进去的数据，就要读取到字符串属性中，以数值类型写进去的数据，就要读取到数值类型属性中</p>
+</div>
+<p>接下来演示将n0-n9从eeprom中读取出来</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">eepAddr</span><span class="p">.</span><span class="n">val</span><span class="o">=</span><span class="mi">40</span><span class="w"></span>
+<span class="k">for</span><span class="p">(</span><span class="n">sys0</span><span class="o">=</span><span class="n">n0</span><span class="p">.</span><span class="n">id</span><span class="p">;</span><span class="n">sys0</span><span class="o">&lt;=</span><span class="n">n9</span><span class="p">.</span><span class="n">id</span><span class="p">;</span><span class="n">sys0</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">repo</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">sys0</span><span class="p">].</span><span class="n">val</span><span class="p">,</span><span class="n">eepAddr</span><span class="p">.</span><span class="n">val</span><span class="w"></span>
+<span class="w">    </span><span class="n">eepAddr</span><span class="p">.</span><span class="n">val</span><span class="o">+=</span><span class="mi">4</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>wepo-问答测试<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>1.wepo n0.val,100 ，下一个wepo指令写入的位置是哪里</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>val变量固定占用4字节，因此 wepo n0.val,100 这个值占用了 100~103 的位置，下一个写入位置是104。</p>
+</div>
+<p>2.wepo t0.txt,200 ,t0的txt_maxl属性为20，下一个wepo指令写入的位置是哪里</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>在储存区中的占用空间为t0.txt_maxl的值+1，即占用了21字节，占用了 200~220 的位置（不足的部分会被写入为0x00），下一个写入位置是221。</p>
+</div>
+<p>3.wepo “tjcwiki”,300 ，下一个wepo指令写入的位置是哪里</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>“tjcwiki”这个字符串的长度为7，在储存区中的占用空间为7+1，即占用了8字节，占用了 300~307 的位置，下一个写入位置是308。</p>
+</div>
+</section>
+<section id="id3">
+<h2>wepo指令-样例工程下载<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/基本指令集/wepo指令和repo指令/多种控件演示.HMI">《多种控件演示》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/基本指令集/wepo指令和repo指令/数字控件写入和读取eeprom.HMI">《数字控件写入和读取eeprom》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/基本指令集/wepo指令和repo指令/文本控件写入和读取eeprom.HMI">《文本控件写入和读取eeprom》演示工程下载</a></p>
+</section>
+<section id="id6">
+<h2>wepo指令-相关链接<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<p><a class="reference internal" href="../QA/QA36.html#id1"><span class="std std-ref">如何对掉电存储空间进行初始化</span></a></p>
+<p><a class="reference internal" href="repo.html#repo"><span class="std std-ref">repo-从掉电存储空间读取数据</span></a></p>
+<p><a class="reference internal" href="wept.html#wept"><span class="std std-ref">wept-通过串口透传数据到掉电存储空间</span></a></p>
+<p><a class="reference internal" href="rept.html#rept"><span class="std std-ref">rept-从掉电存储空间读取数据并透传发送到串口</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="call.html" class="btn btn-neutral float-left" title="call-宏调用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="repo.html" class="btn btn-neutral float-right" title="repo-从掉电存储空间读取数据" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

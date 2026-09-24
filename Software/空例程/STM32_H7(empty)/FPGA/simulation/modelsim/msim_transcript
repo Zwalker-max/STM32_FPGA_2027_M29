@@ -1,0 +1,100 @@
+# Reading D:/APP/altera/14.1/modelsim_ase/tcl/vsim/pref.tcl
+# do FMC_Demo_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim PE vmap 10.3c Lib Mapping Utility 2014.09 Sep 20 2014
+# vmap -modelsim_quiet work rtl_work 
+# Copying D:/APP/altera/14.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied D:/APP/altera/14.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/stm32_fmc_16bit.v}
+# Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 16:29:41 on Jul 04,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA" D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/stm32_fmc_16bit.v 
+# -- Compiling module stm32_fmc_16bit
+# 
+# Top level modules:
+# 	stm32_fmc_16bit
+# End time: 16:29:41 on Jul 04,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/ram_2port1.v}
+# Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 16:29:42 on Jul 04,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA" D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/ram_2port1.v 
+# -- Compiling module ram_2port1
+# 
+# Top level modules:
+# 	ram_2port1
+# End time: 16:29:42 on Jul 04,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/dds_core.v}
+# Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 16:29:42 on Jul 04,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA" D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/dds_core.v 
+# -- Compiling module dds_core
+# 
+# Top level modules:
+# 	dds_core
+# End time: 16:29:42 on Jul 04,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/dac_control.v}
+# Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 16:29:42 on Jul 04,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA" D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/dac_control.v 
+# -- Compiling module dac_control
+# 
+# Top level modules:
+# 	dac_control
+# End time: 16:29:42 on Jul 04,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/FMC_Demo.v}
+# Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 16:29:42 on Jul 04,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA" D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/FMC_Demo.v 
+# -- Compiling module FMC_Demo
+# 
+# Top level modules:
+# 	FMC_Demo
+# End time: 16:29:42 on Jul 04,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/pll1.v}
+# Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 16:29:42 on Jul 04,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA" D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/pll1.v 
+# -- Compiling module pll1
+# 
+# Top level modules:
+# 	pll1
+# End time: 16:29:42 on Jul 04,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/db {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/db/pll1_altpll.v}
+# Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 16:29:42 on Jul 04,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/db" D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/db/pll1_altpll.v 
+# -- Compiling module pll1_altpll
+# 
+# Top level modules:
+# 	pll1_altpll
+# End time: 16:29:42 on Jul 04,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim work.FMC_Demo
+# vsim -gui "+altera" -l msim_transcript -do "FMC_Demo_run_msim_rtl_verilog.do" 
+# Start time: 16:29:48 on Jul 04,2026
+# Loading work.FMC_Demo
+# Loading work.pll1
+# ** Error: (vsim-3033) D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/pll1.v(58): Instantiation of 'altpll' failed. The design unit was not found.
+# 
+#         Region: /FMC_Demo/pll1_inst
+#         Searched libraries:
+#             D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/simulation/modelsim/rtl_work
+# Loading work.stm32_fmc_16bit
+# Loading work.ram_2port1
+# Loading work.dds_core
+# Loading work.dac_control
+# Error loading design

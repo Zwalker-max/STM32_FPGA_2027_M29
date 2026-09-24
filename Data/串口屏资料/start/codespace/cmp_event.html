@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>控件事件 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="宏代码" href="macro_event.html" />
+    <link rel="prev" title="program.s文件" href="program_s.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">快速入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../download_ide.html">下载和安装上位机软件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ide_introduce/index.html">上位机基本功能介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first_test.html">到手测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../create_project/index.html">创建工程</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">代码编写</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#main">main函数在哪里</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#id2">代码写在哪里</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="program_s.html">program.s文件</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">控件事件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="macro_event.html">宏代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">快速入门</a> &raquo;</li>
+          <li><a href="index.html">代码编写</a> &raquo;</li>
+      <li>控件事件</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>控件事件<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>目前各种控件综合起来被操作的方式有以下种类型：</p>
+<p><a class="reference internal" href="#id2"><span class="std std-ref">页面控件事件</span></a></p>
+<p><a class="reference internal" href="#id3"><span class="std std-ref">按下和弹起事件</span></a></p>
+<p><a class="reference internal" href="#id4"><span class="std std-ref">滑动事件</span></a></p>
+<p><a class="reference internal" href="#id5"><span class="std std-ref">定时事件</span></a></p>
+<p><a class="reference internal" href="#id6"><span class="std std-ref">播放完成事件</span></a></p>
+<section id="id2">
+<h2>页面控件事件<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>页面控件是一个特殊的控件，新建了一个页面后，会自动创建一个同名的页面控件，页面控件必定与页面名称相同，且页面控件的ID必定为0，即页面控件始终处于最底层</p>
+<p>页面前初始化事件是在页面加载前自动执行的</p>
+<p>页面后初始化事件是在页面完成后自动执行的</p>
+<p>页面离开事件是在执行了跳转页面动作时执行的</p>
+<p>点击页面的空白处,即可触发页面控件的按下或弹起事件</p>
+<img alt="../../_images/codeSpace_5.jpg" src="../../_images/codeSpace_5.jpg" />
+</section>
+<section id="id3">
+<h2>按下和弹起事件<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>触摸被按下：对应名称叫做【按下事件】</p>
+<p>触摸被按下后弹起：对应名称叫做【弹起事件】</p>
+<p>例如实现点击按钮跳转页面功能时，将page指令（跳转页面）写在按钮的弹起事件中，当手指点击对应的控件并放开时，此时就会触发跳转</p>
+<img alt="../../_images/codeSpace_2.jpg" src="../../_images/codeSpace_2.jpg" />
+</section>
+<section id="id4">
+<h2>滑动事件<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>滑块控件被滑动：对应的名称叫做【滑动事件】</p>
+<p>例如在滑块的滑动事件和弹起事件中修改串口屏的亮度（全局变量dim）</p>
+<img alt="../../_images/codeSpace_3.jpg" src="../../_images/codeSpace_3.jpg" />
+</section>
+<section id="id5">
+<h2>定时事件<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>定时器定时运行：对应的名称叫做【定时事件】</p>
+<p>例如显示开机进度，当进度为100时跳转到main页面</p>
+<img alt="../../_images/codeSpace_4.jpg" src="../../_images/codeSpace_4.jpg" />
+</section>
+<section id="id6">
+<h2>播放完成事件<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<p>音频、动画、视频播放完成：对应的名称叫做【播放完成事件】</p>
+<p>例如开机动画是一段视频或动画时，在播放结束时跳转到主页面</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>当播放音频或者视频时，请注意应保证供电充足，否则会导致串口屏供电不足从而重启，参考 <a class="reference internal" href="../../QA/QA60.html#id1"><span class="std std-ref">串口屏开机时死机/不断的闪烁/不断重启</span></a></p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>写在page指令（跳转页面）后面的代码不会被执行</p>
+</div>
+<section id="id7">
+<h3>函数调用<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<p>1、触摸热区控件可以理解为一个看不见的按钮控件。</p>
+<p>2、由于串口屏上没有函数的概念，因此有大量重复的代码需要调用时，可以将代码写在触摸热区内（或其他控件），然后用click指令去触发</p>
+<p>3、单片机可以发click命令来激活相关控件状态。但是单片机需要确保显示屏处于当前界面（此界面包含对应的触摸热区控件）。</p>
+<p>4、不允许跨页面click控件。如果有需要请将控件复制到相关页面。</p>
+<p>参考： <a class="reference internal" href="../../widgets/Hotspot.html#id1"><span class="std std-ref">触摸热区控件</span></a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="program_s.html" class="btn btn-neutral float-left" title="program.s文件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="macro_event.html" class="btn btn-neutral float-right" title="宏代码" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

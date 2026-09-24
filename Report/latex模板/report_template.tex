@@ -1,0 +1,483 @@
+% !TEX program = xelatex
+% ================================================================
+%  全国大学生电子设计竞赛 —— 设计报告 LaTeX 模板
+%  参照 2024/2026 省赛报告格式要求 + 2025 电赛 G 题样例报告结构
+%  编译方式：XeLaTeX → XeLaTeX（如需参考文献再跑一次 BibTeX）
+%
+%  格式要求摘要：
+%    · 正文 A4 纸 8 页以内，纵向打印
+%    · 首页另附 300 字以内中文摘要，无需英文翻译
+%    · 正文小四号宋体（12pt），行距固定值 22 磅
+%    · 标题字号自定（本模板：一级小三黑体、二级四号黑体、三级小四黑体）
+%    · 每页上方留出 3 cm 以上空白，空白区域内不得有任何文字
+%    · 每页右下端注明页码
+% ================================================================
+
+\documentclass[a4paper, zihao=-4, linespread=1.5, AutoFakeBold]{ctexart}
+%  zihao=-4 → 小四号字（12pt）
+%  linespread=1.5 配合下方 \setlength{\baselineskip}{22pt} 达到固定值 22 磅
+
+% ====================== 宏包 ======================
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% ====================== 页面布局 ======================
+\geometry{
+    a4paper,
+    top      = 3.0cm,   % ≥3 cm 留白
+    bottom   = 2.5cm,
+    left     = 2.5cm,
+    right    = 2.5cm,
+    headsep  = 0.4cm,
+    footskip = 1.0cm,
+}
+
+% ====================== 行距（固定值 22 磅） ======================
+\setlength{\baselineskip}{22pt}
+\setstretch{1.0}
+
+% ====================== 中文字体 ======================
+% ctexart 已自动配置 SimSun/SimHei/KaiTi/FangSong
+% 如需手动指定，取消下方注释：
+% \setCJKmainfont{SimSun}[BoldFont=SimHei, ItalicFont=KaiTi]
+% \setCJKsansfont{SimHei}
+% \setCJKmonofont{FangSong}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+
+% 华文中宋（封面大标题用）
+\setCJKfamilyfont{zhongsong}{STZhongsong}[AutoFakeBold]
+\newcommand{\zhongsong}{\CJKfamily{zhongsong}}
+
+% ====================== 页眉页脚 ======================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead{}                            % 页眉留空
+\fancyfoot[R]{\thepage}                 % 页码右下
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ====================== 章节标题格式 ======================
+% 一级标题：小三号黑体（~15pt），中文编号"一、二、三……"
+\ctexset{
+    section = {
+        format      = \fontsize{14pt}{18pt}\selectfont\bfseries\heiti,
+        name        = {,、},           % "一、" "二、" ...
+        number      = \chinese{section},
+        aftername   = {},
+        beforeskip  = 1.0ex plus 0.2ex minus 0.1ex,
+        afterskip   = 0.5ex plus 0.1ex,
+    },
+    subsection = {
+        format      = \large\bfseries\heiti,
+        aftername   = {\quad},
+        beforeskip  = 0.8ex plus 0.1ex,
+        afterskip   = 0.3ex,
+    },
+    subsubsection = {
+        format      = \normalsize\bfseries\heiti,
+        aftername   = {\quad},
+        beforeskip  = 0.5ex,
+        afterskip   = 0.2ex,
+    },
+}
+
+% ====================== 图表标题 ======================
+\captionsetup{
+    font          = {small},
+    labelsep      = {space},
+    justification = {centering},
+}
+\captionsetup[figure]{name={图}}
+\captionsetup[table]{name={表}}
+
+% ====================== 公式编号 ======================
+\renewcommand{\theequation}{\arabic{section}-\arabic{equation}}
+
+% ====================== 超链接 ======================
+\hypersetup{
+    colorlinks        = true,
+    linkcolor         = black,
+    citecolor         = black,
+    urlcolor          = blue,
+    bookmarksnumbered = true,
+}
+
+% ====================== 代码样式 ======================
+\lstset{
+    language        = C,
+    basicstyle      = \small\ttfamily,
+    keywordstyle    = \bfseries\color{blue!70!black},
+    commentstyle    = \itshape\color{green!50!black},
+    stringstyle     = \color{red!60!black},
+    numbers         = left,
+    numberstyle     = \tiny\color{gray},
+    frame           = single,
+    breaklines      = true,
+    tabsize         = 4,
+    showstringspaces = false,
+}
+
+% ====================== 段落 ======================
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+
+% ====================== 自定义命令 ======================
+\newcommand{\题号}[1]{\def\theProblemNum{#1}}
+\newcommand{\参赛编号}[1]{\def\theTeamNum{#1}}
+\newcommand{\队员}[1]{\def\theMembers{#1}}
+
+% 封面页
+\newcommand{\makereporttitle}{%
+    \thispagestyle{empty}
+    \begin{center}
+        \vspace*{3cm}
+        {\fontsize{22pt}{28pt}\selectfont\zhongsong\bfseries \theProblemNum}\\[2.0cm]
+    \end{center}
+}
+
+% 图片占位框（开发阶段用，正式稿请替换为 \includegraphics）
+\newcommand{\imgplaceholder}[2][0.7\textwidth]{%
+    \fbox{\parbox{#1}{\centering\vspace{1.5cm}%
+    {\kaishu #2}\\{\small （请替换为实际图片）}%
+    \vspace{1.5cm}}}%
+}
+
+% ==================================================================
+%                            正  文
+% ==================================================================
+\begin{document}
+
+% ==================== 题目信息（← 请修改此处） ====================
+\题号{X题}
+\参赛编号{XXXX}
+\队员{姓名1、姓名2、姓名3}
+
+% ==================== 封面 ====================
+\makereporttitle
+
+% ==================== 摘要页（首页，≤300字） ====================
+\thispagestyle{fancy}
+\setcounter{page}{0}   % 摘要页不计入正文页码
+\noindent{\fontsize{12pt}{18pt}\selectfont\songti\bfseries 摘\quad 要：}本设计实现了\textbf{XXXX系统}，能够\textbf{完成XXX功能}。
+系统以 STM32XXXX 为核心控制器，集成 XXX 模块、XXX 模块以及 XXX 模块等。
+通过\textbf{XXX方法}，实现了\textbf{XXX效果}。
+经测试，本系统能够\textbf{满足题目各项要求}，各项性能指标均达到设计预期。
+
+\vspace{0.5cm}
+\noindent{\songti\bfseries 关键词：}关键词1；关键词2；关键词3；关键词4；关键词5
+% ↑ 3–5 个关键词，中文分号分隔，无需英文翻译
+
+\newpage
+
+% ==================== 正文（从第 1 页起） ====================
+\setcounter{page}{1}
+
+% ----------------------------------------------------------------
+%                     一、系统方案论证
+% ----------------------------------------------------------------
+\section{系统方案论证}
+
+\subsection{方案比较与选择}
+
+\subsubsection{XXX方案选择}
+
+\textbf{方案一：}XXXX方案。描述该方案的实现方式及其优缺点。
+
+\textbf{方案二：}XXXX方案。描述该方案的实现方式及其优缺点。
+
+\textbf{方案选择：}方案一的优势在于 XXX，但存在 XXX 不足；方案二 XXX。
+综合考虑 XXX 因素，故选择方案 X。
+
+% ---- 更多方案比较 ----
+\subsubsection{XXX方案选择}
+
+\textbf{方案一：}XXXX。
+
+\textbf{方案二：}XXXX。
+
+\textbf{方案选择：}XXXX。
+
+\subsubsection{XXX方案选择}
+
+\textbf{方案一：}XXXX。
+
+\textbf{方案二：}XXXX。
+
+\textbf{方案选择：}XXXX。
+
+\subsection{总体方案描述}
+
+系统总体框图如图~\ref{fig:system_block}~所示。
+该系统以 STM32XXXX 为核心控制单元……
+（描述总体架构，各模块功能及数据流向）
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{figures/system_block.png}
+    \imgplaceholder{系统总体框图}
+    \caption{系统总体框图}
+    \label{fig:system_block}
+\end{figure}
+
+% ----------------------------------------------------------------
+%                    二、理论分析与计算
+% ----------------------------------------------------------------
+\section{理论分析与计算}
+
+\subsection{XXX电路分析}
+
+XXX电路的电压传递函数为：
+\begin{equation}
+    H(s) = \frac{V_{\text{out}}(s)}{V_{\text{in}}(s)}
+         = \frac{a_0}{b_2 s^2 + b_1 s + b_0}
+    \label{eq:transfer_func}
+\end{equation}
+
+经过分析与计算，各元件参数确定如下：
+\begin{equation}
+    R_1 = XXX\;\Omega, \quad
+    C_1 = XXX\;\text{F}, \quad \ldots
+    \label{eq:params}
+\end{equation}
+
+将式~(\ref{eq:transfer_func})与式~(\ref{eq:params})的分母不同阶次项系数对应，
+可以确定电路中各电容与电阻的具体参数。
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{figures/bode_plot.png}
+    \imgplaceholder{波特图 / 频率响应图}
+    \caption{XXX 频率响应特性（波特图）}
+    \label{fig:bode}
+\end{figure}
+
+\subsection{XXX分析方法}
+
+根据 XXX 原理，可以得到……
+
+\begin{equation}
+    f(x) = \sum_{n=0}^{\infty} a_n x^n
+\end{equation}
+
+% ----------------------------------------------------------------
+%                   三、电路与程序设计
+% ----------------------------------------------------------------
+\section{电路与程序设计}
+
+\subsection{XXX电路设计}
+
+XXX电路如图~\ref{fig:circuit1}~所示，使用 XXX 芯片实现 XXX 功能。
+主要元件及其作用如下：
+\begin{itemize}[leftmargin=2em, itemsep=2pt]
+    \item \textbf{XXX 芯片}：用于 XXX
+    \item $R_1$、$C_1$：构成 XXX 电路
+    \item 运算放大器 OPAxxxx：用于 XXX
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{figures/circuit1.png}
+    \imgplaceholder{电路原理图}
+    \caption{XXX 电路原理图}
+    \label{fig:circuit1}
+\end{figure}
+
+\subsection{XXX电路设计}
+
+描述另一个电路模块的功能与设计……
+
+\subsection{软件程序设计}
+
+本设计采用 STM32XXXX 作为主控芯片，完成数据的采样与处理、
+信号产生与控制等工作。程序设计流程图如图~\ref{fig:flowchart}~所示。
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.45\textwidth]{figures/flowchart.png}
+    \imgplaceholder[0.45\textwidth]{程序流程图}
+    \caption{程序设计流程图}
+    \label{fig:flowchart}
+\end{figure}
+
+系统软件主要包含以下功能模块：
+\begin{enumerate}[leftmargin=2em, itemsep=2pt]
+    \item \textbf{初始化模块}：完成系统时钟、GPIO、ADC、DAC、SPI 等外设配置；
+    \item \textbf{信号采集模块}：通过 ADC + DMA 实现连续采样；
+    \item \textbf{数据处理模块}：实现 XXX 算法（如 IIR 滤波、FFT 等）；
+    \item \textbf{信号输出模块}：通过 DAC / DDS 输出目标信号；
+    \item \textbf{人机交互模块}：按键输入与 OLED / LCD 显示。
+\end{enumerate}
+
+% ----------------------------------------------------------------
+%                  四、测试方案与测试结果
+% ----------------------------------------------------------------
+\section{测试方案与测试结果}
+
+\subsection{测试条件}
+
+主要测试仪器设备如表~\ref{tab:instruments}~所示。
+
+\begin{table}[H]
+    \centering
+    \caption{测试仪器设备清单}
+    \label{tab:instruments}
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{仪器名称} & \textbf{型号} & \textbf{数量} \\
+        \midrule
+        数字万用表   & XXXX & 一台 \\
+        示波器       & XXXX & 一台 \\
+        信号发生器   & XXXX & 一台 \\
+        可调电源     & XXXX & 一台 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{测试方案与测试结果}
+
+\subsubsection{XXX测试}
+
+测试方法：XXXX。测试结果如表~\ref{tab:test1}~所示。
+
+\begin{table}[H]
+    \centering
+    \caption{XXX 测试记录表}
+    \label{tab:test1}
+    \begin{tabular}{cccc}
+        \toprule
+        \textbf{测试条件} & \textbf{理论值} & \textbf{实测值} & \textbf{相对误差} \\
+        \midrule
+        XXX & XXX & XXX & XXX \\
+        XXX & XXX & XXX & XXX \\
+        XXX & XXX & XXX & XXX \\
+        XXX & XXX & XXX & XXX \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{XXX测试}
+
+测试方法：XXXX。测试结果如表~\ref{tab:test2}~所示。
+
+\begin{table}[H]
+    \centering
+    \caption{XXX 测试记录表}
+    \label{tab:test2}
+    \begin{tabular}{cccc}
+        \toprule
+        \textbf{测试条件} & \textbf{设定值} & \textbf{实际值} & \textbf{相对误差} \\
+        \midrule
+        XXX & XXX & XXX & XXX \\
+        XXX & XXX & XXX & XXX \\
+        XXX & XXX & XXX & XXX \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% 可选：插入测试波形截图
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{figures/test_waveform.png}
+%     \caption{XXX 测试波形}
+%     \label{fig:test_wave}
+% \end{figure}
+
+\subsection{测试结果分析}
+
+根据以上测试结果，各项实验参数误差均在 X\% 之内，
+\textbf{达到了设计要求}。
+本实验的主要误差来源于 XXX 以及 XXX。
+
+为进一步提高系统性能，可以从以下方面改进：
+\begin{enumerate}[leftmargin=2em, itemsep=2pt]
+    \item XXX；
+    \item XXX；
+    \item XXX。
+\end{enumerate}
+
+% ----------------------------------------------------------------
+%                       五、参考文献
+% ----------------------------------------------------------------
+\section{参考文献}
+
+% 不要写"无"！至少列 3–5 条与题目相关的参考文献。
+\begin{thebibliography}{99}
+
+\bibitem{ref1}
+    作者姓名.
+    \textit{书名}[M].
+    出版地：出版社，年份.
+
+\bibitem{ref2}
+    作者1，作者2.
+    \textit{书名——副标题}[M].
+    出版地：出版社，年份.
+
+\bibitem{ref3}
+    作者.
+    论文题目[J].
+    \textit{期刊名}，年份，卷(期)：起始页--终止页.
+
+\bibitem{ref4}
+    公司名.
+    \textit{芯片型号 Datasheet}[Z].
+    年份.
+
+\end{thebibliography}
+
+% ==================== 附录（可选，不计入页数） ====================
+\newpage
+\appendix
+\renewcommand{\thesection}{附录\Alph{section}}
+
+\section{核心代码片段}
+
+\begin{lstlisting}[
+    caption = {XXX 核心代码},
+    label   = {lst:code1},
+]
+#include "stm32g4xx_hal.h"
+
+// 在此粘贴关键代码
+void SystemClock_Config(void) {
+    // 系统时钟配置
+}
+
+void ADC_Init(void) {
+    // ADC 初始化
+}
+\end{lstlisting}
+
+\section{完整电路原理图}
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=\textwidth]{figures/full_schematic.png}
+    \imgplaceholder[\textwidth]{完整电路原理图}
+    \caption{完整电路原理图}
+\end{figure}
+
+\section{实物照片}
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{figures/photo.jpg}
+    \imgplaceholder{系统实物照片}
+    \caption{系统实物照片}
+\end{figure}
+
+\end{document}

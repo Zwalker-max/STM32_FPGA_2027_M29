@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>串口屏与单片机连接 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="串口屏通讯协议" href="../usart_protocol/index.html" />
+    <link rel="prev" title="模拟器(电脑)与单片机连接" href="simulator2mcu.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">串口屏调试</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../simulator/index.html">模拟器调试基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_ttl.html">和USB转TTL的接线说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_mcu.html">和单片机的接线说明</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">联机调试基础知识</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="simulator2tjc.html">模拟器(电脑)与串口屏实物连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulator2mcu.html">模拟器(电脑)与单片机连接</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">串口屏与单片机连接</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#stm32">串口屏连接stm32</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arduino-mega-2560">串口屏连接arduino mega 2560</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arduino-mega-uno">串口屏连接arduino mega uno</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">串口屏与单片机连接说明1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">串口屏与单片机连接说明2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">串口屏与单片机连接说明3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">串口屏与单片机连接说明4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">串口屏与单片机连接说明5（串口解析）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usart_protocol/index.html">串口屏通讯协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_sscom.html">串口助手软件(sscom)和屏幕联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd.html">串口助手软件(sscom)和串口屏模拟器联调1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd2.html">串口助手软件(sscom)和串口屏模拟器联调2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_uart_assistant/index.html">其他串口助手</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stm32/index.html">与stm32单片机联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timcu/index.html">与TI（德州仪器）单片机联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arduino/index.html">与arduino联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../micropython/index.html">与MicroPython联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">与python联调</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">串口屏调试</a> &raquo;</li>
+          <li><a href="index.html">联机调试基础知识</a> &raquo;</li>
+      <li>串口屏与单片机连接</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>串口屏与单片机连接<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p><a class="reference internal" href="../../QA/QA120.html#id1"><span class="std std-ref">串口屏连接单片机开发板注意事项</span></a></p>
+<section id="stm32">
+<h2>串口屏连接stm32<a class="headerlink" href="#stm32" title="此标题的永久链接"></a></h2>
+<img alt="../../_images/tjc_to_stm32.png" src="../../_images/tjc_to_stm32.png" />
+</section>
+<section id="arduino-mega-2560">
+<h2>串口屏连接arduino mega 2560<a class="headerlink" href="#arduino-mega-2560" title="此标题的永久链接"></a></h2>
+<img alt="../../_images/arduino_mega2560.png" src="../../_images/arduino_mega2560.png" />
+</section>
+<section id="arduino-mega-uno">
+<h2>串口屏连接arduino mega uno<a class="headerlink" href="#arduino-mega-uno" title="此标题的永久链接"></a></h2>
+<img alt="../../_images/arduino_uno.png" src="../../_images/arduino_uno.png" />
+</section>
+<section id="id2">
+<h2>串口屏与单片机连接说明1<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<img alt="../../_images/usb2ttl.png" src="../../_images/usb2ttl.png" />
+<p>这是淘晶驰官方的USB转TTL转接板，其作用有以下两种：</p>
+<p>1、电脑通过USB转TTL连接串口屏进行下载或者调试</p>
+<p>2、电脑通过USB转TTL连接单片机进行通讯</p>
+<p>如果不使用电脑时，请勿通过USB转TTL工具连接单片机和串口屏，怎么接都不行！</p>
+<p>部分客户使用的是正点原子、野火等公司的开发板，看到板子上有USB口，就直接把USB转TTL工具插上去。</p>
+<p>或者是开发板有microUSB接口或者typec接口，把自己的手机充电线插进去，这是万万不行的。</p>
+<p>因为这时候你的单片机开发板是接入了一个USB设备而不是USART设备，除非你去驱动这个USB外设先与这个USB转TTL进行通讯，否则是不能跟屏幕进行通讯的。</p>
+<img alt="../../_images/debugWithMcu_1.jpg" src="../../_images/debugWithMcu_1.jpg" />
+<p>正确接法如下:</p>
+<p>请查看你的开发板的原理图，找到一个没有连接任何外设的USART串口来连接串口屏，一般上面都是标注（USARTn_TXD,USARTn_RXD）,大部分开发板的第一个串口USART0_TXD,USART0_RXD大概率已经连接了一个USB转TTL芯片用于连接电脑,请避开这个串口。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>连接方式如下所示</p>
+</div>
+<p><strong>5V接串口屏5V</strong></p>
+<p><strong>TX接串口屏RX</strong></p>
+<p><strong>RX接串口屏TX</strong></p>
+<p><strong>GND接串口屏GND</strong></p>
+<p>TX是Transmit（发送），RX是Receive（接收），发送对接收，接收对发送。</p>
+<p>另外说明：有些板子和原理图标注的是TX和RX，有些板子和原理图标注的是TXD和RXD。TX就是TXD，RX就是RXD。概念都是一样的，可以不做区分。</p>
+</section>
+<section id="id3">
+<h2>串口屏与单片机连接说明2<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<img alt="../../_images/debugWithMcu_2.jpg" src="../../_images/debugWithMcu_2.jpg" />
+<p>上图中圈出来的两个地方，丝印对应的引脚是连通的</p>
+<p>也就是说</p>
+<p>右侧的+5V和底部的+5V是连通的</p>
+<p>右侧的TX和底部的TX是连通的</p>
+<p>右侧的RX和底部的RX是连通的</p>
+<p>右侧的GND和底部的GND是连通的</p>
+<p>有的客户右侧接口连接串口屏，底部接口用于连接单片机，这样是不行的，因为这个板子是有USB转TTL芯片的，会造成串口一对多，影响到串口的通讯。</p>
+<p>任何情况下请确保单片机的这个USART串口上面只有串口屏，没有其他外设。</p>
+</section>
+<section id="id4">
+<h2>串口屏与单片机连接说明3<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>当需要额外供电时，可以另外接5V和GND到屏幕上给屏供电，但是要将串口屏的GND和单片机的GND接到一起（也就是共地），单片机的+5V供电可以不和屏幕接在一起</p>
+<p>然后将单片机的TX连接到串口屏的RX</p>
+<p>然后将单片机的RX连接到串口屏的TX</p>
+<p>任何情况下请确保单片机的这个USART串口上面只有串口屏，没有其他外设。</p>
+</section>
+<section id="id5">
+<h2>串口屏与单片机连接说明4<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>如果不能确认串口屏是否可以接收到单片机的数据，可以把这个工程烧录到串口屏中试试，<a class="reference internal" href="../../download/moreProject/tjcwiki_usart_assist.html#id1"><span class="std std-ref">简易串口助手样例工程</span></a></p>
+<p>某些3.3V的单片机，可能会无法接收到X3、X5系列串口屏的数据，但是串口屏可以接收到单片机的数据</p>
+<p>因为X3、X5系列串口屏有其他电路用于切换TTL/232电平，他们的输出的串口电平是5V的，部分3.3V的单片机接收到5V电压可能无法正确识别</p>
+<p>这个时候可以尝试在串口屏的TX和单片机的RX中间串1个1K电阻以降低串口电压，让单片机正确识别串口数据。</p>
+</section>
+<section id="id6">
+<h2>串口屏与单片机连接说明5（串口解析）<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<p>以下为单片机的串口接收程序说明</p>
+<p>1、单片机上建议划分1KB的ram来创建一个串口环形缓冲区。</p>
+<p>2、推荐使用串口中断模式，在中断事件中将接收到的数据放入串口缓冲区，然后清空中断标志位，退出中断。</p>
+<p>3、在main循环中解析串口缓冲区中的数据。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simulator2mcu.html" class="btn btn-neutral float-left" title="模拟器(电脑)与单片机连接" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../usart_protocol/index.html" class="btn btn-neutral float-right" title="串口屏通讯协议" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

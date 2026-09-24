@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>串口屏常用接口型号说明 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="关于串口屏看门狗" href="QA142.html" />
+    <link rel="prev" title="如何判断屏幕是否支持喇叭" href="QA129.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常见问题</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">硬件相关</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="QA1.html">ESD能过多少V，EMI性能如何</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA2.html">串口通讯线最长能接多少米</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA3.html">通讯口电压多少V，是否可以直接接单片机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA7.html">屏幕通电后不断的闪烁(供电不足导致不断重启)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA37.html">喇叭相关问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA95.html">关于串口工具(cp2102/ft232/ch340/pl2303)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA45.html">如何修改控件显示的字体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA47.html">串口驱动相关问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA49.html">串口电平状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA50.html">关于一上电就关闭屏幕背光</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA55.html">结构兼容性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA71.html">拓展IO相关问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA72.html">如何修改设备型号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA74.html">屏幕边框为什么不对称</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA79.html">外部供电接法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA126.html">如何判断屏幕是否支持蜂鸣器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA127.html">如何判断屏幕是否支持RTC实时时钟</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA128.html">为什么232通讯不能超过256000</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA129.html">如何判断屏幕是否支持喇叭</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">串口屏常用接口型号说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xh2-54-4pin">XH2.54*4pin接口说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ph1-25-2pin">喇叭（ph1.25*2pin）接口说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#io-fpc1-0-10pin">外部IO（FPC1.0 * 10pin）接口说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hy2-0-8pin">大尺寸高电压串口屏供电接口（HY2.0 8pin）接口说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QA142.html">关于串口屏看门狗</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">结构设计相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">软件相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">错误提示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">其他</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">常见问题</a> &raquo;</li>
+      <li>串口屏常用接口型号说明</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>串口屏常用接口型号说明<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="xh2-54-4pin">
+<h2>XH2.54*4pin接口说明<a class="headerlink" href="#xh2-54-4pin" title="此标题的永久链接"></a></h2>
+<section id="id2">
+<h3>XH2.54*4pin实物图片<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h3>
+<img alt="../_images/QA133_1.jpg" src="../_images/QA133_1.jpg" />
+</section>
+<section id="id3">
+<h3>XH2.54*4pin连接器母座说明<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<img alt="../_images/QA133_2.png" src="../_images/QA133_2.png" />
+<p>以下举例的为兼容型号</p>
+<p>JST连接器公司的4pin 2.54间隔连接器母座，其产品型号为 <code class="docutils literal notranslate"><span class="pre">S4B-XH-SM4-TB</span></code></p>
+<p>HC(虹成电子)的4pin 2.54间隔连接器母座，其产品型号为 <code class="docutils literal notranslate"><span class="pre">HCZZ0021-4</span></code></p>
+<p>HCTL(华灿天禄)的4pin 2.54间隔连接器母座，其产品型号为 <code class="docutils literal notranslate"><span class="pre">HC-XH-4AWT</span></code></p>
+<p>下方截图仅做参考，非购买指南。</p>
+<img alt="../_images/QA133_2_2.jpg" src="../_images/QA133_2_2.jpg" />
+</section>
+<section id="id4">
+<h3>XH2.54*4pin连接器端子说明<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<p>胶套： <code class="docutils literal notranslate"><span class="pre">XHP-4</span></code></p>
+<p>端子： <code class="docutils literal notranslate"><span class="pre">SXH-001T-P0.6</span></code></p>
+<img alt="../_images/QA133_3.png" src="../_images/QA133_3.png" />
+</section>
+</section>
+<section id="ph1-25-2pin">
+<h2>喇叭（ph1.25*2pin）接口说明<a class="headerlink" href="#ph1-25-2pin" title="此标题的永久链接"></a></h2>
+<section id="id5">
+<h3>ph1.25*2pin实物图片<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<img alt="../_images/QA133_4.jpg" src="../_images/QA133_4.jpg" />
+</section>
+<section id="id6">
+<h3>ph1.25*2pin连接器母座说明<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<p>型号 PH1.25-2p （立贴）</p>
+<p>molex原厂立贴编号 533980271</p>
+<p>可以在立创商城或者淘宝直接搜索 <code class="docutils literal notranslate"><span class="pre">533980271</span></code></p>
+<p>兼容型号官网链接 <a class="reference external" href="https://www.molex.com/zh-cn/products/part-detail/533980271">https://www.molex.com/zh-cn/products/part-detail/533980271</a></p>
+<p>molex原厂卧贴编号 532610271</p>
+<p>可以在立创商城或者淘宝直接搜索 <code class="docutils literal notranslate"><span class="pre">532610271</span></code></p>
+<p>兼容型号官网链接 <a class="reference external" href="https://www.molex.com/zh-cn/products/part-detail/532610271">https://www.molex.com/zh-cn/products/part-detail/532610271</a></p>
+<p>下方截图仅做参考，非购买指南。</p>
+<img alt="../_images/QA133_5.jpg" src="../_images/QA133_5.jpg" />
+</section>
+<section id="id7">
+<h3>ph1.25*2pin连接器端子说明<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<p>molex原厂编号 510210200</p>
+<p>兼容型号官网链接 <a class="reference external" href="https://www.molex.com/zh-cn/products/part-detail/510210200">https://www.molex.com/zh-cn/products/part-detail/510210200</a></p>
+<p>可以在立创商城或者淘宝直接搜索 <code class="docutils literal notranslate"><span class="pre">510210200</span></code></p>
+<img alt="../_images/QA133_5_1.jpg" src="../_images/QA133_5_1.jpg" />
+</section>
+</section>
+<section id="io-fpc1-0-10pin">
+<h2>外部IO（FPC1.0 * 10pin）接口说明<a class="headerlink" href="#io-fpc1-0-10pin" title="此标题的永久链接"></a></h2>
+<section id="fpc1-0-10pin">
+<h3>FPC1.0 * 10pin连接器说明<a class="headerlink" href="#fpc1-0-10pin" title="此标题的永久链接"></a></h3>
+<p>类型：FPC连接器</p>
+<p>锁定特性：抽屉式</p>
+<p>触点类型：下接</p>
+<p>触点数量：10P</p>
+<p>间距：1.0mm</p>
+<p>安装方式：卧贴</p>
+<p>下方截图仅做参考，非购买指南。</p>
+<img alt="../_images/QA133_7.jpg" src="../_images/QA133_7.jpg" />
+</section>
+<section id="id8">
+<h3>FPC1.0 * 10pin排线说明<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h3>
+<p>类型：FFC连接线(柔性扁平线缆)</p>
+<p>总PIN数：10P</p>
+<p>间距：1.0mm</p>
+<p>触点：购买时需注意两端的触点方向是同向或反向(将排线展平时,金手指触点是否在同一面)</p>
+</section>
+</section>
+<section id="hy2-0-8pin">
+<h2>大尺寸高电压串口屏供电接口（HY2.0 8pin）接口说明<a class="headerlink" href="#hy2-0-8pin" title="此标题的永久链接"></a></h2>
+<section id="id9">
+<h3>HY2.0 8pin实物图片<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h3>
+<img alt="../_images/QA133_8.jpg" src="../_images/QA133_8.jpg" />
+</section>
+<section id="id10">
+<h3>HY2.0 8pin连接器母座说明<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h3>
+<p>插针结构：1x8P</p>
+<p>间距：2mm</p>
+<p>安装方式：卧贴</p>
+<p>下方截图仅做参考，非购买指南。</p>
+<img alt="../_images/QA133_9.jpg" src="../_images/QA133_9.jpg" />
+</section>
+<section id="id11">
+<h3>HY2.0 8pin连接器端子说明<a class="headerlink" href="#id11" title="此标题的永久链接"></a></h3>
+<p>胶套： <code class="docutils literal notranslate"><span class="pre">WAFER-HY2.0-8PJK</span></code></p>
+<img alt="../_images/QA133_10.jpg" src="../_images/QA133_10.jpg" />
+<p>端子： <code class="docutils literal notranslate"><span class="pre">ZX-HY2.0-DZ</span></code></p>
+<img alt="../_images/QA133_11.jpg" src="../_images/QA133_11.jpg" />
+</section>
+<section id="ph1-25-4pin">
+<h3>ph1.25*4pin连接器母座说明<a class="headerlink" href="#ph1-25-4pin" title="此标题的永久链接"></a></h3>
+<p>用于小尺寸的屏幕，例如x2系列圆形屏</p>
+<p>立贴兼容型号：molex 533980471</p>
+<img alt="../_images/QA133_12.jpg" src="../_images/QA133_12.jpg" />
+<p>兼容型号官网链接 <a class="reference external" href="https://www.molex.com/zh-cn/products/part-detail/533980471">https://www.molex.com/zh-cn/products/part-detail/533980471</a></p>
+<p>可以在立创商城或者淘宝直接搜索 <code class="docutils literal notranslate"><span class="pre">533980471</span></code></p>
+<img alt="../_images/QA133_12_1.jpg" src="../_images/QA133_12_1.jpg" />
+<p>卧贴兼容型号：molex 532610471</p>
+<img alt="../_images/QA133_13.jpg" src="../_images/QA133_13.jpg" />
+<p>兼容型号官网链接 <a class="reference external" href="https://www.molex.com/zh-cn/products/part-detail/532610471">https://www.molex.com/zh-cn/products/part-detail/532610471</a></p>
+<p>可以在立创商城或者淘宝直接搜索 <code class="docutils literal notranslate"><span class="pre">532610471</span></code></p>
+<img alt="../_images/QA133_13_1.jpg" src="../_images/QA133_13_1.jpg" />
+</section>
+<section id="id12">
+<h3>ph1.25*4pin连接器端子说明<a class="headerlink" href="#id12" title="此标题的永久链接"></a></h3>
+<p>立贴兼容型号：molex 510210400</p>
+<p>兼容型号官网链接 <a class="reference external" href="https://www.molex.com/zh-cn/products/part-detail/510210400">https://www.molex.com/zh-cn/products/part-detail/510210400</a></p>
+<p>可以在立创商城或者淘宝直接搜索 <code class="docutils literal notranslate"><span class="pre">510210400</span></code></p>
+<img alt="../_images/QA133_14_1.jpg" src="../_images/QA133_14_1.jpg" />
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QA129.html" class="btn btn-neutral float-left" title="如何判断屏幕是否支持喇叭" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="QA142.html" class="btn btn-neutral float-right" title="关于串口屏看门狗" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

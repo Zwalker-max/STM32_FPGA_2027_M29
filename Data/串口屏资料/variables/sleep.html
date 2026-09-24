@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sleep-睡眠 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="lowpower-睡眠模式设定" href="lowpower.html" />
+    <link rel="prev" title="wup-睡眠唤醒后刷新页面设置" href="wup.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">系统变量</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">常用变量</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sys0-sys2.html">sys0-sys2默认变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dp.html">dp-当前页面ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="volume.html">volume-系统音量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dims.html">dims-上电默认背光亮度值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dim.html">dim-当前背光亮度值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bauds.html">bauds-上电默认波特率值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="baud.html">baud-当前波特率值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ussp.html">ussp-无串口数据自动睡眠时间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thsp.html">thsp-无触摸操作自动睡眠时间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thup.html">thup-睡眠模式下触摸自动唤醒开关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usup.html">usup-睡眠模式下串口数据自动唤醒开关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wup.html">wup-睡眠唤醒后刷新页面设置</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sleep-睡眠</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">sleep模式与关闭亮度的功耗区别</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sleep-1">sleep-示例1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sleep-c">sleep-c语言示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">sleep-相关链接</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">sleep-样例工程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lowpower.html">lowpower-睡眠模式设定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bkcmd.html">bkcmd-串口指令执行状态数据返回</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delay.html">delay-延时</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rand.html">rand-随机数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crcval.html">crcval-crc校验结果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtc0-rtc6.html">rtc0~rtc6-RTC时钟变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pio0-pio7.html">pio0~pio7-扩展IO端口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pwm4-pwm7.html">pwm4~pwm7-扩展IO占空比</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pwmf.html">pwmf-PWM输出的频率</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio0-audio1.html">audio0~audio1-音频通道控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hmi_color.html">串口HMI颜色代号表</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">不常用变量</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">系统变量</a> &raquo;</li>
+      <li>sleep-睡眠</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sleep">
+<h1>sleep-睡眠<a class="headerlink" href="#sleep" title="此标题的永久链接"></a></h1>
+<p>用于配置串口屏睡眠、休眠</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>进入睡眠状态下，亮度为0，可以执行如下指令：get,prints, printh。也可以执行 sleep=0，wup=X 的赋值语句，但对其他系统变量以及对控件的赋值会失效，并且支持上位软件联机，其他指令不会执行。</p>
+<p>进入睡眠状态下，所有定时器控件停止运行。</p>
+<p>支持通过串口或者触摸唤醒屏幕，但是不支持通过IO口唤醒屏幕。</p>
+</div>
+<section id="id1">
+<h2>sleep模式与关闭亮度的功耗区别<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>x系列两者区别不大，t系列的睡眠模式下功耗会低很多</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>自动休眠相关配置请参考:</p>
+<p><a class="reference internal" href="thsp.html#thsp"><span class="std std-ref">thsp-无触摸操作自动睡眠时间</span></a></p>
+<p><a class="reference internal" href="ussp.html#ussp"><span class="std std-ref">ussp-无串口数据自动睡眠时间</span></a></p>
+</div>
+</section>
+<section id="sleep-1">
+<h2>sleep-示例1<a class="headerlink" href="#sleep-1" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//进入睡眠</span>
+<span class="n">sleep</span><span class="o">=</span><span class="mi">1</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/sleep_1.jpg" src="../_images/sleep_1.jpg" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>进入睡眠模式,也就是设置了sleep=1,后面的代码不会被执行,如果有代码,请写在sleep=1指令的前面</p>
+</div>
+</section>
+<section id="sleep-c">
+<h2>sleep-c语言示例<a class="headerlink" href="#sleep-c" title="此标题的永久链接"></a></h2>
+<p>单片机通过串口控制串口屏进入睡眠</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//进入睡眠</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;sleep=1</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>单片机通过串口控制串口屏退出睡眠</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//退出睡眠</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;sleep=0</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>sleep-相关链接<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p><a class="reference internal" href="../QA/QA88.html#id1"><span class="std std-ref">休眠替代方法</span></a></p>
+<p><a class="reference internal" href="../advanced/expandIO.html#sleepio"><span class="std std-ref">sleep睡眠模式与拓展IO</span></a></p>
+</section>
+<section id="id3">
+<h2>sleep-样例工程下载<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/系统变量/sleep/sleep休眠.HMI">《sleep休眠》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="wup.html" class="btn btn-neutral float-left" title="wup-睡眠唤醒后刷新页面设置" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="lowpower.html" class="btn btn-neutral float-right" title="lowpower-睡眠模式设定" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

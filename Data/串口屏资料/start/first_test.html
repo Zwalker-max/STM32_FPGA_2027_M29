@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>到手测试 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="创建工程" href="create_project/index.html" />
+    <link rel="prev" title="13.设备" href="ide_introduce/ide_introduce13.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">快速入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="download_ide.html">下载和安装上位机软件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ide_introduce/index.html">上位机基本功能介绍</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">到手测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ttl-232">普通TTL/232接口的串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fpc">FPC软排接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">485接口的串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usbttl">USB转TTL工具</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="create_project/index.html">创建工程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="codespace/index.html">代码编写</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">快速入门</a> &raquo;</li>
+      <li>到手测试</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>到手测试<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="ttl-232">
+<h2>普通TTL/232接口的串口屏<a class="headerlink" href="#ttl-232" title="此标题的永久链接"></a></h2>
+<p>目前淘晶驰的标准品接口有2种，一种是XH2.54*4</p>
+<img alt="../_images/TJC8048X550_011.jpg" src="../_images/TJC8048X550_011.jpg" />
+<img alt="../_images/TJC3224K024_011.jpg" src="../_images/TJC3224K024_011.jpg" />
+</section>
+<section id="fpc">
+<h2>FPC软排接口<a class="headerlink" href="#fpc" title="此标题的永久链接"></a></h2>
+<p>另一种是FPC软排接口， FPC 1.0*14，常见于T1、X2系列中的FPC版本</p>
+<img alt="../_images/TJC4832T135_011C_F_t.jpg" src="../_images/TJC4832T135_011C_F_t.jpg" />
+<p>引脚的顺序如图所示，T1与X2的引脚顺序和引脚定义是一致的</p>
+<img alt="../_images/fpcOrder.jpg" src="../_images/fpcOrder.jpg" />
+<p>FPC 1.0*14接口定义如下，正常情况下，仅需接以下6个引脚到您的单片机即可</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>序号</p></td>
+<td><p>引脚</p></td>
+<td><p>备注</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>GND</p></td>
+<td><p>接单片机GND</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>GND</p></td>
+<td><p>接单片机GND</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>UART_RXD</p></td>
+<td><p>接单片机TX</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>UART_TXD</p></td>
+<td><p>接单片机RX</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>VDD</p></td>
+<td><p>接3.3V供电</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>VDD</p></td>
+<td><p>接3.3V供电</p></td>
+</tr>
+</tbody>
+</table>
+<p>完整的定义如下</p>
+<table class="longtable docutils align-default" id="id3">
+<caption><span class="caption-text">FPC引脚对照表</span><a class="headerlink" href="#id3" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>序号</p></td>
+<td><p>引脚</p></td>
+<td><p>备注</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>GND</p></td>
+<td><p>接地</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>GND</p></td>
+<td><p>接地</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>NRST</p></td>
+<td><p>模组复位，低电平有效，可悬空</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>NC</p></td>
+<td><p>工厂测试引脚，必须悬空</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>NC</p></td>
+<td><p>工厂测试引脚，必须悬空</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>UART_RXD</p></td>
+<td><p>接单片机TX</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>UART_TXD</p></td>
+<td><p>接单片机RX</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>TF_CS</p></td>
+<td><p>外接TF卡</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>TF_MOSI</p></td>
+<td><p>外接TF卡</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>TF_SCK</p></td>
+<td><p>外接TF卡</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>TF_MISO</p></td>
+<td><p>外接TF卡</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>BEEP *</p></td>
+<td><p>蜂鸣器输出，可悬空</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>VDD</p></td>
+<td><p>接3.3V供电</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>VDD</p></td>
+<td><p>接3.3V供电</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>No.12 beep引脚 注:部分型号支持，目前仅T1系列使用HMI C2芯片的版本支持</p>
+</div>
+<p>FPC 1.0*14可以通过转接板转换为XH2.54*4</p>
+<img alt="../_images/fpc14to4pin.jpg" src="../_images/fpc14to4pin.jpg" />
+</section>
+<section id="id2">
+<h2>485接口的串口屏<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>除此之外还有一款x5 4寸宽电压版本，将后盖打开，里面也是 XH2.54*4</p>
+<img alt="../_images/TJC4848X550_011C_I_Y.jpg" src="../_images/TJC4848X550_011C_I_Y.jpg" />
+<p>x5 4寸宽电压版本是485接口，必须将485背板取下才能通过官方上位机（USART HMI）用ttl进行下载，如果在485模式下，用官方上位机（USART HMI）会无法下载。</p>
+<p>需要先通过上位机（USART HMI）导出tft文件（左上角文件-输出生产文件），然后使用TFT文件下载助手(TFTFileDownload)才能通过485进行下载</p>
+<img alt="../_images/TJC4848X550_011.jpg" src="../_images/TJC4848X550_011.jpg" />
+<p>相关链接</p>
+<p><a class="reference internal" href="../QA/QA77.html#tft"><span class="std std-ref">TFT文件如何下载到串口屏中</span></a></p>
+<p><a class="reference internal" href="create_project/create_project_10.html#tft"><span class="std std-ref">如何输出TFT生产文件</span></a></p>
+<p>x5 4寸宽电压版本背部接口接口定义如下</p>
+<img alt="../_images/TJC4848X550_011Define.png" src="../_images/TJC4848X550_011Define.png" />
+</section>
+<section id="usbttl">
+<h2>USB转TTL工具<a class="headerlink" href="#usbttl" title="此标题的永久链接"></a></h2>
+<p>建议使用官方的供电和下载工具</p>
+<img alt="../_images/usb2ttl.png" src="../_images/usb2ttl.png" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>如果您购买的屏大于5寸或者有使用喇叭的需求，请再购买一个12V电源用于额外供电，否则可能因为电脑USB供电不足导致开机启动失败</p>
+</div>
+<img alt="../_images/adapter12V.png" src="../_images/adapter12V.png" />
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>连接方式如下所示</p>
+</div>
+<p><strong>5V接串口屏5V</strong></p>
+<p><strong>单片机TX接串口屏RX</strong></p>
+<p><strong>单片机RX接串口屏TX</strong></p>
+<p><strong>GND接串口屏GND</strong></p>
+<p>TX是Transmit（发送），RX是Receive（接收），发送对接收，接收对发送。</p>
+<p>另外说明：有些板子和原理图标注的是TXD和RXD。TX就是TXD，RX就是RXD。概念都是一样的，可以不做区分。</p>
+<img alt="../_images/ttl2tjc.png" src="../_images/ttl2tjc.png" />
+<p>上电后请确保开关的位置如下图所示（朝向4pin接口）</p>
+<img alt="../_images/usb2ttl2.jpg" src="../_images/usb2ttl2.jpg" />
+<p>上电后应显示开机界面</p>
+<img alt="../_images/startup.jpg" src="../_images/startup.jpg" />
+<p>其他相关链接</p>
+<p><a class="reference internal" href="create_project/create_project_8.html#id1"><span class="std std-ref">安装串口驱动</span></a></p>
+<p><a class="reference internal" href="create_project/create_project_9.html#id1"><span class="std std-ref">通过串口下载工程到串口屏</span></a></p>
+<p><a class="reference internal" href="create_project/create_project_10.html#sd"><span class="std std-ref">通过SD卡下载工程到串口屏</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ide_introduce/ide_introduce13.html" class="btn btn-neutral float-left" title="13.设备" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="create_project/index.html" class="btn btn-neutral float-right" title="创建工程" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

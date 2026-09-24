@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>运算操作 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="跨页面赋值，全局变量操作" href="global_variable.html" />
+    <link rel="prev" title="赋值操作" href="assignment_operation.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">书写语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="assignment_operation.html">赋值操作</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">运算操作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">数值类型变量运算操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">字符串类型变量运算操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">位运算</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">按位与</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">按位或</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">按位异或</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">按位取反</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">按位同或</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">按位左移</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">按位右移</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">运算操作-相关链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="global_variable.html">跨页面赋值，全局变量操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmi_logic.html">HMI逻辑语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="name_array.html">数组/名称组使用说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">书写语法</a> &raquo;</li>
+      <li>运算操作</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>运算操作<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>所有运算不支持乘除法优先，也不支持括号优先级，统一从左到右的顺序，请特别注意。</p>
+<p>所有的运算操作可以在上位编辑状态下写入控件事件中，也可以串口传输过来(串口传输记得加三个0xff的结束符)</p>
+<p>所有的运算操作都不支持多余空格，添加进任何空格，编译都会报错</p>
+</div>
+<section id="id2">
+<h2>数值类型变量运算操作<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>支持的运算符：</p>
+<table class="colwidths-given longtable docutils align-default" id="id13">
+<caption><span class="caption-text">支持的运算符</span><a class="headerlink" href="#id13" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>符号</p></td>
+<td><p>作用</p></td>
+</tr>
+<tr class="row-even"><td><p>+</p></td>
+<td><p>加法运算或者字符串拼接</p></td>
+</tr>
+<tr class="row-odd"><td><p>-</p></td>
+<td><p>减法运算或者字符串删除末尾若干字符</p></td>
+</tr>
+<tr class="row-even"><td><p>*</p></td>
+<td><p>乘法运算</p></td>
+</tr>
+<tr class="row-odd"><td><p>/</p></td>
+<td><p>整除运算</p></td>
+</tr>
+<tr class="row-even"><td><p>%</p></td>
+<td><p>取余运算</p></td>
+</tr>
+<tr class="row-odd"><td><p>&amp;</p></td>
+<td><p>按位与</p></td>
+</tr>
+<tr class="row-even"><td><p>|</p></td>
+<td><p>按位或</p></td>
+</tr>
+<tr class="row-odd"><td><p>^</p></td>
+<td><p>按位异或</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;&lt;</p></td>
+<td><p>按位左移</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;&gt;</p></td>
+<td><p>按位右移</p></td>
+</tr>
+<tr class="row-even"><td><p>&amp;&amp;</p></td>
+<td><p>逻辑与</p></td>
+</tr>
+<tr class="row-odd"><td><p>||</p></td>
+<td><p>逻辑或</p></td>
+</tr>
+</tbody>
+</table>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">正确的运算操作</span><a class="headerlink" href="#id14" title="此代码块的永久链接"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">+</span><span class="n">n1</span><span class="o">.</span><span class="n">val</span><span class="o">+</span><span class="mi">2</span>
+<span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">++</span>
+<span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">+=</span><span class="mi">2</span>
+<span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="n">n1</span><span class="o">.</span><span class="n">val</span><span class="o">%</span><span class="mi">3</span>
+<span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="n">h0</span><span class="o">.</span><span class="n">val</span><span class="o">*</span><span class="mi">10</span>
+<span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">*=</span><span class="mi">10</span>
+<span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">|=</span><span class="n">n1</span><span class="o">.</span><span class="n">val</span>    <span class="o">//</span><span class="n">按位或</span>
+<span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="n">n1</span><span class="o">.</span><span class="n">val</span><span class="o">&amp;</span><span class="mh">0x03</span>   <span class="o">//</span><span class="n">按位与</span>
+<span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="n">n1</span><span class="o">.</span><span class="n">val</span><span class="o">^</span><span class="mh">0x05</span>   <span class="o">//</span><span class="n">按位异或</span>
+</pre></div>
+</div>
+</div>
+<img alt="../_images/arithmetic_operation_1.jpg" src="../_images/arithmetic_operation_1.jpg" />
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">错误的运算写法1</span><a class="headerlink" href="#id15" title="此代码块的永久链接"></a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//错误原因：数值类型的变量必须跟数值类型的变量做运算，并赋值给数值类型的变量
+n0.val<span class="o">=</span>t0.txt+1
+</pre></div>
+</div>
+</div>
+<img alt="../_images/arithmetic_operation_2.jpg" src="../_images/arithmetic_operation_2.jpg" />
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">错误的运算写法2</span><a class="headerlink" href="#id16" title="此代码块的永久链接"></a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//错误原因：数值类型的变量必须跟数值类型的变量做运算，并赋值给数值类型的变量
+n0.val<span class="o">=</span><span class="m">1</span>+<span class="s2">&quot;2&quot;</span>
+</pre></div>
+</div>
+</div>
+<img alt="../_images/arithmetic_operation_3.jpg" src="../_images/arithmetic_operation_3.jpg" />
+<p>注意:当数字控件的最高位为1时(即负数),进行右移操作时,最高位将补1,例如0x80000000&gt;&gt;31后变为0xFFFFFFFF而不是0x01</p>
+</section>
+<section id="id3">
+<h2>字符串类型变量运算操作<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>运算符 “+”</p>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">字符串拼接</span><a class="headerlink" href="#id17" title="此代码块的永久链接"></a></div>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">=</span><span class="s">&quot;1&quot;</span><span class="p">+</span><span class="s">&quot;2&quot;</span><span class="w"></span>
+<span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">=</span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">+</span><span class="n">t1</span><span class="p">.</span><span class="n">txt</span><span class="w"></span>
+<span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">+=</span><span class="s">&quot;abc&quot;</span><span class="p">+</span><span class="s">&quot;xy&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<img alt="../_images/arithmetic_operation_4.jpg" src="../_images/arithmetic_operation_4.jpg" />
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">以下为错误的运算写法</span><a class="headerlink" href="#id18" title="此代码块的永久链接"></a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//错误原因：1和2都是数值常量 字符串类型的变量只能跟字符串常量/变量相加，不能跟一个数值常量/变量相加
+t0.txt<span class="o">=</span><span class="m">1</span>+2
+</pre></div>
+</div>
+</div>
+<img alt="../_images/arithmetic_operation_5.jpg" src="../_images/arithmetic_operation_5.jpg" />
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">以下为错误的运算写法</span><a class="headerlink" href="#id19" title="此代码块的永久链接"></a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//错误原因：h0.val是数值变量,不能跟字符串变量相加,必须使用covx转换后再能相加
+t0.txt<span class="o">=</span>t0.txt+h0.val
+</pre></div>
+</div>
+</div>
+<img alt="../_images/arithmetic_operation_6.jpg" src="../_images/arithmetic_operation_6.jpg" />
+<p>运算符 “-”</p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">字符串删除</span><a class="headerlink" href="#id20" title="此代码块的永久链接"></a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>t0.txt<span class="o">=</span>t0.txt-1    //删除t0.txt最后1个字符
+t0.txt<span class="o">=</span>t0.txt-3    //删除t0.txt最后3个字符
+t0.txt-<span class="o">=</span>n0.val     //删除t0.txt最后n0.val个字符
+</pre></div>
+</div>
+</div>
+<img alt="../_images/arithmetic_operation_7.jpg" src="../_images/arithmetic_operation_7.jpg" />
+<p>在字符串变量运算中，”-“代表删除的意思,所以用”-“的时候，字符串变量必须”-“一个数值常量/变量来表示删除多少个字符，这里跟用”+”是不一样的。用”+”的时候必须是字符串+字符串；用”-“的时候必须是字符串-数值。</p>
+</section>
+<section id="id4">
+<h2>位运算<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>在进行位运算时，写16进制时，必须补全为偶数位长度。</p>
+<p>例如：</p>
+<p>0x9，必须补全成0x09</p>
+<p>0x100，必须补全成0x0100</p>
+<p>0x12345，必须补全成0x012345</p>
+</div>
+<img alt="../_images/arithmetic_operation_8.jpg" src="../_images/arithmetic_operation_8.jpg" />
+<section id="id5">
+<h3>按位与<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="mh">0xF0</span><span class="o">&amp;</span><span class="mh">0x0F</span>  <span class="o">//</span><span class="n">结果为0x00</span>
+
+<span class="n">n1</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">&amp;</span><span class="mh">0xff</span>   <span class="o">//</span><span class="n">取n0</span><span class="o">.</span><span class="n">val最低1字节数据</span>
+
+<span class="n">n1</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">&amp;</span><span class="mh">0x01</span>   <span class="o">//</span><span class="n">取n0</span><span class="o">.</span><span class="n">val最低1bit数据</span>
+</pre></div>
+</div>
+<img alt="../_images/arithmetic_operation_9.jpg" src="../_images/arithmetic_operation_9.jpg" />
+</section>
+<section id="id6">
+<h3>按位或<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="mh">0xF0</span><span class="o">|</span><span class="mh">0x0F</span>  <span class="o">//</span><span class="n">结果为0xFF</span>
+</pre></div>
+</div>
+<img alt="../_images/arithmetic_operation_10.jpg" src="../_images/arithmetic_operation_10.jpg" />
+</section>
+<section id="id7">
+<h3>按位异或<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<p>使某些特定的位翻转</p>
+<p>例如对二进制形式10100001(0xA1)的第2位和第3位翻转，则可以将该数与00000110(0x06)进行按位异或运算。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n0</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="mh">0xA1</span><span class="o">^</span><span class="mh">0x06</span>
+</pre></div>
+</div>
+<img alt="../_images/arithmetic_operation_11.jpg" src="../_images/arithmetic_operation_11.jpg" />
+<p>翻转按钮状态</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bt0</span><span class="o">.</span><span class="n">val</span><span class="o">^=</span><span class="mh">0x01</span>
+</pre></div>
+</div>
+<img alt="../_images/arithmetic_operation_12.jpg" src="../_images/arithmetic_operation_12.jpg" />
+</section>
+<section id="id8">
+<h3>按位取反<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h3>
+<p>参考按位异或，将所有的位翻转就是按位取反</p>
+<p><a class="reference internal" href="../QA/QA54.html#id1"><span class="std std-ref">如何实现按位取反</span></a></p>
+</section>
+<section id="id9">
+<h3>按位同或<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h3>
+<p><a class="reference internal" href="../QA/QA62.html#id1"><span class="std std-ref">如何实现按位同或运算</span></a></p>
+</section>
+<section id="id10">
+<h3>按位左移<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>n0.val&lt;&lt;=1  //左移1位，相当于乘2
+</pre></div>
+</div>
+<img alt="../_images/arithmetic_operation_13.jpg" src="../_images/arithmetic_operation_13.jpg" />
+</section>
+<section id="id11">
+<h3>按位右移<a class="headerlink" href="#id11" title="此标题的永久链接"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>n0.val&gt;&gt;=1  //右移1位，相当于除2
+</pre></div>
+</div>
+<img alt="../_images/arithmetic_operation_14.jpg" src="../_images/arithmetic_operation_14.jpg" />
+</section>
+</section>
+<section id="id12">
+<h2>运算操作-相关链接<a class="headerlink" href="#id12" title="此标题的永久链接"></a></h2>
+<p>暂无</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="assignment_operation.html" class="btn btn-neutral float-left" title="赋值操作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="global_variable.html" class="btn btn-neutral float-right" title="跨页面赋值，全局变量操作" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

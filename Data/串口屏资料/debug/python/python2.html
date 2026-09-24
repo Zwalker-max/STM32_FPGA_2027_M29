@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>python获取电脑状态 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="python获取奥运奖牌" href="python3.html" />
+    <link rel="prev" title="python发送数据给屏幕" href="python1.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">串口屏调试</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../simulator/index.html">模拟器调试基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_ttl.html">和USB转TTL的接线说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_mcu.html">和单片机的接线说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../base/index.html">联机调试基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usart_protocol/index.html">串口屏通讯协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_sscom.html">串口助手软件(sscom)和屏幕联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd.html">串口助手软件(sscom)和串口屏模拟器联调1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd2.html">串口助手软件(sscom)和串口屏模拟器联调2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_uart_assistant/index.html">其他串口助手</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stm32/index.html">与stm32单片机联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timcu/index.html">与TI（德州仪器）单片机联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arduino/index.html">与arduino联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../micropython/index.html">与MicroPython联调</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">与python联调</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="python1.html">python发送数据给屏幕</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">python获取电脑状态</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">python获取电脑状态工程下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">python获取电脑状态代码</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="python3.html">python获取奥运奖牌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python_download.html">python通讯演示工程下载</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">串口屏调试</a> &raquo;</li>
+          <li><a href="index.html">与python联调</a> &raquo;</li>
+      <li>python获取电脑状态</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python">
+<h1>python获取电脑状态<a class="headerlink" href="#python" title="此标题的永久链接"></a></h1>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>素材说明: python获取电脑状态目前只在windows下验证过</p>
+</div>
+<section id="id1">
+<h2>python获取电脑状态工程下载<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p><a class="reference external" href="python_download.html"><img alt="download-logo" src="../../_images/download_project.png" /></a></p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>在windows下建议使用vscode运行，如果无法通讯时，建议使用管理员权限打开vscode再运行，由于pycharm需要配置虚拟环境，不建议在pycharm下运行，可能会导致无法通讯。</p>
+<p>此例程属于python代码，仅提供参考，淘晶驰不提供python代码的技术支持。</p>
+</div>
+</section>
+<section id="id2">
+<h2>python获取电脑状态代码<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">psutil</span>
+<span class="kn">import</span> <span class="nn">serial</span>
+
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># function of Get CPU State;</span>
+<span class="k">def</span> <span class="nf">getCPUstate</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s2">&quot; CPU: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">(</span><span class="n">interval</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># function of Get Memory</span>
+<span class="k">def</span> <span class="nf">getMemorystate</span><span class="p">():</span>
+    <span class="n">phymem</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;Memory: </span><span class="si">%5s%%</span><span class="s2"> </span><span class="si">%6s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="n">phymem</span><span class="o">.</span><span class="n">percent</span><span class="p">,</span>
+        <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">phymem</span><span class="o">.</span><span class="n">used</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span>
+        <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">phymem</span><span class="o">.</span><span class="n">total</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;M&quot;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">line</span>
+
+
+<span class="k">def</span> <span class="nf">bytes2human</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; bytes2human(10000)</span>
+<span class="sd">    &#39;9.8 K&#39;</span>
+<span class="sd">    &gt;&gt;&gt; bytes2human(100001221)</span>
+<span class="sd">    &#39;95.4 M&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">symbols</span><span class="p">):</span>
+        <span class="n">prefix</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">symbols</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="n">prefix</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">prefix</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+            <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> B&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">poll</span><span class="p">(</span><span class="n">interval</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Retrieve raw stats within an interval window.&quot;&quot;&quot;</span>
+    <span class="n">tot_before</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_io_counters</span><span class="p">()</span>
+    <span class="n">pnic_before</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_io_counters</span><span class="p">(</span><span class="n">pernic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># sleep some time</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+    <span class="n">tot_after</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_io_counters</span><span class="p">()</span>
+    <span class="n">pnic_after</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_io_counters</span><span class="p">(</span><span class="n">pernic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># get cpu state</span>
+    <span class="n">cpu_state</span> <span class="o">=</span> <span class="n">getCPUstate</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+    <span class="c1"># get memory</span>
+    <span class="n">memory_state</span> <span class="o">=</span> <span class="n">getMemorystate</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">tot_before</span><span class="p">,</span> <span class="n">tot_after</span><span class="p">,</span> <span class="n">pnic_before</span><span class="p">,</span> <span class="n">pnic_after</span><span class="p">,</span> <span class="n">cpu_state</span><span class="p">,</span> <span class="n">memory_state</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">refresh_window</span><span class="p">(</span><span class="n">tot_before</span><span class="p">,</span> <span class="n">tot_after</span><span class="p">,</span> <span class="n">pnic_before</span><span class="p">,</span> <span class="n">pnic_after</span><span class="p">,</span> <span class="n">cpu_state</span><span class="p">,</span> <span class="n">memory_state</span><span class="p">):</span>
+
+    <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;t0.txt=</span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">asctime</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="n">cpu_state</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span> <span class="n">memory_state</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+
+    <span class="n">serial</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;GB2312&quot;</span><span class="p">))</span>
+    <span class="n">serial</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s1">&#39;ff ff ff&#39;</span><span class="p">))</span>
+
+    <span class="n">nic_names</span> <span class="o">=</span> <span class="n">pnic_after</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="c1"># nic_names.sort(key=lambda x: sum(pnic_after[x]), reverse=True)</span>
+
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">nic_names</span><span class="p">:</span>
+        <span class="c1"># 有线一般是以太网,无线则是WLAN,具体请查看&quot;控制面板\网络和 Internet\网络连接&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;以太网&quot;</span><span class="p">:</span>
+            <span class="n">stats_before</span> <span class="o">=</span> <span class="n">pnic_before</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="n">stats_after</span> <span class="o">=</span> <span class="n">pnic_after</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="n">templ</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%-15s</span><span class="s2"> </span><span class="si">%15s</span><span class="s2"> </span><span class="si">%15s</span><span class="s2">&quot;</span>
+            <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;t1.txt=</span><span class="se">\&quot;</span><span class="s2">上传数据总量&quot;</span> <span class="o">+</span> <span class="n">bytes2human</span><span class="p">(</span><span class="n">stats_after</span><span class="o">.</span><span class="n">bytes_sent</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;   上传速度:&quot;</span> <span class="o">+</span> <span class="n">bytes2human</span><span class="p">(</span><span class="n">stats_after</span><span class="o">.</span><span class="n">bytes_sent</span> <span class="o">-</span> <span class="n">stats_before</span><span class="o">.</span><span class="n">bytes_sent</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/s</span><span class="se">\&quot;</span><span class="s1">&#39;</span>
+            <span class="n">serial</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;GB2312&quot;</span><span class="p">))</span>
+            <span class="n">serial</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s1">&#39;ff ff ff&#39;</span><span class="p">))</span>
+            <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;t2.txt=</span><span class="se">\&quot;</span><span class="s2">下载数据总量&quot;</span> <span class="o">+</span> <span class="n">bytes2human</span><span class="p">(</span><span class="n">stats_after</span><span class="o">.</span><span class="n">bytes_recv</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;   下载速度:&quot;</span> <span class="o">+</span> <span class="n">bytes2human</span><span class="p">(</span><span class="n">stats_after</span><span class="o">.</span><span class="n">bytes_recv</span> <span class="o">-</span> <span class="n">stats_before</span><span class="o">.</span><span class="n">bytes_recv</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/s</span><span class="se">\&quot;</span><span class="s1">&#39;</span>
+            <span class="n">serial</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;GB2312&quot;</span><span class="p">))</span>
+            <span class="n">serial</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s1">&#39;ff ff ff&#39;</span><span class="p">))</span>
+
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">portx</span> <span class="o">=</span> <span class="s2">&quot;COM9&quot;</span>
+    <span class="n">bauds</span> <span class="o">=</span> <span class="mi">115200</span>
+    <span class="n">timex</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">serial</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">Serial</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">portx</span><span class="p">,</span><span class="n">baudrate</span><span class="o">=</span><span class="n">bauds</span><span class="p">,</span><span class="n">timeout</span><span class="o">=</span><span class="n">timex</span><span class="p">)</span>
+    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">poll</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+        <span class="n">refresh_window</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">interval</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python1.html" class="btn btn-neutral float-left" title="python发送数据给屏幕" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="python3.html" class="btn btn-neutral float-right" title="python获取奥运奖牌" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

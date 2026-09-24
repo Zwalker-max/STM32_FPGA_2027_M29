@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>显示比例不对，正方形变成长方形，圆型变成椭圆 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="发送中文汉字相关问题" href="QA103.html" />
+    <link rel="prev" title="带外壳产品安装示意图" href="QA100.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常见问题</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">硬件相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">结构设计相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">软件相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">错误提示</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id6">其他</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="QA46.html">如何查看编译时输出的信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA48.html">不同页面之间的同名控件有什么联系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA51.html">在定时器0里面加入使能定时器1的语句为什么系统不执行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA52.html">大小端模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA53.html">如何删除控件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA57.html">使用串口下载工程速度慢怎么办</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA58.html">printf()重定向之后，发送命令和结束符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA59.html">实现自己的printf函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA61.html">单片机如何控制屏幕</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA64.html">虚拟sd卡文件夹如何打开</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA65.html">如何实现页面滑动切换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA66.html">如何设置页面背景</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA67.html">HMI文件和TFT文件的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA69.html">界面旋转/翻转/方向</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA73.html">串口屏如何制作弹窗</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA76.html">utf8字库下如何只选择汉字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA77.html">TFT文件如何下载到串口屏中</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA78.html">只有屏/tft文件,或者源HMI工程丢了,能反编译出HMI文件吗</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA80.html">如何导入导出page文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA82.html">屏幕保护制作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA85.html">二维码控件是gb2312还是utf8编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA86.html">修改工程编码为utf8或者GB2312</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA87.html">文本数据显示不完全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA92.html">键盘无法输入中文</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA93.html">单片机如何判断串口屏有没有接入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA94.html">实现按键锁定功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA96.html">串口屏的串口缓冲区大小</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA97.html">主动解析下如何提取负数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA100.html">带外壳产品安装示意图</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">显示比例不对，正方形变成长方形，圆型变成椭圆</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.9寸屏 320*320</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4寸屏 480*480</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.3寸屏 800*480</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">7寸屏规格 800*480</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">7寸屏规格 1024*600</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">10.1寸屏 1024*600</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">原因说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QA103.html">发送中文汉字相关问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA105.html">为什么关闭小板上的电源时，RX灯会亮起</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA106.html">变量控件名和页面名称可以一样吗</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA107.html">如何使用TFT文件下载助手(TFTFileDownload)下载工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA110.html">单片机3.3V的串口可以直接接串口屏的串口吗</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA114.html">如何安装新字体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA115.html">如何导入字库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA116.html">如何导入图片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA117.html">如何导入动画</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA118.html">如何导入视频</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA119.html">如何导入音频</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA120.html">串口屏连接单片机开发板注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA121.html">字符编码相关详解——串口怎么发送字符和汉字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA122.html">为什么转换后的图片/视频/音频体积变大了</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA124.html">如何测量屏幕的尺寸大小</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA130.html">MAC电脑如何开发淘晶驰串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA131.html">数据记录文件结构分析1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA132.html">哪些指令和操作会消耗flash寿命</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">常见问题</a> &raquo;</li>
+      <li>显示比例不对，正方形变成长方形，圆型变成椭圆</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>显示比例不对，正方形变成长方形，圆型变成椭圆<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>这是因为有些型号的液晶颗粒不是方形的，是长方形的</p>
+<section id="id2">
+<h2>3.9寸屏 320*320<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<img alt="../_images/QA101_3232_39.jpg" src="../_images/QA101_3232_39.jpg" />
+<p>以3.9寸屏320*320为例</p>
+<p>宽度是71.94mm,像素320,单个像素宽度0.2248mm</p>
+<p>高度70.62mm,像素320,单个像素高度0.2207mm</p>
+<p>像素的宽高比为0.2248/0.2207=1.0276</p>
+</section>
+<section id="id3">
+<h2>4寸屏 480*480<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<img alt="../_images/QA101_4848_40.jpg" src="../_images/QA101_4848_40.jpg" />
+<p>以4寸屏480*480为例</p>
+<p>宽度是71.86mm,像素480,单个像素宽度0.1497mm</p>
+<p>高度70.18mm,像素480,单个像素高度0.1462mm</p>
+<p>像素的宽高比为0.179/0.179=1.0239</p>
+</section>
+<section id="id4">
+<h2>4.3寸屏 800*480<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<img alt="../_images/QA101_8048_43.jpg" src="../_images/QA101_8048_43.jpg" />
+<p>以4.3寸屏800*480为例</p>
+<p>宽度是95.04mm,像素800,单个像素宽度0.1188mm</p>
+<p>高度53.86mm,像素480,单个像素高度0.1122mm</p>
+<p>像素的宽高比为0.1188/0.1122=1.059</p>
+</section>
+<section id="id5">
+<h2>7寸屏规格 800*480<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<img alt="../_images/QA101_8048_70.jpg" src="../_images/QA101_8048_70.jpg" />
+<p>以7寸屏800*480为例</p>
+<p>宽度是154.08mm,像素800,单个像素宽度0.1926mm</p>
+<p>高度85.92mm,像素480,单个像素高度0.179mm</p>
+<p>像素的宽高比为0.1926/0.179=1.075978</p>
+</section>
+<section id="id6">
+<h2>7寸屏规格 1024*600<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<img alt="../_images/QA101_1060_70.jpg" src="../_images/QA101_1060_70.jpg" />
+<p>以7寸屏1024*600为例</p>
+<p>宽度是154.08mm,像素1024,单个像素宽度0.1543mm</p>
+<p>高度85.92mm,像素600,单个像素高度0.1432mm</p>
+<p>像素的宽高比为0.1543/0.1432=1.0777</p>
+</section>
+<section id="id7">
+<h2>10.1寸屏 1024*600<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<img alt="../_images/QA101_1060_A1.jpg" src="../_images/QA101_1060_A1.jpg" />
+<p>以10.1寸屏1024*600为例</p>
+<p>宽度是222.72mm,像素1024,单个像素宽度0.2175mm</p>
+<p>高度125.28mm,像素600,单个像素高度0.2088mm</p>
+<p>像素的宽高比为0.2175/0.2088=1.042</p>
+</section>
+<section id="id8">
+<h2>原因说明<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h2>
+<p>在横屏的情况下，因为像素的宽度要大于像素的高度，因此显示的图形会变扁</p>
+<p>如果要显示正常的图形比例，作图时把素材中的圆形和正方形提前略微拉高（高度大约为宽度的1.04-1.07倍），与像素点的比例互相抵消，此时就正常了</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QA100.html" class="btn btn-neutral float-left" title="带外壳产品安装示意图" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="QA103.html" class="btn btn-neutral float-right" title="发送中文汉字相关问题" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

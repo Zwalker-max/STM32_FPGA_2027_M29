@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>键盘基础知识 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="键盘的实现原理" href="keyboard_principle.html" />
+    <link rel="prev" title="系统键盘" href="index.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">系统键盘</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">键盘基础知识</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#keyboarduse">系统键盘的调用方式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keyboardunlockandreset">键盘解锁和重置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard_principle.html">键盘的实现原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard_custom/index.html">自定义键盘</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard_problem.html">系统键盘常见问题</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">串口屏高级应用详解</a> &raquo;</li>
+          <li><a href="index.html">系统键盘</a> &raquo;</li>
+      <li>键盘基础知识</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="keyboardbase">
+<span id="id1"></span><h1>键盘基础知识<a class="headerlink" href="#keyboardbase" title="此标题的永久链接"></a></h1>
+<section id="keyboarduse">
+<span id="id2"></span><h2>系统键盘的调用方式<a class="headerlink" href="#keyboarduse" title="此标题的永久链接"></a></h2>
+<p>支持系统键盘的控件:文本控件、数字控件、虚拟浮点数控件、滚动文本控件、滑动文本控件。</p>
+<p>以下图为例，首先我们将控件的vscope属性设置为全局，然后配置key属性，选择你需要的键盘即可，会自动导入键盘需要的资源</p>
+<img alt="../../_images/1_1.png" src="../../_images/1_1.png" />
+<p>调用键盘后默认导入相关字库资源文件</p>
+<img alt="../../_images/1_2.png" src="../../_images/1_2.png" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>某个控件绑定了键盘时，当点击了该控件时，会先触发该控件的按下事件，然后触发该控件的弹起事件，最后触发键盘跳转事件。</p>
+<p>键盘并不是一个单纯的控件，键盘是一个独立的页面,调用键盘时,会触发当前页面的&lt;页面离开事件&gt;以及键盘页面的&lt;前初始化事件&gt;和&lt;后初始化事件&gt;</p>
+<p>点击键盘的OK按键时,会触发键盘页面的&lt;页面离开事件&gt;以及控件调用页面的&lt;前初始化事件&gt;和&lt;后初始化事件&gt;</p>
+<p>当触发了键盘控件跳转了页面时，当前页面私有的控件会被回收，从键盘页面返回时，私有的控件初始化并变回初始状态</p>
+</div>
+</section>
+<section id="keyboardunlockandreset">
+<span id="id3"></span><h2>键盘解锁和重置<a class="headerlink" href="#keyboardunlockandreset" title="此标题的永久链接"></a></h2>
+<p>添加键盘时，会在页面窗口最下面页面生成相应键盘界面。</p>
+<p>默认键盘是上锁的，如果对键盘界面修改或者键盘里面功能进行修改，可以点击页面键盘右键解锁它并做相关的修改。</p>
+<p>如果不小心对键盘做了不必要的修改，可以右键重置键盘，键盘将会恢复默认键盘最初始的设置状态。</p>
+<img alt="../../_images/1_3.png" src="../../_images/1_3.png" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>如果您没有修改键盘功能的需求不需要再往下看了，可以查看其它章节</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="系统键盘" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="keyboard_principle.html" class="btn btn-neutral float-right" title="键盘的实现原理" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

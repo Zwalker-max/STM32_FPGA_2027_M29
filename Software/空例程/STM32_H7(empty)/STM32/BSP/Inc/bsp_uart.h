@@ -1,0 +1,18 @@
+#ifndef __BSP_UART_H__
+#define __BSP_UART_H__
+
+#include "bsp.h"
+
+#define UART_BUF_SIZE	128U	// including NUL('\0'), no more than 16-bit
+
+typedef struct {
+	UART_HandleTypeDef *huart;
+	char *pTxMsg;
+	char *pRxMsg;
+} BSP_UART_HandleTypeDef;
+
+HAL_StatusTypeDef BSP_UART_ReceiveToIdle_DMA(BSP_UART_HandleTypeDef *buart);
+HAL_StatusTypeDef BSP_UART_Transmit_DMA(BSP_UART_HandleTypeDef *buart,
+                                        const char *format, ...);
+
+#endif /* __BSP_UART_H__ */

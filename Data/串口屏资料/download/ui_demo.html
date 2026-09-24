@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI样例工程 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="图片资源下载" href="image/index.html" />
+    <link rel="prev" title="X系列给其他屏幕下载工程" href="moreProject/tjcwiki_tft_download.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">资料下载</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="usart_hmi.html">上位机下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development_doc.html">开发文档下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/index.html">常用工具下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="default_project.html">标准出厂工程样例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moreProject/index.html">官方样例工程</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UI样例工程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#agvui-x2-800x480">AGV小车UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bmsui-t1-240x320">BMS控制器UI(T1_240x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upsui-x2-800x480">UPS储能电源UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-t1-320x240">按摩仪UI(T1_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">按摩仪蓝色UI(T1_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x3-800x480">按摩椅UI(X3_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x5-1024x600">按摩椅UI(X5_1024x600)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-k0-320x240">便携式检测仪UI(K0_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x2-480x272">叉车充电器UI(X2_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x5-800x480">超声波清洗机UI(X5_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-t1-480x272">炒菜机UI(T1_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-t1-480x320">车载冰箱UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">充电桩行业UI(T1_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">抽油烟机UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">灯光控制器UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">电梯屏UI(X5_1024x600)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x2-800x480">电子智能储物柜UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">房车控制面板UI(X5_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">光伏逆变器UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">焊接机行业UI(X3_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">户外电源UI(T1_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">会议系统设备UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">机箱副屏UI(X2_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">交流充电桩UI(T1_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">交流充电桩UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">进度条控件UI(X5_1024x600)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui1-t1-480x320">咖啡机UI1(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui2-t1-480x320">咖啡机UI2(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui3-t1-480x272">咖啡机UI3(T1_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui4-x5-800x480">咖啡机UI4(X5_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id45">考勤机UI(T1_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x5-480x480">空调线控器UI(X5_480x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id48">空气检测仪UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id50">空气炸锅UI(T1_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id52">螺丝机UI(X5_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id54">毛巾烘干机UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id56">美容仪器UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x2-800x600">美容仪器UI(X2_800x600)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id59">跑步机UI(X5_1024x600)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id61">泡茶机UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id63">喷码机UI(T1_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id65">破壁机UI(T1_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id67">汽车充电桩UI(X5_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id69">取暖器UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id71">热水壶UI(T1_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id73">热水器UI(T1_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id75">商用烤箱UI(X3_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id77">摄影灯UI(K0_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id79">数字功放一体机UI(X3_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id81">水质检测仪UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id83">睡眠呼吸机UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id85">微波炉UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id87">温度控制器UI(X5_480x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id89">物流高拍仪UI(X5_1024x600)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id91">消防主机UI(X5_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id93">新风系统UI(X5_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id95">血压计UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id97">液体灌装机UI(X5_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id99">医疗美容UI(X3_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x5-480x272">医疗美容UI(X5_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id102">医疗仪器输液泵UI(T1_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id104">照明行业UI(X5_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id106">照明行业UI(X5_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x3-480x272">制冰机UI(X3_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id109">制氧机UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id111">智能称重一体机UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id113">智能家居UI(X5_480x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id115">智能马桶UI(T1_320x240)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id117">智能燃气灶UI(T1_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id119">智能洗碗机UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id121">智能洗衣机UI(T1_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id123">智能消毒柜UI(X2_800x480)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-x2-480x320">智能足浴盆UI(X2_480x320)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id126">中频治疗仪UI(X5_480x272)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#x5-101024600">自动贩卖机(X5 10寸1024600)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="image/index.html">图片资源下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font_download.html">免费字体下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voice_download.html">声音资源下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_download.html">原理图下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other_project.html">网友提供应用样例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tjc_game.html">游戏工程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tjcwiki_resource_collection.html">淘晶驰资料合集</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">资料下载</a> &raquo;</li>
+      <li>UI样例工程</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ui">
+<h1>UI样例工程<a class="headerlink" href="#ui" title="此标题的永久链接"></a></h1>
+<section id="agvui-x2-800x480">
+<h2>AGV小车UI(X2_800x480)<a class="headerlink" href="#agvui-x2-800x480" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_avg1.jpg" src="../_images/tjcwiki_avg1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/AGV小车UI(X2_800x480).HMI">《AGV小车UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="bmsui-t1-240x320">
+<h2>BMS控制器UI(T1_240x320)<a class="headerlink" href="#bmsui-t1-240x320" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_bms1.jpg" src="../_images/tjcwiki_bms1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/BMS控制器UI(T1_240x320).HMI">《BMS控制器UI(T1_240x320)》演示工程下载</a></p>
+</section>
+<section id="upsui-x2-800x480">
+<h2>UPS储能电源UI(X2_800x480)<a class="headerlink" href="#upsui-x2-800x480" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_ups1.jpg" src="../_images/tjcwiki_ups1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/UPS储能电源UI(X2_800x480).HMI">《UPS储能电源UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="ui-t1-320x240">
+<h2>按摩仪UI(T1_320x240)<a class="headerlink" href="#ui-t1-320x240" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_massager1.jpg" src="../_images/tjcwiki_massager1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/按摩仪UI(T1_320x240).HMI">《按摩仪UI(T1_320x240)》演示工程下载</a></p>
+</section>
+<section id="id5">
+<h2>按摩仪蓝色UI(T1_320x240)<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_massager2.jpg" src="../_images/tjcwiki_massager2.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/按摩仪蓝色UI(T1_320x240).HMI">《按摩仪蓝色UI(T1_320x240)》演示工程下载</a></p>
+</section>
+<section id="ui-x3-800x480">
+<h2>按摩椅UI(X3_800x480)<a class="headerlink" href="#ui-x3-800x480" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_massagechair1.jpg" src="../_images/tjcwiki_massagechair1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/按摩椅UI(X3_800x480).HMI">《按摩椅UI(X3_800x480)》演示工程下载</a></p>
+</section>
+<section id="ui-x5-1024x600">
+<h2>按摩椅UI(X5_1024x600)<a class="headerlink" href="#ui-x5-1024x600" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_massagechair2.jpg" src="../_images/tjcwiki_massagechair2.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/按摩椅UI(X5_1024x600).HMI">《按摩椅UI(X5_1024x600)》演示工程下载</a></p>
+</section>
+<section id="ui-k0-320x240">
+<h2>便携式检测仪UI(K0_320x240)<a class="headerlink" href="#ui-k0-320x240" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_portable_detectors.jpg" src="../_images/tjcwiki_portable_detectors.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/便携式检测仪UI(K0_320x240).HMI">《便携式检测仪UI(K0_320x240)》演示工程下载</a></p>
+</section>
+<section id="ui-x2-480x272">
+<h2>叉车充电器UI(X2_480x272)<a class="headerlink" href="#ui-x2-480x272" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_forklift_chargers.jpg" src="../_images/tjcwiki_forklift_chargers.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/叉车充电器UI(X2_480x272).HMI">《叉车充电器UI(X2_480x272)》演示工程下载</a></p>
+</section>
+<section id="ui-x5-800x480">
+<h2>超声波清洗机UI(X5_800x480)<a class="headerlink" href="#ui-x5-800x480" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_ultrasonic_cleaner.jpg" src="../_images/tjcwiki_ultrasonic_cleaner.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/超声波清洗机UI(X5_800x480).HMI">《超声波清洗机UI(X5_800x480)》演示工程下载</a></p>
+</section>
+<section id="ui-t1-480x272">
+<h2>炒菜机UI(T1_480x272)<a class="headerlink" href="#ui-t1-480x272" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_stir_fry_machine.jpg" src="../_images/tjcwiki_stir_fry_machine.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/炒菜机UI(T1_480x272).HMI">《炒菜机UI(T1_480x272)》演示工程下载</a></p>
+</section>
+<section id="ui-t1-480x320">
+<h2>车载冰箱UI(T1_480x320)<a class="headerlink" href="#ui-t1-480x320" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_car_refrigerators.jpg" src="../_images/tjcwiki_car_refrigerators.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/车载冰箱UI(T1_480x320).HMI">《车载冰箱UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id14">
+<h2>充电桩行业UI(T1_320x240)<a class="headerlink" href="#id14" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_car_charging_piles.jpg" src="../_images/tjcwiki_car_charging_piles.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/充电桩行业UI(T1_320x240).HMI">《充电桩行业UI(T1_320x240)》演示工程下载</a></p>
+</section>
+<section id="id16">
+<h2>抽油烟机UI(T1_480x320)<a class="headerlink" href="#id16" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_kitchen_hood.jpg" src="../_images/tjcwiki_kitchen_hood.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/抽油烟机UI(T1_480x320).HMI">《抽油烟机UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id18">
+<h2>灯光控制器UI(T1_480x320)<a class="headerlink" href="#id18" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_light_controllers.jpg" src="../_images/tjcwiki_light_controllers.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/灯光控制器UI(T1_480x320).HMI">《灯光控制器UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id20">
+<h2>电梯屏UI(X5_1024x600)<a class="headerlink" href="#id20" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_elevator_screen.jpg" src="../_images/tjcwiki_elevator_screen.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/电梯屏UI(X5_1024x600).HMI">《电梯屏UI(X5_1024x600)》演示工程下载</a></p>
+</section>
+<section id="ui-x2-800x480">
+<h2>电子智能储物柜UI(X2_800x480)<a class="headerlink" href="#ui-x2-800x480" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_electronic_smart_lockers.jpg" src="../_images/tjcwiki_electronic_smart_lockers.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/电子智能储物柜UI(X2_800x480).HMI">《电子智能储物柜UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="id23">
+<h2>房车控制面板UI(X5_800x480)<a class="headerlink" href="#id23" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_rv_control_panel.jpg" src="../_images/tjcwiki_rv_control_panel.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/房车控制面板UI(X5_800x480).HMI">《房车控制面板UI(X5_800x480)》演示工程下载</a></p>
+</section>
+<section id="id25">
+<h2>光伏逆变器UI(T1_480x320)<a class="headerlink" href="#id25" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_photovoltaic_inverters.jpg" src="../_images/tjcwiki_photovoltaic_inverters.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/光伏逆变器UI(T1_480x320).HMI">《光伏逆变器UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id27">
+<h2>焊接机行业UI(X3_800x480)<a class="headerlink" href="#id27" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_welding_machine.jpg" src="../_images/tjcwiki_welding_machine.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/焊接机行业UI(X3_800x480).HMI">《焊接机行业UI(X3_800x480)》演示工程下载</a></p>
+</section>
+<section id="id29">
+<h2>户外电源UI(T1_320x240)<a class="headerlink" href="#id29" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_outdoor_power_supply.jpg" src="../_images/tjcwiki_outdoor_power_supply.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/户外电源UI(T1_320x240).HMI">《户外电源UI(T1_320x240)》演示工程下载</a></p>
+</section>
+<section id="id31">
+<h2>会议系统设备UI(X2_800x480)<a class="headerlink" href="#id31" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_conference_system_equipment.jpg" src="../_images/tjcwiki_conference_system_equipment.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/会议系统设备UI(X2_800x480).HMI">《会议系统设备UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="id33">
+<h2>机箱副屏UI(X2_480x272)<a class="headerlink" href="#id33" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_computer_secondary_screen.jpg" src="../_images/tjcwiki_computer_secondary_screen.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/机箱副屏UI(X2_480x272).HMI">《机箱副屏UI(X2_480x272)》演示工程下载</a></p>
+</section>
+<section id="id35">
+<h2>交流充电桩UI(T1_320x240)<a class="headerlink" href="#id35" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_ac_charging_pile1.jpg" src="../_images/tjcwiki_ac_charging_pile1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/交流充电桩UI(T1_320x240).HMI">《交流充电桩UI(T1_320x240)》演示工程下载</a></p>
+</section>
+<section id="id37">
+<h2>交流充电桩UI(T1_480x320)<a class="headerlink" href="#id37" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_ac_charging_pile2.jpg" src="../_images/tjcwiki_ac_charging_pile2.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/交流充电桩UI(T1_480x320).HMI">《交流充电桩UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id39">
+<h2>进度条控件UI(X5_1024x600)<a class="headerlink" href="#id39" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_progress_bar_widget.jpg" src="../_images/tjcwiki_progress_bar_widget.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/进度条控件UI(X5_1024x600).HMI">《进度条控件UI(X5_1024x600)》演示工程下载</a></p>
+</section>
+<section id="ui1-t1-480x320">
+<h2>咖啡机UI1(T1_480x320)<a class="headerlink" href="#ui1-t1-480x320" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_coffee_machine1.jpg" src="../_images/tjcwiki_coffee_machine1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/咖啡机UI1(T1_480x320).HMI">《咖啡机UI1(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="ui2-t1-480x320">
+<h2>咖啡机UI2(T1_480x320)<a class="headerlink" href="#ui2-t1-480x320" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_coffee_machine2.jpg" src="../_images/tjcwiki_coffee_machine2.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/咖啡机UI2(T1_480x320).HMI">《咖啡机UI2(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="ui3-t1-480x272">
+<h2>咖啡机UI3(T1_480x272)<a class="headerlink" href="#ui3-t1-480x272" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_coffee_machine3.jpg" src="../_images/tjcwiki_coffee_machine3.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/咖啡机UI3(T1_480x272).HMI">《咖啡机UI3(T1_480x272)》演示工程下载</a></p>
+</section>
+<section id="ui4-x5-800x480">
+<h2>咖啡机UI4(X5_800x480)<a class="headerlink" href="#ui4-x5-800x480" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_coffee_machine4.jpg" src="../_images/tjcwiki_coffee_machine4.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/咖啡机UI4(X5_800x480).HMI">《咖啡机UI4(X5_800x480)》演示工程下载</a></p>
+</section>
+<section id="id45">
+<h2>考勤机UI(T1_320x240)<a class="headerlink" href="#id45" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_time_card_machine.jpg" src="../_images/tjcwiki_time_card_machine.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/考勤机UI(T1_320x240).HMI">《考勤机UI(T1_320x240)》演示工程下载</a></p>
+</section>
+<section id="ui-x5-480x480">
+<h2>空调线控器UI(X5_480x480)<a class="headerlink" href="#ui-x5-480x480" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_air_conditioner_control.jpg" src="../_images/tjcwiki_air_conditioner_control.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/空调线控器UI(X5_480x480).HMI">《空调线控器UI(X5_480x480)》演示工程下载</a></p>
+</section>
+<section id="id48">
+<h2>空气检测仪UI(T1_480x320)<a class="headerlink" href="#id48" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_air_detectors.jpg" src="../_images/tjcwiki_air_detectors.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/空气检测仪UI(T1_480x320).HMI">《空气检测仪UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id50">
+<h2>空气炸锅UI(T1_480x272)<a class="headerlink" href="#id50" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_air_fryer.jpg" src="../_images/tjcwiki_air_fryer.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/空气炸锅UI(T1_480x272).HMI">《空气炸锅UI(T1_480x272)》演示工程下载</a></p>
+</section>
+<section id="id52">
+<h2>螺丝机UI(X5_800x480)<a class="headerlink" href="#id52" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_filature.jpg" src="../_images/tjcwiki_filature.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/螺丝机UI(X5_800x480).HMI">《螺丝机UI(X5_800x480)》演示工程下载</a></p>
+</section>
+<section id="id54">
+<h2>毛巾烘干机UI(T1_480x320)<a class="headerlink" href="#id54" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_towel_dryer.jpg" src="../_images/tjcwiki_towel_dryer.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/毛巾烘干机UI(T1_480x320).HMI">《毛巾烘干机UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id56">
+<h2>美容仪器UI(X2_800x480)<a class="headerlink" href="#id56" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_beauty_equipment1.jpg" src="../_images/tjcwiki_beauty_equipment1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/美容仪器UI(X2_800x480).HMI">《美容仪器UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="ui-x2-800x600">
+<h2>美容仪器UI(X2_800x600)<a class="headerlink" href="#ui-x2-800x600" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_beauty_equipment2.jpg" src="../_images/tjcwiki_beauty_equipment2.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/美容仪器UI(X2_800x600).HMI">《美容仪器UI(X2_800x600)》演示工程下载</a></p>
+</section>
+<section id="id59">
+<h2>跑步机UI(X5_1024x600)<a class="headerlink" href="#id59" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_fitbit.jpg" src="../_images/tjcwiki_fitbit.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/跑步机UI(X5_1024x600).HMI">《跑步机UI(X5_1024x600)》演示工程下载</a></p>
+</section>
+<section id="id61">
+<h2>泡茶机UI(T1_480x320)<a class="headerlink" href="#id61" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_tea_maker.jpg" src="../_images/tjcwiki_tea_maker.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/泡茶机UI(T1_480x320).HMI">《泡茶机UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id63">
+<h2>喷码机UI(T1_480x272)<a class="headerlink" href="#id63" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_inkjet_printers.jpg" src="../_images/tjcwiki_inkjet_printers.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/喷码机UI(T1_480x272).HMI">《喷码机UI(T1_480x272)》演示工程下载</a></p>
+</section>
+<section id="id65">
+<h2>破壁机UI(T1_480x272)<a class="headerlink" href="#id65" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_high_speed_blender.jpg" src="../_images/tjcwiki_high_speed_blender.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/破壁机UI(T1_480x272).HMI">《破壁机UI(T1_480x272)》演示工程下载</a></p>
+</section>
+<section id="id67">
+<h2>汽车充电桩UI(X5_800x480)<a class="headerlink" href="#id67" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_car_charging_piles2.jpg" src="../_images/tjcwiki_car_charging_piles2.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/汽车充电桩UI(X5_800x480).HMI">《汽车充电桩UI(X5_800x480)》演示工程下载</a></p>
+</section>
+<section id="id69">
+<h2>取暖器UI(T1_480x320)<a class="headerlink" href="#id69" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_heater.jpg" src="../_images/tjcwiki_heater.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/取暖器UI(T1_480x320).HMI">《取暖器UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id71">
+<h2>热水壶UI(T1_320x240)<a class="headerlink" href="#id71" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_kettle.jpg" src="../_images/tjcwiki_kettle.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/热水壶UI(T1_320x240).HMI">《热水壶UI(T1_320x240)》演示工程下载</a></p>
+</section>
+<section id="id73">
+<h2>热水器UI(T1_480x272)<a class="headerlink" href="#id73" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_water_heater.jpg" src="../_images/tjcwiki_water_heater.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/热水器UI(T1_480x272).HMI">《热水器UI(T1_480x272)》演示工程下载</a></p>
+</section>
+<section id="id75">
+<h2>商用烤箱UI(X3_800x480)<a class="headerlink" href="#id75" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_commercial_ovens.jpg" src="../_images/tjcwiki_commercial_ovens.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/商用烤箱UI(X3_800x480).HMI">《商用烤箱UI(X3_800x480)》演示工程下载</a></p>
+</section>
+<section id="id77">
+<h2>摄影灯UI(K0_320x240)<a class="headerlink" href="#id77" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_photographic_lights.jpg" src="../_images/tjcwiki_photographic_lights.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/摄影灯UI(K0_320x240).HMI">《摄影灯UI(K0_320x240)》演示工程下载</a></p>
+</section>
+<section id="id79">
+<h2>数字功放一体机UI(X3_800x480)<a class="headerlink" href="#id79" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_aio_digital_amplifier.jpg" src="../_images/tjcwiki_aio_digital_amplifier.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/数字功放一体机UI(X3_800x480).HMI">《数字功放一体机UI(X3_800x480)》演示工程下载</a></p>
+</section>
+<section id="id81">
+<h2>水质检测仪UI(X2_800x480)<a class="headerlink" href="#id81" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_water_quality_tester.jpg" src="../_images/tjcwiki_water_quality_tester.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/水质检测仪UI(X2_800x480).HMI">《水质检测仪UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="id83">
+<h2>睡眠呼吸机UI(T1_480x320)<a class="headerlink" href="#id83" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_sleep_apnea.jpg" src="../_images/tjcwiki_sleep_apnea.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/睡眠呼吸机UI(T1_480x320).HMI">《睡眠呼吸机UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id85">
+<h2>微波炉UI(T1_480x320)<a class="headerlink" href="#id85" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_microwave_oven.jpg" src="../_images/tjcwiki_microwave_oven.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/微波炉UI(T1_480x320).HMI">《微波炉UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id87">
+<h2>温度控制器UI(X5_480x480)<a class="headerlink" href="#id87" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_temperature_controller.jpg" src="../_images/tjcwiki_temperature_controller.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/温度控制器UI(X5_480x480).HMI">《温度控制器UI(X5_480x480)》演示工程下载</a></p>
+</section>
+<section id="id89">
+<h2>物流高拍仪UI(X5_1024x600)<a class="headerlink" href="#id89" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_logistics_high_speed_camera.jpg" src="../_images/tjcwiki_logistics_high_speed_camera.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/物流高拍仪UI(X5_1024x600).HMI">《物流高拍仪UI(X5_1024x600)》演示工程下载</a></p>
+</section>
+<section id="id91">
+<h2>消防主机UI(X5_800x480)<a class="headerlink" href="#id91" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_fire_host.jpg" src="../_images/tjcwiki_fire_host.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/消防主机UI(X5_800x480).HMI">《消防主机UI(X5_800x480)》演示工程下载</a></p>
+</section>
+<section id="id93">
+<h2>新风系统UI(X5_800x480)<a class="headerlink" href="#id93" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_fresh_air_system.jpg" src="../_images/tjcwiki_fresh_air_system.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/新风系统UI(X5_800x480).HMI">《新风系统UI(X5_800x480)》演示工程下载</a></p>
+</section>
+<section id="id95">
+<h2>血压计UI(X2_800x480)<a class="headerlink" href="#id95" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_sphygmomanometry.jpg" src="../_images/tjcwiki_sphygmomanometry.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/血压计UI(X2_800x480).HMI">《血压计UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="id97">
+<h2>液体灌装机UI(X5_800x480)<a class="headerlink" href="#id97" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_liquid_filling_machine.jpg" src="../_images/tjcwiki_liquid_filling_machine.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/液体灌装机UI(X5_800x480).HMI">《液体灌装机UI(X5_800x480)》演示工程下载</a></p>
+</section>
+<section id="id99">
+<h2>医疗美容UI(X3_800x480)<a class="headerlink" href="#id99" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_medical_cosmetology1.jpg" src="../_images/tjcwiki_medical_cosmetology1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/医疗美容UI(X3_800x480).HMI">《医疗美容UI(X3_800x480)》演示工程下载</a></p>
+</section>
+<section id="ui-x5-480x272">
+<h2>医疗美容UI(X5_480x272)<a class="headerlink" href="#ui-x5-480x272" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_medical_cosmetology2.jpg" src="../_images/tjcwiki_medical_cosmetology2.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/医疗美容UI(X5_480x272).HMI">《医疗美容UI(X5_480x272)》演示工程下载</a></p>
+</section>
+<section id="id102">
+<h2>医疗仪器输液泵UI(T1_480x320)<a class="headerlink" href="#id102" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_Infusion_pumps.jpg" src="../_images/tjcwiki_Infusion_pumps.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/医疗仪器输液泵UI(T1_480x320).HMI">《医疗仪器输液泵UI(T1_480x320)》演示工程下载</a></p>
+</section>
+<section id="id104">
+<h2>照明行业UI(X5_480x272)<a class="headerlink" href="#id104" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_lighting1.jpg" src="../_images/tjcwiki_lighting1.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/照明行业UI(X5_480x272).HMI">《照明行业UI(X5_480x272)》演示工程下载</a></p>
+</section>
+<section id="id106">
+<h2>照明行业UI(X5_800x480)<a class="headerlink" href="#id106" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_lighting2.jpg" src="../_images/tjcwiki_lighting2.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/照明行业UI(X5_800x480).HMI">《照明行业UI(X5_800x480)》演示工程下载</a></p>
+</section>
+<section id="ui-x3-480x272">
+<h2>制冰机UI(X3_480x272)<a class="headerlink" href="#ui-x3-480x272" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_ice_machine.jpg" src="../_images/tjcwiki_ice_machine.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/制冰机UI(X3_480x272).HMI">《制冰机UI(X3_480x272)》演示工程下载</a></p>
+</section>
+<section id="id109">
+<h2>制氧机UI(X2_800x480)<a class="headerlink" href="#id109" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_oxygen_machine.jpg" src="../_images/tjcwiki_oxygen_machine.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/制氧机UI(X2_800x480).HMI">《制氧机UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="id111">
+<h2>智能称重一体机UI(X2_800x480)<a class="headerlink" href="#id111" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_smart_weigher.jpg" src="../_images/tjcwiki_smart_weigher.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/智能称重一体机UI(X2_800x480).HMI">《智能称重一体机UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="id113">
+<h2>智能家居UI(X5_480x480)<a class="headerlink" href="#id113" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_smart_home.jpg" src="../_images/tjcwiki_smart_home.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/智能家居UI(X5_480x480).HMI">《智能家居UI(X5_480x480)》演示工程下载</a></p>
+</section>
+<section id="id115">
+<h2>智能马桶UI(T1_320x240)<a class="headerlink" href="#id115" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_smart_toilets.jpg" src="../_images/tjcwiki_smart_toilets.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/智能马桶UI(T1_320x240).HMI">《智能马桶UI(T1_320x240)》演示工程下载</a></p>
+</section>
+<section id="id117">
+<h2>智能燃气灶UI(T1_480x272)<a class="headerlink" href="#id117" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_smart_gas_stoves.jpg" src="../_images/tjcwiki_smart_gas_stoves.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/智能燃气灶UI(T1_480x272).HMI">《智能燃气灶UI(T1_480x272)》演示工程下载</a></p>
+</section>
+<section id="id119">
+<h2>智能洗碗机UI(X2_800x480)<a class="headerlink" href="#id119" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_smart_dishwasher.jpg" src="../_images/tjcwiki_smart_dishwasher.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/智能洗碗机UI(X2_800x480).HMI">《智能洗碗机UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="id121">
+<h2>智能洗衣机UI(T1_480x272)<a class="headerlink" href="#id121" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_smart_washing_machine.jpg" src="../_images/tjcwiki_smart_washing_machine.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/智能洗衣机UI(T1_480x272).HMI">《智能洗衣机UI(T1_480x272)》演示工程下载</a></p>
+</section>
+<section id="id123">
+<h2>智能消毒柜UI(X2_800x480)<a class="headerlink" href="#id123" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_smart_disinfection_cabinet.jpg" src="../_images/tjcwiki_smart_disinfection_cabinet.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/智能消毒柜UI(X2_800x480).HMI">《智能消毒柜UI(X2_800x480)》演示工程下载</a></p>
+</section>
+<section id="ui-x2-480x320">
+<h2>智能足浴盆UI(X2_480x320)<a class="headerlink" href="#ui-x2-480x320" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_smart_foot_bath.jpg" src="../_images/tjcwiki_smart_foot_bath.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/智能足浴盆UI(X2_480x320).HMI">《智能足浴盆UI(X2_480x320)》演示工程下载</a></p>
+</section>
+<section id="id126">
+<h2>中频治疗仪UI(X5_480x272)<a class="headerlink" href="#id126" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_medium_frequency_therapy_device.jpg" src="../_images/tjcwiki_medium_frequency_therapy_device.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/中频治疗仪UI(X5_480x272).HMI">《中频治疗仪UI(X5_480x272)》演示工程下载</a></p>
+</section>
+<section id="x5-101024600">
+<h2>自动贩卖机(X5 10寸1024600)<a class="headerlink" href="#x5-101024600" title="此标题的永久链接"></a></h2>
+<img alt="../_images/tjcwiki_coin_machine.jpg" src="../_images/tjcwiki_coin_machine.jpg" />
+<p>样例工程下载</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/UI样例工程/自动贩卖机(X5_10寸1024600).HMI">《自动贩卖机(X5 10寸1024600)》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="moreProject/tjcwiki_tft_download.html" class="btn btn-neutral float-left" title="X系列给其他屏幕下载工程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="image/index.html" class="btn btn-neutral float-right" title="图片资源下载" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

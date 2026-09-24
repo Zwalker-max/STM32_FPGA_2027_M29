@@ -1,0 +1,73 @@
+/*********************************************************
+ * 模块：stm32_fmc_16bit
+ * 功能：STM32H7 FMC 异步从端接口（16bit数据，15bit地址，无NBL）
+ * 平台：EP4CE10E22 + STM32H723
+ *********************************************************/
+module stm32_fmc_16bit (
+    // FMC 硬件接口（FPGA 侧）
+    input  wire          FMC_NE1,      // 片选 低有效
+    input  wire          FMC_NOE,      // 读使能 低有效
+    input  wire          FMC_NWE,      // 写使能 低有效
+    
+    input  wire [14:0]   FMC_A,        // 地址线 15bit [14:0]
+    inout  wire [15:0]   FMC_D,        // 数据线 16bit
+    
+    // 用户逻辑接口（你自己的功能接这里）
+    output wire          user_wr_en,   // 用户写使能（高有效）
+    output wire          user_rd_en,   // 用户读使能（高有效）
+    output wire [14:0]   user_addr,    // 用户地址 15bit
+    output wire [15:0]   user_wdata,   // 用户写数据
+    input  wire [15:0]   user_rdata    // 用户读数据
+);
+
+// ======================================================
+// 1. 信号同步（抗毛刺，异步总线推荐）
+// ======================================================
+reg        ne1_sync1, ne1_sync2;
+reg        noe_sync1, noe_sync2;
+reg        nwe_sync1, nwe_sync2;
+reg [14:0] addr_sync1, addr_sync2;
+
+always @(posedge clk_50m or negedge rst_n) begin
+    if(!rst_n) begin
+        ne1_sync1 <= 1'b1;
+        ne1_sync2 <= 1'b1;
+        noe_sync1 <= 1'b1;
+        noe_sync2 <= 1'b1;
+        nwe_sync1 <= 1'b1;
+        nwe_sync2 <= 1'b1;
+        addr_sync1 <= 15'd0;
+        addr_sync2 <= 15'd0;
+    end else begin
+        ne1_sync1 <= FMC_NE1;
+        ne1_sync2 <= ne1_sync1;
+        noe_sync1 <= FMC_NOE;
+        noe_sync2 <= noe_sync1;
+        nwe_sync1 <= FMC_NWE;
+        nwe_sync2 <= nwe_sync1;
+        addr_sync1 <= FMC_A;
+        addr_sync2 <= addr_sync1;
+    end
+end
+
+// ======================================================
+// 2. 读写有效信号生成
+// ======================================================
+wire cs_valid    = ~ne1_sync2;                // 片选有效
+assign user_wr_en = cs_valid & ~nwe_sync2;    // 写使能（高有效）
+assign user_rd_en = cs_valid & ~noe_sync2;   // 读使能（高有效）
+assign user_addr  = addr_sync2;               // 输出地址
+
+// ======================================================
+// 3. 数据方向控制（关键：避免总线冲突）
+// ======================================================
+assign FMC_D     = user_rd_en ? user_rdata : 16'hzzzz;
+assign user_wdata = FMC_D;
+
+// ======================================================
+// 4. 时钟复位（根据你的系统修改）
+// ======================================================
+input  wire clk_50m;    // FPGA 系统时钟 50MHz
+input  wire rst_n;      // 复位 低有效
+
+endmodule

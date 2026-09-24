@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>程序中使用CRC校验数据 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="运行中串口传输文件到内存或SD卡" href="transmit_data.html" />
+    <link rel="prev" title="串口指令增加CRC校验" href="crc.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">程序中使用CRC校验数据</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">使用crc校验的步骤</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">初始化crc校验</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crcputh-crcputs-crcputu">使用crcputh/crcputs/crcputu将需要的数据放入校验</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">获取crc计算结果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">crc校验示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">串口屏计算出来的crc结果和单片机计算出来的结果不同如何排查</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">crc校验-样例工程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">串口屏高级应用详解</a> &raquo;</li>
+      <li>程序中使用CRC校验数据</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="crc">
+<h1>程序中使用CRC校验数据<a class="headerlink" href="#crc" title="此标题的永久链接"></a></h1>
+<p>(1.60.1及其以上上位机版本支持,目前仅支持crc-16/modbus)</p>
+<section id="id1">
+<h2>使用crc校验的步骤<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<section id="id2">
+<h3>初始化crc校验<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//初始化crc
+crcrest <span class="m">1</span>,0xffff
+</pre></div>
+</div>
+</section>
+<section id="crcputh-crcputs-crcputu">
+<h3>使用crcputh/crcputs/crcputu将需要的数据放入校验<a class="headerlink" href="#crcputh-crcputs-crcputu" title="此标题的永久链接"></a></h3>
+<p>crcputh的用法参考printh</p>
+<p>crcputs的用法参考prints</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//将0x03 0x25放入crc校验
+crcputh <span class="m">03</span> <span class="m">25</span>
+
+//将字符串<span class="s2">&quot;aaa&quot;</span>放入crc校验
+crcputs <span class="s2">&quot;aaa&quot;</span>,0
+
+//将字符串t0.txt放入crc校验
+crcputs t0.txt,0
+
+//将字符串t1.txt的前6个字节放入crc校验
+crcputs t1.txt,6
+
+//将数值16的低2字节放入crc校验
+crcputs <span class="m">16</span>,2
+
+//将数值n0.val放入crc校验
+crcputs n0.val,0
+
+//将数值n1.val的低2字节放入crc校验
+crcputs n1.val,2
+
+//将串口缓冲区的第5个字节开始的24个字节放入crc校验
+crcputu <span class="m">5</span>,24
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>获取crc计算结果<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>crcval变量即为计算结果，可以随时获取</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//将crcval的数据发送出去
+prints crcval,2
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>crc校验示例<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>未进行校验的代码如下所示</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//发送55 aa 作为帧头
+printh <span class="m">55</span> aa
+
+//串口发送数值变量n0.val的低2字节
+prints n0.val,2
+
+//串口发送字符串变量t0.txt
+prints t0.txt,0
+
+//发送0d 0a作为帧尾
+printh 0d 0a
+</pre></div>
+</div>
+<p>将上方的代码添加crc-16校验并发送出去</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//重置crc校验
+crcrest <span class="m">1</span>,0xffff
+
+//发送55 aa
+printh <span class="m">55</span> aa
+
+//将55 aa 放入crc校验
+crcputh <span class="m">55</span> aa
+
+//串口发送数值变量n0.val的低2字节
+prints n0.val,2
+
+//将数值变量n0.val的低2字节放入crc校验
+crcputs n0.val,2
+
+//串口发送字符串变量t0.txt
+prints t0.txt,0
+
+//将字符串变量t0.txt放入crc校验
+crcputs t0.txt,0
+
+//发送0d 0a作为帧尾
+printh 0d 0a
+
+//将0d 0a放入crc校验
+crcputh 0d 0a
+
+//串口发送校验结果
+prints crcval,2
+</pre></div>
+</div>
+<p>在大部分的应用场景下，crc校验仅仅是将printh改成crcputh，prints改为crcputs</p>
+<img alt="../_images/crc2_1.jpg" src="../_images/crc2_1.jpg" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>注意放入crc校验中变量的长度</p>
+<p>crcputs n0.val,3，crcputs n0.val,2，crcputs n0.val,1和crcputs n0.val,0得出的crc校验值是完全不同的4个值！</p>
+</div>
+</section>
+<section id="id5">
+<h2>串口屏计算出来的crc结果和单片机计算出来的结果不同如何排查<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>借助网上的crc在线校验工具，先计算出标准的modbus-crc16的值，然后对比一下是串口屏计算出来的crc有问题还是单片机计算出来的crc有问题，针对问题修改代码即可</p>
+</section>
+<section id="id6">
+<h2>crc校验-样例工程下载<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/串口屏高级应用/CRC校验/CRC校验.HMI">《CRC校验》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/串口屏高级应用/CRC校验/crc校验例程一对.zip">《crc校验例程一对》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="crc.html" class="btn btn-neutral float-left" title="串口指令增加CRC校验" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="transmit_data.html" class="btn btn-neutral float-right" title="运行中串口传输文件到内存或SD卡" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>例1000：某bms串口协议1 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../../_static/custom.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="解析不定长hex格式指令-自定义协议" href="../unfixed_hex/index.html" />
+    <link rel="prev" title="例104：电化学氧气模组SC-03-O2-主动解析样例工程" href="fixed104.html" />
+    <link href="../../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">主动解析模式应用详解</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../recmod_base.html">主动解析基本知识</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">解析定长hex格式指令-自定义协议</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="fixed1.html">例1：帧头为0x55,帧尾为3个0xff,每次传输灯的序号和对应的状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed2.html">例2：帧头为0x55 ，帧尾为3个0xff，一次性传输4个灯的状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed3.html">例3：帧头为0x33 ，帧尾为0d 0a，每次传输灯的序号和对应的状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed4.html">例4：没有帧头 ，帧尾为0d 0a，每次传输灯的序号和对应的状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed5.html">例5：帧头为0x33 ，没有帧尾，每次传输灯的序号和对应的状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed6.html">例6：没有帧头，帧尾为3个0xff，每次传输4个灯的状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed7.html">例7：帧头为0x55，没有帧尾，每次传输4个灯的状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed8.html">例8：没有帧头也没有帧尾，每次传输4个灯的状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed9.html">例9：一个字节有8位，其实可以用1个字节传输8个灯的开关状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed10.html">例10：帧头为0x33 ，无帧尾，使用modbus_crc16校验，一次性传输4个灯的状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed11.html">例11：有两种帧头为0x47和0x4E ，帧尾为0x0d，0x0a，每帧长度22字节</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed101.html">例101：帧头为55 aa，定长hex-点灯1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed102.html">例102：帧头为55 aa，定长hex-点灯2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed103.html">例103：定长hex-主动解析样例工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fixed104.html">例104：电化学氧气模组SC-03-O2-主动解析样例工程</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">例1000：某bms串口协议1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../unfixed_hex/index.html">解析不定长hex格式指令-自定义协议</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../recmod_ascii/index.html">解析字符串格式指令</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">串口屏高级应用详解</a> &raquo;</li>
+          <li><a href="../index.html">主动解析模式应用详解</a> &raquo;</li>
+          <li><a href="index.html">解析定长hex格式指令-自定义协议</a> &raquo;</li>
+      <li>例1000：某bms串口协议1</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bms1">
+<h1>例1000：某bms串口协议1<a class="headerlink" href="#bms1" title="此标题的永久链接"></a></h1>
+<table class="colwidths-given longtable docutils align-default" id="id1">
+<caption><span class="caption-text">某bms串口协议1</span><a class="headerlink" href="#id1" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>字节</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data0</p></td>
+<td><p>0xaa</p></td>
+<td><p>固定帧头</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data1</p></td>
+<td><p>0x55</p></td>
+<td><p>固定帧头</p></td>
+</tr>
+<tr class="row-even"><td><p>Data2</p></td>
+<td><p>0xaa</p></td>
+<td><p>固定帧头</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data3</p></td>
+<td><p>0xff</p></td>
+<td><p>固定帧头</p></td>
+</tr>
+<tr class="row-even"><td><p>Data4</p></td>
+<td><p>总压高字节</p></td>
+<td><p>0.1V/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data5</p></td>
+<td><p>总压低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data6</p></td>
+<td><p>单体电压0高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data7</p></td>
+<td><p>单体电压0低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data8</p></td>
+<td><p>单体电压1高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data9</p></td>
+<td><p>单体电压1低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data10</p></td>
+<td><p>单体电压2高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data11</p></td>
+<td><p>单体电压2低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data12</p></td>
+<td><p>单体电压3高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data13</p></td>
+<td><p>单体电压3低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data14</p></td>
+<td><p>单体电压4高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data15</p></td>
+<td><p>单体电压4低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data16</p></td>
+<td><p>单体电压5高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data17</p></td>
+<td><p>单体电压5低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data18</p></td>
+<td><p>单体电压6高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data19</p></td>
+<td><p>单体电压6低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data20</p></td>
+<td><p>单体电压7高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data21</p></td>
+<td><p>单体电压7低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data22</p></td>
+<td><p>单体电压8高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data23</p></td>
+<td><p>单体电压8低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data24</p></td>
+<td><p>单体电压9高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data25</p></td>
+<td><p>单体电压9低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data26</p></td>
+<td><p>单体电压10高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data27</p></td>
+<td><p>单体电压10低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data28</p></td>
+<td><p>单体电压11高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data29</p></td>
+<td><p>单体电压11低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data30</p></td>
+<td><p>单体电压12高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data31</p></td>
+<td><p>单体电压12低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data32</p></td>
+<td><p>单体电压13高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data33</p></td>
+<td><p>单体电压13低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data34</p></td>
+<td><p>单体电压14高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data35</p></td>
+<td><p>单体电压14低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data36</p></td>
+<td><p>单体电压15高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data37</p></td>
+<td><p>单体电压15低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data38</p></td>
+<td><p>单体电压16高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data39</p></td>
+<td><p>单体电压16低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data40</p></td>
+<td><p>单体电压17高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data41</p></td>
+<td><p>单体电压17低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data42</p></td>
+<td><p>单体电压18高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data43</p></td>
+<td><p>单体电压18低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data44</p></td>
+<td><p>单体电压19高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data45</p></td>
+<td><p>单体电压19低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data46</p></td>
+<td><p>单体电压20高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data47</p></td>
+<td><p>单体电压20低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data48</p></td>
+<td><p>单体电压21高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data49</p></td>
+<td><p>单体电压21低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data50</p></td>
+<td><p>单体电压22高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data51</p></td>
+<td><p>单体电压22低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data52</p></td>
+<td><p>单体电压23高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data53</p></td>
+<td><p>单体电压23低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data54</p></td>
+<td><p>单体电压24高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data55</p></td>
+<td><p>单体电压24低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data56</p></td>
+<td><p>单体电压25高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data57</p></td>
+<td><p>单体电压25低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data58</p></td>
+<td><p>单体电压26高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data59</p></td>
+<td><p>单体电压26低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data60</p></td>
+<td><p>单体电压27高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data61</p></td>
+<td><p>单体电压27低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data62</p></td>
+<td><p>单体电压28高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data63</p></td>
+<td><p>单体电压28低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data64</p></td>
+<td><p>单体电压29高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data65</p></td>
+<td><p>单体电压29低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data66</p></td>
+<td><p>单体电压30高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data67</p></td>
+<td><p>单体电压30低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data68</p></td>
+<td><p>单体电压31高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data69</p></td>
+<td><p>单体电压31低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data70</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data71</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data72</p></td>
+<td><p>电流高字节</p></td>
+<td><p>0.1A/bit integer</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data73</p></td>
+<td><p>电流低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data74</p></td>
+<td><p>SOC</p></td>
+<td><p>1%/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data75</p></td>
+<td><p>byte3</p></td>
+<td><p>物理容量 备注5</p></td>
+</tr>
+<tr class="row-even"><td><p>Data76</p></td>
+<td><p>byte2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data77</p></td>
+<td><p>byte1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data78</p></td>
+<td><p>byte0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data79</p></td>
+<td><p>byte3</p></td>
+<td><p>剩余容量 备注5</p></td>
+</tr>
+<tr class="row-even"><td><p>Data80</p></td>
+<td><p>byte2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data81</p></td>
+<td><p>byte1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data82</p></td>
+<td><p>byte0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data83</p></td>
+<td><p>byte3</p></td>
+<td><p>循环容量 备注5</p></td>
+</tr>
+<tr class="row-even"><td><p>Data84</p></td>
+<td><p>byte2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data85</p></td>
+<td><p>byte1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data86</p></td>
+<td><p>byte0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data87</p></td>
+<td><p>byte3</p></td>
+<td><p>系统时间 1s/bit</p></td>
+</tr>
+<tr class="row-even"><td><p>Data88</p></td>
+<td><p>byte2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data89</p></td>
+<td><p>byte1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data90</p></td>
+<td><p>byte0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data91</p></td>
+<td><p>MOS 温度高字节</p></td>
+<td><p>1 ℃/bit integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Data92</p></td>
+<td><p>MOS 温度低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data93</p></td>
+<td><p>均衡温度高字节</p></td>
+<td><p>1 ℃/bit integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Data94</p></td>
+<td><p>均衡温度低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data95</p></td>
+<td><p>外部温度0高字节</p></td>
+<td><p>1 ℃/bit integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Data96</p></td>
+<td><p>外部温度0低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data97</p></td>
+<td><p>外部温度1高字节</p></td>
+<td><p>1 ℃/bit integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Data98</p></td>
+<td><p>外部温度1低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data99</p></td>
+<td><p>外部温度2高字节</p></td>
+<td><p>1 ℃/bit integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Data100</p></td>
+<td><p>外部温度2低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data101</p></td>
+<td><p>外部温度3高字节</p></td>
+<td><p>1 ℃/bit integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Data102</p></td>
+<td><p>外部温度3低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data103</p></td>
+<td><p>充电MOS状态</p></td>
+<td><p>备注1</p></td>
+</tr>
+<tr class="row-even"><td><p>Data104</p></td>
+<td><p>放电MOS状态</p></td>
+<td><p>备注2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data105</p></td>
+<td><p>均衡状态</p></td>
+<td><p>备注3</p></td>
+</tr>
+<tr class="row-even"><td><p>Data106</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data107</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data108</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data109</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data110</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data111</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data112</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data113</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data114</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data115</p></td>
+<td><p>最高单体串数</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data116</p></td>
+<td><p>最高单体电压高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data117</p></td>
+<td><p>最高单体电压低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data118</p></td>
+<td><p>最低单体串数</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data119</p></td>
+<td><p>最低单体电压高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-even"><td><p>Data120</p></td>
+<td><p>最低单体电压低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data121</p></td>
+<td><p>平均单体电压高字节</p></td>
+<td><p>1mV/bit</p></td>
+</tr>
+<tr class="row-even"><td><p>Data122</p></td>
+<td><p>平均单体电压低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Data123</p></td>
+<td><p>实际串数</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data124</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data125</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data126</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data127</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data128</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data129</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data130</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data131</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data132</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data133</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data134</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data135</p></td>
+<td><p>reserved</p></td>
+<td><p>保留参数</p></td>
+</tr>
+<tr class="row-even"><td><p>Data136</p></td>
+<td><p>系统日志高字节</p></td>
+<td><p>备注6</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data137</p></td>
+<td><p>系统日志低字节</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Data138</p></td>
+<td><p>校验和高字节</p></td>
+<td><p>备注4</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data139</p></td>
+<td><p>校验和低字节</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given longtable docutils align-default" id="id2">
+<caption><span class="caption-text">备注1-充电管状态,</span><a class="headerlink" href="#id2" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>数值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>关闭</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>打开</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>单体过压</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>过流</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>总压过压</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>电池过温</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>功率过温</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>电流异常</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>均衡线掉串</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>主板过温</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>开启失败</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>充电管异常</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>等待</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>手动关闭</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>二级过压</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>低温保护</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>压差保护</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>总压单体异常</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given longtable docutils align-default" id="id3">
+<caption><span class="caption-text">备注2-放电管状态</span><a class="headerlink" href="#id3" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>数值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>关闭</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>打开</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>单体欠压</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>过流</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>二级过流</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>总压欠压</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>电池过温</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>功率过温</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>电流异常</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>均衡线掉串</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>主板过温</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>短路保护</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>放电管异常</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>开启失败</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>手动关闭</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>耳机欠压</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>低温保护</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>压差保护</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>总压单体异常</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given longtable docutils align-default" id="id4">
+<caption><span class="caption-text">备注3</span><a class="headerlink" href="#id4" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>数值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>关闭</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>均衡极限</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>压差均衡</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>均衡过温</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>自动均衡</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>主板过温</p></td>
+</tr>
+</tbody>
+</table>
+<p>备注4：</p>
+<p>和校验计算方法:</p>
+<p>定义一个16bit变量</p>
+<p>u16Result=0</p>
+<p>u16Result += Data[I], I 从 4 到 137.如果 u16Result = Data[138]*256+Data[139]. 那么数据是完整的，否则数据是错误的。</p>
+<p>备注5：</p>
+<p>对于4字节变量 结果 = byte3 &lt;&lt; 24 + byte2 &lt;&lt; 16 + byte1 &lt;&lt; 8 + byte0</p>
+<p>容量的分辨率为0.000001AH</p>
+<table class="colwidths-given longtable docutils align-default" id="id5">
+<caption><span class="caption-text">备注6</span><a class="headerlink" href="#id5" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>数值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bit0 - bit4</p></td>
+<td><p>充电放电管状态</p></td>
+</tr>
+<tr class="row-odd"><td><p>bit5 - bit9位</p></td>
+<td><p>电池编号</p></td>
+</tr>
+<tr class="row-even"><td><p>bit10 - bit14位</p></td>
+<td><p>先后顺序</p></td>
+</tr>
+<tr class="row-odd"><td><p>bit15</p></td>
+<td><p>充电放电，1放电，0充电</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>每个页面仅建议在一个定时器中读取串口缓冲区的数据,在多个定时器中读取串口缓冲区的数据容易照成逻辑混乱。</p>
+</div>
+<p>新建一个空白工程</p>
+<p>在工程中新建一个定时器tmDecode，tim设置为50，en设置为1，用于定时解析串口数据</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>16进制发送时，可以忽略大小写，ff和FF是一样的，AA和aa是一样的，但是请不要写成Ff，Ab这样大小写混用</p>
+</div>
+<p>program.s中的配置如图所示</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//以下代码只在上电时运行一次,一般用于全局变量定义和上电初始化数据
+//全局变量定义目前仅支持4字节有符号整形(int),不支持其他类型的全局变量声明,如需使用字符串类型可以在页面中使用变量控件来实现
+int sys0=0,sys1=0,sys2=0
+//frameLength：每帧数据长度
+//getFrameFlag：是否找到帧头或帧尾标记
+int frameLength=140,getFrameFlag
+int sumCheck=0,sumCheck2=0
+bauds=19200 //波特率19200
+recmod=1    //打开主动解析
+page 0                       //上电刷新第0页
+</pre></div>
+</div>
+<p>解析定时器（tim为50）中的代码如下图所示</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>while(usize&gt;=frameLength&amp;&amp;getFrameFlag==0)
+{
+  //计算校验和
+  sumCheck=0
+  for(sys0=4;sys0&lt;=137;sys0++)
+  {
+    sumCheck+=u[sys0]
+  }
+  sumCheck&amp;=0xffff
+  sumCheck2=u[138]&lt;&lt;8+u[139]
+  //检查帧头和校验和
+  if(u[0]==0xAA&amp;&amp;u[1]==0x55&amp;&amp;u[2]==0xAA&amp;&amp;u[3]==0xFF&amp;&amp;sumCheck==sumCheck2)
+  {
+    //找到帧头,退出循环
+    getFrameFlag=1
+  }else
+  {
+    //如果帧头不对，就一直删除1个字节，直到不满足条件退出循环
+    udelete 1
+  }
+}
+if(getFrameFlag==1)
+{
+  global.data4_5.val=u[4]&lt;&lt;8+u[5]
+  global.data6_7.val=u[6]&lt;&lt;8+u[7]
+  global.data8_9.val=u[8]&lt;&lt;8+u[9]
+  global.data10_11.val=u[10]&lt;&lt;8+u[11]
+  global.data12_13.val=u[12]&lt;&lt;8+u[13]
+  global.data14_15.val=u[14]&lt;&lt;8+u[15]
+  global.data16_17.val=u[16]&lt;&lt;8+u[17]
+  global.data18_19.val=u[18]&lt;&lt;8+u[19]
+  global.data20_21.val=u[20]&lt;&lt;8+u[21]
+  global.data22_23.val=u[22]&lt;&lt;8+u[23]
+  global.data24_25.val=u[24]&lt;&lt;8+u[25]
+  global.data26_27.val=u[26]&lt;&lt;8+u[27]
+  global.data28_29.val=u[28]&lt;&lt;8+u[29]
+  global.data30_31.val=u[30]&lt;&lt;8+u[31]
+  global.data32_33.val=u[32]&lt;&lt;8+u[33]
+  global.data34_35.val=u[34]&lt;&lt;8+u[35]
+  global.data36_37.val=u[36]&lt;&lt;8+u[37]
+  global.data38_39.val=u[38]&lt;&lt;8+u[39]
+  global.data40_41.val=u[40]&lt;&lt;8+u[41]
+  global.data42_43.val=u[42]&lt;&lt;8+u[43]
+  global.data44_45.val=u[44]&lt;&lt;8+u[45]
+  global.data46_47.val=u[46]&lt;&lt;8+u[47]
+  global.data48_49.val=u[48]&lt;&lt;8+u[49]
+  global.data50_51.val=u[50]&lt;&lt;8+u[51]
+  global.data52_53.val=u[52]&lt;&lt;8+u[53]
+  global.data54_55.val=u[54]&lt;&lt;8+u[55]
+  global.data56_57.val=u[56]&lt;&lt;8+u[57]
+  global.data58_59.val=u[58]&lt;&lt;8+u[59]
+  global.data60_61.val=u[60]&lt;&lt;8+u[61]
+  global.data62_63.val=u[62]&lt;&lt;8+u[63]
+  global.data64_65.val=u[64]&lt;&lt;8+u[65]
+  global.data66_67.val=u[66]&lt;&lt;8+u[67]
+  global.data68_69.val=u[68]&lt;&lt;8+u[69]
+  global.data72_73.val=u[72]&lt;&lt;8+u[73]
+  global.data74.val=u[74]
+  global.data75_78.val=u[75]&lt;&lt;8+u[76]&lt;&lt;8+u[77]&lt;&lt;8+u[78]
+  global.data79_82.val=u[79]&lt;&lt;8+u[80]&lt;&lt;8+u[81]&lt;&lt;8+u[82]
+  global.data83_86.val=u[83]&lt;&lt;8+u[84]&lt;&lt;8+u[85]&lt;&lt;8+u[86]
+  global.data87_90.val=u[87]&lt;&lt;8+u[88]&lt;&lt;8+u[89]&lt;&lt;8+u[90]
+  global.data91_92.val=u[91]&lt;&lt;8+u[92]
+  global.data93_94.val=u[93]&lt;&lt;8+u[94]
+  global.data95_96.val=u[95]&lt;&lt;8+u[96]
+  global.data97_98.val=u[97]&lt;&lt;8+u[98]
+  global.data99_100.val=u[99]&lt;&lt;8+u[100]
+  global.data101_102.val=u[101]&lt;&lt;8+u[102]
+  global.data103.val=u[103]
+  global.data104.val=u[104]
+  global.data105.val=u[105]
+  global.data115.val=u[115]
+  global.data116_117.val=u[116]&lt;&lt;8+u[117]
+  global.data118.val=u[118]
+  global.data119_120.val=u[119]&lt;&lt;8+u[120]
+  global.data121_122.val=u[121]&lt;&lt;8+u[122]
+  global.data123.val=u[123]
+  global.data136_137.val=u[136]&lt;&lt;8+u[137]
+  udelete frameLength //删除已经解析过的数据
+  getFrameFlag=0 //清空标记变量
+}
+</pre></div>
+</div>
+<section id="hex-bms1">
+<h2>定长hex-某bms串口协议1-样例工程下载<a class="headerlink" href="#hex-bms1" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/串口屏高级应用/主动解析/定长hex-某bms串口协议.HMI">《定长hex-某bms串口协议》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fixed104.html" class="btn btn-neutral float-left" title="例104：电化学氧气模组SC-03-O2-主动解析样例工程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../unfixed_hex/index.html" class="btn btn-neutral float-right" title="解析不定长hex格式指令-自定义协议" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

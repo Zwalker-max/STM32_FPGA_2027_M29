@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>模拟器调试基础知识 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="和USB转TTL的接线说明" href="../connect_ttl.html" />
+    <link rel="prev" title="串口屏调试" href="../index.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">串口屏调试</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">模拟器调试基础知识</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">在没有串口屏的情况下进行调试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">模拟器调试示例一</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">模拟器调试示例二</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_ttl.html">和USB转TTL的接线说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_mcu.html">和单片机的接线说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../base/index.html">联机调试基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usart_protocol/index.html">串口屏通讯协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_sscom.html">串口助手软件(sscom)和屏幕联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd.html">串口助手软件(sscom)和串口屏模拟器联调1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd2.html">串口助手软件(sscom)和串口屏模拟器联调2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_uart_assistant/index.html">其他串口助手</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stm32/index.html">与stm32单片机联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timcu/index.html">与TI（德州仪器）单片机联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arduino/index.html">与arduino联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../micropython/index.html">与MicroPython联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">与python联调</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">串口屏调试</a> &raquo;</li>
+      <li>模拟器调试基础知识</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>模拟器调试基础知识<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="id2">
+<h2>在没有串口屏的情况下进行调试<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>淘晶驰串口屏的模拟器功能非常强大,您可以在没有串口屏实物的情况下通过模拟器进行调试</p>
+<p>上位机模拟器几乎可以完全模拟真实的设备。</p>
+<p>在指令输入区可以直接输入指令，不需要结束符</p>
+</div>
+<img alt="../../_images/simulator_1.jpg" src="../../_images/simulator_1.jpg" />
+<section id="id3">
+<h3>模拟器调试示例一<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>在指令输入区可输入指令给文本赋值，不需要对引号进行转义</p>
+<img alt="../../_images/simulator_2.jpg" src="../../_images/simulator_2.jpg" />
+<p>在指令输入区可以使用page指令来跳转页面</p>
+<img alt="../../_images/simulator_3.jpg" src="../../_images/simulator_3.jpg" />
+<p>在指令输入区设置亮度</p>
+<img alt="../../_images/simulator_4.jpg" src="../../_images/simulator_4.jpg" />
+<p>设置音量（仅x3、x5支持）</p>
+<img alt="../../_images/simulator_5.jpg" src="../../_images/simulator_5.jpg" />
+</section>
+<section id="id4">
+<h3>模拟器调试示例二<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<p>切换到main页面,点击工具箱中的文本,在main页面新建一个文本控件</p>
+<img alt="../../_images/noScreenDebug1.png" src="../../_images/noScreenDebug1.png" />
+<p>可以通过鼠标移动控件的位置和调整控件的大小</p>
+<img alt="../../_images/noScreenDebug2.png" src="../../_images/noScreenDebug2.png" />
+<p>点击调试,进入调试页面</p>
+<img alt="../../_images/noScreenDebug3.png" src="../../_images/noScreenDebug3.png" />
+<p>可以在底部的指令输入区输入指令,并点击执行来实现控件赋值,比如我们让文本控件t0显示”淘晶驰电子”</p>
+<img alt="../../_images/noScreenDebug4.png" src="../../_images/noScreenDebug4.png" />
+<p>指令如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="o">.</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;淘晶驰电子&quot;</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>赋值指令中的引号是英文的&quot;&quot;而不是中文的“”</p>
+</div>
+<p>也可以修改文本控件的背景颜色,可以通过指令修改的是控件的“绿色属性”</p>
+<p><a class="reference internal" href="../../QA/QA10.html#id1"><span class="std std-ref">哪些控件属性可以运行中修改，哪些不能运行中修改，绿色属性和黑色属性有什么区别？</span></a></p>
+<img alt="../../_images/noScreenDebug5.png" src="../../_images/noScreenDebug5.png" />
+<p>指令如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="o">.</span><span class="n">bco</span><span class="o">=</span><span class="n">YELLOW</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>t0.txt=”淘晶驰电子”和t0.bco=YELLOW的区别是一个加了引号,一个没有加引号,这是因为txt是字符串,bco则是整形,目前只有txt,path,dir,filter是字符串,其他均为整形</p>
+<p><a class="reference internal" href="../../QA/QA11.html#txtval"><span class="std std-ref">txt属性和val属性有什么区别，为什么有些属性赋值要加双引号，有些不用加双引号</span></a></p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="串口屏调试" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../connect_ttl.html" class="btn btn-neutral float-right" title="和USB转TTL的接线说明" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

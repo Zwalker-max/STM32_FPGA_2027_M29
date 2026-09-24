@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>与TI（德州仪器）单片机联调2 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="与TI（德州仪器）单片机联调可能出现的问题" href="timcu3.html" />
+    <link rel="prev" title="与TI（德州仪器）单片机联调准备工作" href="timcu1.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">串口屏调试</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../simulator/index.html">模拟器调试基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_ttl.html">和USB转TTL的接线说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_mcu.html">和单片机的接线说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../base/index.html">联机调试基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usart_protocol/index.html">串口屏通讯协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_sscom.html">串口助手软件(sscom)和屏幕联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd.html">串口助手软件(sscom)和串口屏模拟器联调1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd2.html">串口助手软件(sscom)和串口屏模拟器联调2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_uart_assistant/index.html">其他串口助手</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stm32/index.html">与stm32单片机联调</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">与TI（德州仪器）单片机联调</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="timcu1.html">与TI（德州仪器）单片机联调准备工作</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">与TI（德州仪器）单片机联调2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timcu3.html">与TI（德州仪器）单片机联调可能出现的问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timcu4.html">TI（德州仪器）工程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../arduino/index.html">与arduino联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../micropython/index.html">与MicroPython联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">与python联调</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">串口屏调试</a> &raquo;</li>
+          <li><a href="index.html">与TI（德州仪器）单片机联调</a> &raquo;</li>
+      <li>与TI（德州仪器）单片机联调2</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ti-2">
+<h1>与TI（德州仪器）单片机联调2<a class="headerlink" href="#ti-2" title="此标题的永久链接"></a></h1>
+<p>打开工程，其目录为 \TI\M0_SDK\mspm0_sdk_1_30_00_03\examples\nortos\LP_MSPM0L1306\driverlib\uart_echo_interrupts_standby\keil</p>
+<img alt="../../_images/timcu1.png" src="../../_images/timcu1.png" />
+<p>打开uart_echo_interrupts_standby.syscfg，并保持在当前文件，打开sysconfig工具</p>
+<img alt="../../_images/timcu2.png" src="../../_images/timcu2.png" />
+<p>开启系统滴答定时器，并配置如下</p>
+<img alt="../../_images/timcu3.png" src="../../_images/timcu3.png" />
+<p>修改串口配置如下：</p>
+<p>1、时钟源改为BUSCLK（修改时钟源后会有警告，把后面两个全部修改完之后就不会有警告提示了）</p>
+<p>2、波特率改为115200，</p>
+<p>3、采样改为16x</p>
+<p>不要更改其他地方，否则会造成配置变化无法通讯</p>
+<p>点击save保存</p>
+<img alt="../../_images/timcu4.png" src="../../_images/timcu4.png" />
+<p>点击yes to all，更新所有文件，这里可能会出现一个问题，参考 <a class="reference internal" href="timcu3.html#ti-msp-dl-config-cti-msp-dl-config-h"><span class="std std-ref">缺少ti_msp_dl_config.c和ti_msp_dl_config.h</span></a></p>
+<img alt="../../_images/timcu5.png" src="../../_images/timcu5.png" />
+<p>将tjc_usart_hmi.c和tjc_usart_hmi.h复制到工程目录下</p>
+<img alt="../../_images/timcu6.png" src="../../_images/timcu6.png" />
+<p>将tjc_usart_hmi.c和tjc_usart_hmi.h添加到工程中（这两个文件会在后面的工程里提供，需要自行从工程里找到然后导入客户自己的工程中）</p>
+<img alt="../../_images/timcu7.png" src="../../_images/timcu7.png" />
+<p>配置下载工具，使用的是daplink，请勿使用stlink</p>
+<img alt="../../_images/timcu8.png" src="../../_images/timcu8.png" />
+<p>勾选自动复位</p>
+<img alt="../../_images/timcu9.png" src="../../_images/timcu9.png" />
+<p>uart_echo_interrupts_standby.c中的代码如下,编译下载，即可正常通讯</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/*
+* Copyright (c) 2021, Texas Instruments Incorporated
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* *  Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+* *  Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+*
+* *  Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+* THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#include &quot;ti_msp_dl_config.h&quot;
+#include &quot;tjc_usart_hmi.h&quot;
+#include &quot;stdio.h&quot;
+
+#define FRAME_LENGTH 7
+volatile uint32_t delay_times = 0;
+volatile uint8_t uart_data = 0;
+volatile uint32_t now_time = 0;
+
+// 搭配滴答定时器实现的精确ms延时
+void delay_ms(unsigned int ms)
+{
+   delay_times = ms;
+   while (delay_times != 0)
+      ;
+}
+
+int main(void)
+{
+   SYSCFG_DL_init();
+   // 清除串口中断标志
+   NVIC_ClearPendingIRQ(UART_0_INST_INT_IRQN);
+   // 使能串口中断
+   NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
+   int a = 100;
+   char str[100];
+   uint32_t last_time = 0;
+   while (1)
+   {
+      if (now_time - last_time &gt;= 1000)
+      {
+         last_time = now_time;
+         sprintf(str, &quot;n0.val=%d&quot;, a);
+         tjc_send_string(str);
+         sprintf(str, &quot;t0.txt=\&quot;%d\&quot;\xff\xff\xff&quot;, a);
+         tjc_send_string(str);
+         sprintf(str, &quot;click b0,1\xff\xff\xff&quot;);
+         tjc_send_string(str);
+         delay_ms(50);
+         sprintf(str, &quot;click b0,0\xff\xff\xff&quot;);
+         tjc_send_string(str);
+
+         a++;
+      }
+      // stm32f103的GND接串口屏或串口工具的GND,共地
+      // stm32f103的TX1(PA9)接串口屏或串口工具的RX
+      // stm32f103的RX1(PA10)接串口屏或串口工具的TX
+      // stm32f103的5V接串口屏的5V,如果是串口工具,不用接5V也可以
+
+      // 串口数据格式：
+      // 串口数据帧长度：7字节
+      // 帧头     参数1    参数2   参数3       帧尾
+      // 0x55     1字节   1字节    1字节     0xffffff
+      // 当参数是01时
+      // 帧头     参数1    参数2   参数3       帧尾
+      // 0x55     01     led编号  led状态    0xffffff
+      // 例子1：上位机代码  printh 55 01 01 00 ff ff ff  含义：1号led关闭
+      // 例子2：上位机代码  printh 55 01 04 01 ff ff ff  含义：4号led打开
+      // 例子3：上位机代码  printh 55 01 00 01 ff ff ff  含义：0号led打开
+      // 例子4：上位机代码  printh 55 01 04 00 ff ff ff  含义：4号led关闭
+
+      // 当参数是02或03时
+      // 帧头     参数1    参数2   参数3       帧尾
+      // 0x55     02/03   滑动值    00    0xffffff
+      // 例子1：上位机代码  printh 55 02 64 00 ff ff ff  含义：h0.val=100
+      // 例子2：上位机代码  printh 55 02 00 00 ff ff ff  含义：h0.val=0
+      // 例子3：上位机代码  printh 55 03 64 00 ff ff ff  含义：h1.val=100
+      // 例子4：上位机代码  printh 55 03 00 00 ff ff ff  含义：h1.val=0
+
+      // 当串口缓冲区大于等于一帧的长度时
+      while (usize &gt;= FRAME_LENGTH)
+      {
+         // 校验帧头帧尾是否匹配
+         if (usize &gt;= FRAME_LENGTH &amp;&amp; u(0) == 0x55 &amp;&amp; u(4) == 0xff &amp;&amp; u(5) == 0xff &amp;&amp; u(6) == 0xff)
+         {
+            // 匹配，进行解析
+            if (u(1) == 0x01)
+            {
+               sprintf(str, &quot;msg.txt=\&quot;led %d is %s\&quot;&quot;, u(2), u(3) ? &quot;on&quot; : &quot;off&quot;);
+               tjc_send_string(str);
+               if (u(2) == 0x00)
+               {
+                  if (u(3) == 0x00)
+                  {
+                     // DL_GPIO_clearPins(LED1_PORT,LED1_PIN_14_PIN);//输出低电平
+                  }
+                  else
+                  {
+                     // DL_GPIO_setPins(LED1_PORT,LED1_PIN_14_PIN);  //输出高电平
+                  }
+               }
+            }
+            else if (u(1) == 0x02)
+            {
+               // 下发的是h0进度条的信息
+
+               sprintf(str, &quot;msg.txt=\&quot;h0.val is %d\&quot;&quot;, u(2));
+               tjc_send_string(str);
+            }
+            else if (u(1) == 0x03)
+            {
+               // 下发的是h1进度条的信息
+               sprintf(str, &quot;msg.txt=\&quot;h1.val is %d\&quot;&quot;, u(2));
+               tjc_send_string(str);
+            }
+
+            udelete(7); // 删除解析过的数据
+         }
+         else
+         {
+
+            // 不匹配删除1字节
+            udelete(1);
+            break;
+         }
+      }
+   }
+}
+
+void SysTick_Handler()
+{
+   if (delay_times != 0)
+   {
+      delay_times--;
+   }
+   now_time++;
+}
+
+// 串口的中断服务函数
+void UART_0_INST_IRQHandler(void)
+{
+   // 如果产生了串口中断
+   switch (DL_UART_Main_getPendingInterrupt(UART_0_INST))
+   {
+   case DL_UART_MAIN_IIDX_RX: // 如果是接收中断
+      // 接发送过来的数据保存在变量中
+      uart_data = DL_UART_Main_receiveData(UART_0_INST);
+      // 将保存的数据再发送出去
+      // uart0_send_char(uart_data);
+      writeRingBuff(uart_data);
+      break;
+
+   default: // 其他的串口中断
+      break;
+   }
+}
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="timcu1.html" class="btn btn-neutral float-left" title="与TI（德州仪器）单片机联调准备工作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="timcu3.html" class="btn btn-neutral float-right" title="与TI（德州仪器）单片机联调可能出现的问题" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

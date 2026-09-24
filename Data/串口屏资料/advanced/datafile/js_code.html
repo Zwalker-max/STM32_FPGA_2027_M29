@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数据记录文件转换-js代码 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="下载《数据记录文件解析》例程" href="code_download.html" />
+    <link rel="prev" title="数据记录文件转换-python代码" href="python_code.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">数据记录文件结构分析</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="datafile.html">数据记录文件结构分析详解</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python_code.html">数据记录文件转换-python代码</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">数据记录文件转换-js代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_download.html">下载《数据记录文件解析》例程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">串口屏高级应用详解</a> &raquo;</li>
+          <li><a href="index.html">数据记录文件结构分析</a> &raquo;</li>
+      <li>数据记录文件转换-js代码</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="js">
+<h1>数据记录文件转换-js代码<a class="headerlink" href="#js" title="此标题的永久链接"></a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Data转CSV转换器&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: &#39;Segoe UI&#39;, Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f2f5;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #5f6368;
+            font-weight: 500;
+        }
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        input[type=&quot;text&quot;] {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.2s;
+        }
+        input[type=&quot;text&quot;]:focus {
+            outline: none;
+            border-color: #1a73e8;
+        }
+        button {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 4px;
+            background: #1a73e8;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #1557b0;
+        }
+        button#convertBtn {
+            background: #34a853;
+            width: 100%;
+            padding: 0.9rem;
+            font-size: 1.05rem;
+            margin-top: 0.5rem;
+        }
+        button#convertBtn:hover {
+            background: #2d8643;
+        }
+        .info-section {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #1a73e8;
+        }
+        .info-title {
+            font-weight: 600;
+            color: #202124;
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+        }
+        .info-key {
+            color: #5f6368;
+        }
+        .info-value {
+            color: #202124;
+            font-weight: 500;
+        }
+        .status {
+            margin-top: 1rem;
+            text-align: center;
+            padding: 0.75rem;
+            border-radius: 4px;
+            background: #f1f3f4;
+            color: #5f6368;
+        }
+        .error {
+            background: #fce8e6;
+            color: #d93025;
+        }
+        .success {
+            background: #e6f4ea;
+            color: #137333;
+        }
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: white;
+            transition: border 0.2s;
+        }
+        select:focus {
+            outline: none;
+            border-color: #1a73e8;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;h1&gt;Data转CSV转换器&lt;/h1&gt;
+
+        &lt;!-- 编码选择 --&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;label for=&quot;encodingSelect&quot;&gt;选择编码格式&lt;/label&gt;
+            &lt;select id=&quot;encodingSelect&quot;&gt;
+                &lt;option value=&quot;gb2312&quot;&gt;GB2312&lt;/option&gt;
+                &lt;option value=&quot;utf-8&quot;&gt;UTF-8&lt;/option&gt;
+                &lt;option value=&quot;gbk&quot;&gt;GBK&lt;/option&gt;
+                &lt;option value=&quot;big5&quot;&gt;Big5&lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+
+        &lt;!-- 输入文件选择 --&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;label for=&quot;inputFilePath&quot;&gt;输入文件（*.data）&lt;/label&gt;
+            &lt;div class=&quot;input-group&quot;&gt;
+                &lt;input type=&quot;text&quot; id=&quot;inputFilePath&quot; placeholder=&quot;未选择文件&quot; readonly&gt;
+                &lt;button id=&quot;browseBtn&quot;&gt;浏览&lt;/button&gt;
+                &lt;input type=&quot;file&quot; id=&quot;fileInput&quot; accept=&quot;.data&quot; style=&quot;display: none;&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- 输出文件路径 --&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;label for=&quot;outputFilePath&quot;&gt;输出文件（*.csv）&lt;/label&gt;
+            &lt;input type=&quot;text&quot; id=&quot;outputFilePath&quot; placeholder=&quot;自动生成输出路径&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;!-- 文件信息显示区域 --&gt;
+        &lt;div class=&quot;info-section&quot;&gt;
+            &lt;div class=&quot;info-title&quot;&gt;文件结构信息&lt;/div&gt;
+            &lt;div class=&quot;info-grid&quot;&gt;
+                &lt;div class=&quot;info-item&quot;&gt;
+                    &lt;span class=&quot;info-key&quot;&gt;每条记录最大字节数：&lt;/span&gt;
+                    &lt;span class=&quot;info-value&quot; id=&quot;recordLength&quot;&gt;--&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;info-item&quot;&gt;
+                    &lt;span class=&quot;info-key&quot;&gt;字段数量：&lt;/span&gt;
+                    &lt;span class=&quot;info-value&quot; id=&quot;fieldCount&quot;&gt;--&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;info-item&quot;&gt;
+                    &lt;span class=&quot;info-key&quot;&gt;最大行数：&lt;/span&gt;
+                    &lt;span class=&quot;info-value&quot; id=&quot;maxRows&quot;&gt;--&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;info-item&quot;&gt;
+                    &lt;span class=&quot;info-key&quot;&gt;实际行数：&lt;/span&gt;
+                    &lt;span class=&quot;info-value&quot; id=&quot;actualRows&quot;&gt;--&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- 转换按钮和状态 --&gt;
+        &lt;button id=&quot;convertBtn&quot;&gt;开始转换&lt;/button&gt;
+        &lt;div class=&quot;status&quot; id=&quot;status&quot;&gt;就绪&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        // 全局变量存储文件数据和解析信息
+        let fileData = null;
+        let fileInfo = {
+            recordLength: 0,
+            fieldCount: 0,
+            maxRows: 0,
+            actualRows: 0
+        };
+
+        // DOM元素
+        const browseBtn = document.getElementById(&#39;browseBtn&#39;);
+        const fileInput = document.getElementById(&#39;fileInput&#39;);
+        const inputFilePath = document.getElementById(&#39;inputFilePath&#39;);
+        const outputFilePath = document.getElementById(&#39;outputFilePath&#39;);
+        const encodingSelect = document.getElementById(&#39;encodingSelect&#39;);
+        const convertBtn = document.getElementById(&#39;convertBtn&#39;);
+        const statusEl = document.getElementById(&#39;status&#39;);
+
+        // 信息显示元素
+        const recordLengthEl = document.getElementById(&#39;recordLength&#39;);
+        const fieldCountEl = document.getElementById(&#39;fieldCount&#39;);
+        const maxRowsEl = document.getElementById(&#39;maxRows&#39;);
+        const actualRowsEl = document.getElementById(&#39;actualRows&#39;);
+
+        // 浏览文件按钮点击事件
+        browseBtn.addEventListener(&#39;click&#39;, () =&gt; {
+            fileInput.click();
+        });
+
+        // 文件选择事件
+        fileInput.addEventListener(&#39;change&#39;, (e) =&gt; {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // 显示输入文件路径
+            inputFilePath.value = file.name;
+
+            // 自动生成输出文件路径
+            const outputName = file.name.replace(/\.data$/, &#39;.csv&#39;);
+            outputFilePath.value = outputName;
+
+            try {
+                // 读取文件数据
+                const reader = new FileReader();
+                reader.onload = (event) =&gt; {
+                    fileData = new Uint8Array(event.target.result);
+                    // 解析文件信息
+                    parseFileInfo();
+                    statusEl.textContent = &quot;文件加载成功&quot;;
+                    statusEl.className = &quot;status success&quot;;
+                };
+                reader.onerror = () =&gt; {
+                    throw new Error(&quot;文件读取失败&quot;);
+                };
+                reader.readAsArrayBuffer(file);
+            } catch (error) {
+                statusEl.textContent = `错误：${error.message}`;
+                statusEl.className = &quot;status error&quot;;
+                resetFileInfo();
+            }
+        });
+
+        // 解析文件信息（从指定地址读取数据）
+        function parseFileInfo() {
+            try {
+                // 每条记录最大字节数：0x020c位置，4字节（小端）
+                fileInfo.recordLength = readUint32LE(0x020c);
+                // 字段数量：0x0214位置，4字节（小端）
+                fileInfo.fieldCount = readUint32LE(0x0214);
+                // 最大行数：0x0218位置，4字节（小端）
+                fileInfo.maxRows = readUint32LE(0x0218);
+                // 实际行数：0x0208位置，4字节（小端）
+                fileInfo.actualRows = readUint32LE(0x0208);
+
+                // 更新界面显示
+                recordLengthEl.textContent = fileInfo.recordLength;
+                fieldCountEl.textContent = fileInfo.fieldCount;
+                maxRowsEl.textContent = fileInfo.maxRows;
+                actualRowsEl.textContent = fileInfo.actualRows;
+            } catch (error) {
+                statusEl.textContent = `解析错误：${error.message}`;
+                statusEl.className = &quot;status error&quot;;
+                resetFileInfo();
+            }
+        }
+
+        // 从指定偏移量读取4字节小端无符号整数
+        function readUint32LE(offset) {
+            if (!fileData || offset + 4 &gt; fileData.length) {
+                throw new Error(&quot;文件数据不足或格式错误&quot;);
+            }
+            return (
+                fileData[offset] +
+                (fileData[offset + 1] &lt;&lt; 8) +
+                (fileData[offset + 2] &lt;&lt; 16) +
+                (fileData[offset + 3] &lt;&lt; 24)
+            );
+        }
+
+        // 重置文件信息显示
+        function resetFileInfo() {
+            fileInfo = {
+                recordLength: 0,
+                fieldCount: 0,
+                maxRows: 0,
+                actualRows: 0
+            };
+            recordLengthEl.textContent = &quot;--&quot;;
+            fieldCountEl.textContent = &quot;--&quot;;
+            maxRowsEl.textContent = &quot;--&quot;;
+            actualRowsEl.textContent = &quot;--&quot;;
+            fileData = null;
+        }
+
+        // 转换按钮点击事件
+        convertBtn.addEventListener(&#39;click&#39;, async () =&gt; {
+            if (!fileData) {
+                statusEl.textContent = &quot;错误：请先选择有效的.data文件&quot;;
+                statusEl.className = &quot;status error&quot;;
+                return;
+            }
+
+            if (!outputFilePath.value) {
+                statusEl.textContent = &quot;错误：请指定输出文件路径&quot;;
+                statusEl.className = &quot;status error&quot;;
+                return;
+            }
+
+            try {
+                statusEl.textContent = &quot;正在转换...&quot;;
+                statusEl.className = &quot;status&quot;;
+                convertBtn.disabled = true;
+
+                // 执行转换
+                await convertDataToCsv();
+
+                statusEl.textContent = &quot;转换成功！文件已下载&quot;;
+                statusEl.className = &quot;status success&quot;;
+            } catch (error) {
+                statusEl.textContent = `转换错误：${error.message}`;
+                statusEl.className = &quot;status error&quot;;
+            } finally {
+                convertBtn.disabled = false;
+            }
+        });
+
+        // 核心转换逻辑
+        async function convertDataToCsv() {
+            const { recordLength, fieldCount, actualRows } = fileInfo;
+            const encoding = encodingSelect.value;
+            const firstRecordOffset = 0x0400;
+            const fieldLength = recordLength / fieldCount;
+
+            if (!Number.isInteger(fieldLength)) {
+                throw new Error(&quot;记录长度不能被字段数量整除，文件结构异常&quot;);
+            }
+
+            // 存储CSV内容
+            const csvLines = [];
+
+            // 遍历所有实际记录
+            for (let row = 0; row &lt; actualRows; row++) {
+                const rowData = [];
+                // 计算当前记录的起始偏移量
+                const recordOffset = firstRecordOffset + row * recordLength;
+
+                // 遍历每个字段
+                for (let field = 0; field &lt; fieldCount; field++) {
+                    const fieldOffset = recordOffset + field * fieldLength;
+                    // 读取字段数据（到\0结束或字段长度结束）
+                    let fieldBytes = [];
+                    for (let i = 0; i &lt; fieldLength; i++) {
+                        const byte = fileData[fieldOffset + i];
+                        if (byte === 0x00) break; // 遇到字符串结束符&#39;\0&#39;停止
+                        fieldBytes.push(byte);
+                    }
+
+                    // 解码字段（处理不同编码）
+                    let fieldStr = await decodeBytes(fieldBytes, encoding);
+                    // 替换^为英文逗号
+                    fieldStr = fieldStr.replace(/\^/g, &#39;,&#39;);
+                    // 去除前后空格
+                    fieldStr = fieldStr.trim();
+
+                    rowData.push(fieldStr);
+                }
+
+                // 添加当前行到CSV（不使用双引号包裹）
+                csvLines.push(rowData.join(&#39;,&#39;));
+            }
+
+            // 生成CSV字符串
+            const csvContent = csvLines.join(&#39;\n&#39;);
+            // 下载文件
+            downloadFile(csvContent, outputFilePath.value, &#39;text/csv&#39;);
+        }
+
+        // 解码字节数组（支持多种编码）
+        async function decodeBytes(bytes, encoding) {
+            // 处理编码名称映射（TextDecoder使用的名称可能不同）
+            const encodingMap = {
+                &#39;gb2312&#39;: &#39;gbk&#39;,  // 浏览器通常用gbk兼容gb2312
+                &#39;utf-8&#39;: &#39;utf-8&#39;,
+                &#39;gbk&#39;: &#39;gbk&#39;,
+                &#39;big5&#39;: &#39;big5&#39;
+            };
+
+            const decoder = new TextDecoder(encodingMap[encoding] || encoding, { fatal: false });
+            return decoder.decode(new Uint8Array(bytes));
+        }
+
+        // 下载文件
+        function downloadFile(content, fileName, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement(&#39;a&#39;);
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() =&gt; {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python_code.html" class="btn btn-neutral float-left" title="数据记录文件转换-python代码" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="code_download.html" class="btn btn-neutral float-right" title="下载《数据记录文件解析》例程" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

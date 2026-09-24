@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X系列给其他屏幕下载工程 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="UI样例工程" href="../ui_demo.html" />
+    <link rel="prev" title="使用存储卡跨页面记录波形数据-文件流控件样例工程" href="tjcwiki_wavetest.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">资料下载</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../usart_hmi.html">上位机下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development_doc.html">开发文档下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html">常用工具下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../default_project.html">标准出厂工程样例</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">官方样例工程</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_more_language.html">多语言切换样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_dialog.html">串口屏弹窗样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_time_count.html">正计时和倒计时样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_time_count2.html">串口屏跨页面计时样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_RGB888toRGB565.html">RGB转换样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_wave.html">自定义曲线样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_51.html">51单片机样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_usart_assist.html">简易串口助手样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_conversion.html">进制转换样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_screensaver.html">自定义屏幕保护样例工程/低功耗/睡眠休眠替代</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_txt2float.html">虚拟浮点数与文本控件互相转换样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_little2big.html">大小端数据互相转换样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_setTime.html">显示时间和设置时间样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_heartbeat.html">串口屏实现通讯心跳样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_send_picture.html">运行中发送图片到串口屏样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_round_progressbar.html">环形进度条样例工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tjcwiki_wavetest.html">使用存储卡跨页面记录波形数据-文件流控件样例工程</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">X系列给其他屏幕下载工程</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tftdwn">为什么要将生成的tft文件后缀名改为dwn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">X系列给其他屏幕下载工程-样例工程下载</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ui_demo.html">UI样例工程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../image/index.html">图片资源下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../font_download.html">免费字体下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../voice_download.html">声音资源下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_download.html">原理图下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_project.html">网友提供应用样例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tjc_game.html">游戏工程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tjcwiki_resource_collection.html">淘晶驰资料合集</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">资料下载</a> &raquo;</li>
+          <li><a href="index.html">官方样例工程</a> &raquo;</li>
+      <li>X系列给其他屏幕下载工程</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="x">
+<h1>X系列给其他屏幕下载工程<a class="headerlink" href="#x" title="此标题的永久链接"></a></h1>
+<p>素材说明: 实现使用X系列给其他屏幕下载工程</p>
+<p>准备工作1:</p>
+<p>准备两块串口屏，其中一块必须是x系列屏幕</p>
+<p>此处我以TJC8048X550_011（尺寸为5寸，以下简称X550）和TJC4832T135_011（尺寸为3.5寸，以下简称T135）为例进行演示，其中X550作为下载器，给T135升级工程</p>
+<p>先将此工程下载进入X550串口屏，如果是其他x系列屏幕，可以点击上位机顶部的设备按钮，修改为其他x系列屏幕 参考 <a class="reference internal" href="../../QA/QA72.html#id1"><span class="std std-ref">如何修改设备型号</span></a> 。</p>
+<p>TJC8048X550_011下载完成后屏幕如下图所示:</p>
+<img alt="../../_images/tjcwiki_tft_download_1.jpg" src="../../_images/tjcwiki_tft_download_1.jpg" />
+<p>准备工作2:</p>
+<p>打开任一TJC4832T135_011的工程</p>
+<p>1.点击文件-输出生产文件</p>
+<p>2.将tft文件后缀名改为dwn,然后拷到microSD卡中</p>
+<img alt="../../_images/tjcwiki_tft_download_2.jpg" src="../../_images/tjcwiki_tft_download_2.jpg" />
+<p>3.将microSD卡插入屏幕，屏幕上电，如果中途拔插microSD卡更新文件，请点击“刷新SD卡文件”按钮</p>
+<p>4.将X550屏幕tx接T135屏幕的rx，X550屏幕rx接T135屏幕的tx，给屏幕供电，共地。</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>给t0/t1/k0系列下载时,如果无法联机,请在x系列的TX引脚和t0/t1/k0系列的RX引脚上串1k电阻降压</p>
+</div>
+<p>5.联机波特率选择和T13.5寸屏幕一致波特率。</p>
+<p>6.点击联机按钮，联机成功后最上方白色文本框显示T135信息。</p>
+<p>7.选中需要下载的工程文件，然后点击下载按钮，此时T135屏幕开始进入下载界面，等待下载完成即可即可。</p>
+<p>此工程需要下载到串口屏实物中使用,请勿在模拟器上使用</p>
+<section id="tftdwn">
+<h2>为什么要将生成的tft文件后缀名改为dwn<a class="headerlink" href="#tftdwn" title="此标题的永久链接"></a></h2>
+<p>因为我们是要给别的屏幕升级，而不是给自己升级</p>
+<p>如果上电时串口屏检测到microSD卡中有tft格式的文件,就会进入升级流程,如果不是tft格式的文件,就不会进入升级流程。</p>
+<p>这个文件的后缀名你可以改成任意你喜欢的,建议1-4字符之间</p>
+<p>然后选中文件浏览器,修改filter属性为你所设定的文件格式即可(或者将其清空,这样所有文件类型都会显示)</p>
+<img alt="../../_images/tjcwiki_tft_download_4.jpg" src="../../_images/tjcwiki_tft_download_4.jpg" />
+</section>
+<section id="id1">
+<h2>X系列给其他屏幕下载工程-样例工程下载<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/资料下载/官方样例工程/X系列给其他屏幕下载工程/X系列给其他屏幕下载工程.HMI">《X系列给其他屏幕下载工程》演示工程下载</a></p>
+<hr class="docutils" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tjcwiki_wavetest.html" class="btn btn-neutral float-left" title="使用存储卡跨页面记录波形数据-文件流控件样例工程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../ui_demo.html" class="btn btn-neutral float-right" title="UI样例工程" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

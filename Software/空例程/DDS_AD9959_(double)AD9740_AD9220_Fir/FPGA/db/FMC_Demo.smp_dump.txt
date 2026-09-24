@@ -1,0 +1,8 @@
+
+State Machine - |FMC_Demo|stm32_fmc_16bit:fmc_inst|FIR1:u_fir|FIR1_0002:fir1_inst|FIR1_0002_ast:FIR1_0002_ast_inst|auk_dspip_avalon_streaming_sink_hpfir:sink|sink_state
+Name sink_state.end1 sink_state.st_err sink_state.run1 sink_state.stall sink_state.start 
+sink_state.start 0 0 0 0 0 
+sink_state.stall 0 0 0 1 1 
+sink_state.run1 0 0 1 0 1 
+sink_state.st_err 0 1 0 0 1 
+sink_state.end1 1 0 0 0 1 

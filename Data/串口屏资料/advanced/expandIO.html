@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>拓展IO资料 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="获取控件自身的属性" href="get_property.html" />
+    <link rel="prev" title="SD卡读写文件流程" href="SDcard.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">拓展IO资料</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">拓展IO简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">拓展IO简单使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">拓展板原理图</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sleepio">sleep睡眠模式与拓展IO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">外部IO-样例工程下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">拓展IO-相关链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">串口屏高级应用详解</a> &raquo;</li>
+      <li>拓展IO资料</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="io">
+<h1>拓展IO资料<a class="headerlink" href="#io" title="此标题的永久链接"></a></h1>
+<section id="id1">
+<h2>拓展IO简介<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>电脑模拟器上没有外部IO，拓展IO指令只能在真机上测试，不保证在电脑模拟器上的效果。</p>
+<p>拓展IO，fpc接口规格是fpc 1.0*10 。</p>
+<p>IO口上提供5V电源，但是所有系列拓展IO口电平都是3.3V，如果外部向串口屏IO口输入高电压，也不建议超过3.3V，否则可能会损坏串口屏。</p>
+<p>扩展板属于选配开发套件，不是标配配件，如果需要请单独购买，请知晓。您也可以自行设计，请参考 <a class="reference internal" href="#id4"><span class="std std-ref">拓展板原理图</span></a></p>
+<dl>
+<dt>支持的型号：</dt><dd><p>x5系列支持8路IO</p>
+<p>k0系列支持8路IO</p>
+<p>X2系列部分型号支持8路IO(具体是否支持请查看对应型号的规格书) <a class="reference external" href="http://wiki.tjc1688.com/product/index.html">规格书下载请点击此处访问网址</a></p>
+</dd>
+</dl>
+<p>拓展IO口不支持AD,SPI,I2C等功能,仅支持速率较慢的高低电平输出,按键检测(非矩阵键盘)，以及部分IO口支持PWM</p>
+<p>拓展IO只能实现单片机一部分的IO功能(如按键输入,LED,PWM)，如果需要更强大的功能（如旋转编码器），建议使用单片机实现。</p>
+<p>K0/X2系列只有io4-io7才支持PWM输出，X5系列只有io7才支持PWM输出 其他IO不支持。配置其他IO为PWM模式会报错。</p>
+<p>PWM功能不支持精确控制步进电机，不支持输出精确的脉冲个数，不支持互补输出。</p>
+<p>PWM仅建议用于蜂鸣器，风扇调速，LED亮度控制等简单PWM应用。</p>
+<p>IO口驱动继电器时，可能驱动能力不足（市面上的继电器大部分都是5V以上的电压驱动，串口屏的IO口电压只有3.3V左右，无法正常驱动继电器），需要自行增加外部电路以增加驱动能力。</p>
+<p>使用拓展IO之前需要用cfgpio指令绑定IO口功能，每个需要使用IO口的页面都需要用cfgpio指令重新绑定，参考：  <a class="reference internal" href="../commands/cfgpio.html#cfgpio-io"><span class="std std-ref">cfgpio-扩展IO模式配置</span></a></p>
+<p>拓展IO作为输入时，建议输入3.3V的电压。如果要输入5V，需要最好串联电阻分压一下，串联至少1K的电阻。</p>
+</div>
+<img alt="../_images/expandIO_1.png" src="../_images/expandIO_1.png" />
+</section>
+<section id="id3">
+<h2>拓展IO简单使用<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<img alt="../_images/expandIO_2_1.png" src="../_images/expandIO_2_1.png" />
+<p>第一步，在页面中新建数个按钮和数字控件，并修改objname如下所示，其中led和beep是数字控件，其他是按钮控件</p>
+<img alt="../_images/expandIO_2_2.png" src="../_images/expandIO_2_2.png" />
+<p>第二步，在页面前初始化事件中绑定相关按键并初始化pwm值</p>
+<img alt="../_images/expandIO_2_3.png" src="../_images/expandIO_2_3.png" />
+<p>在 up 按键中编写如下代码(建议把代码写到弹起事件中,避免首次进入时触发,下同)</p>
+<img alt="../_images/expandIO_2_4.png" src="../_images/expandIO_2_4.png" />
+<p>在 left 按键中编写如下代码</p>
+<img alt="../_images/expandIO_2_5.png" src="../_images/expandIO_2_5.png" />
+<p>在right按键中编写如下代码</p>
+<img alt="../_images/expandIO_2_6.png" src="../_images/expandIO_2_6.png" />
+<p>在down按键中编写如下代码</p>
+<img alt="../_images/expandIO_2_7.png" src="../_images/expandIO_2_7.png" />
+<p>在esc按键中编写如下代码</p>
+<img alt="../_images/expandIO_2_8.png" src="../_images/expandIO_2_8.png" />
+<p>在enter按键中编写如下代码</p>
+<img alt="../_images/expandIO_2_9.png" src="../_images/expandIO_2_9.png" />
+<p>下载到屏幕调试即可</p>
+</section>
+<section id="id4">
+<h2>拓展板原理图<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<img alt="../_images/expandIO_2.png" src="../_images/expandIO_2.png" />
+</section>
+<section id="sleepio">
+<h2>sleep睡眠模式与拓展IO<a class="headerlink" href="#sleepio" title="此标题的永久链接"></a></h2>
+<p>在进入睡眠模式后,拓展IO的某些功能会无法使用,请注意</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>在进入睡眠模式后,输入相关的功能如上拉输入模式、件事件邦定输入模式是无法使用的,输出相关的功能如推挽输出模式、PWM输出模式、开漏模式</p>
+</div>
+</section>
+<section id="id5">
+<h2>外部IO-样例工程下载<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/串口屏高级应用/拓展IO/拓展IO例程.HMI">《拓展IO例程》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/串口屏高级应用/拓展IO/IOtest.HMI">《IOtest》演示工程下载</a></p>
+</section>
+<section id="id7">
+<h2>拓展IO-相关链接<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<p><a class="reference internal" href="../commands/cfgpio.html#cfgpio-io"><span class="std std-ref">cfgpio-扩展IO模式配置</span></a></p>
+<p><a class="reference internal" href="../QA/QA71.html#io"><span class="std std-ref">拓展IO相关问题</span></a></p>
+<p><a class="reference internal" href="../variables/pio0-pio7.html#pio0-pio7-io"><span class="std std-ref">pio0~pio7-扩展IO端口</span></a></p>
+<p><a class="reference internal" href="../variables/pwm4-pwm7.html#pwm4-pwm7-io"><span class="std std-ref">pwm4~pwm7-扩展IO占空比</span></a></p>
+<p><a class="reference internal" href="../variables/pwmf.html#pwmf-pwm"><span class="std std-ref">pwmf-PWM输出的频率</span></a></p>
+<p><a class="reference internal" href="#sleepio"><span class="std std-ref">sleep睡眠模式与拓展IO</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SDcard.html" class="btn btn-neutral float-left" title="SD卡读写文件流程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="get_property.html" class="btn btn-neutral float-right" title="获取控件自身的属性" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

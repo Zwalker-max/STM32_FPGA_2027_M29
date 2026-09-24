@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SD卡读写文件流程 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="拓展IO资料" href="expandIO.html" />
+    <link rel="prev" title="运行中串口传输文件到内存或SD卡" href="transmit_data.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SD卡读写文件流程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.检查文件是否存在</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.打开文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.读、写、查找</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.关闭文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">文件流控件-注意事项</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">新建文件时为什么要初始化文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">没有初始化文件会怎么样</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">如果我不想在屏幕里初始化怎么办呢</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">SD卡读写文件流程-样例工程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">串口屏高级应用详解</a> &raquo;</li>
+      <li>SD卡读写文件流程</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sd">
+<h1>SD卡读写文件流程<a class="headerlink" href="#sd" title="此标题的永久链接"></a></h1>
+<p>串口屏使用的卡是microSD卡，部分情形下使用SD卡来代称</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>仅X2/X3/X5系列支持通过文件流控件来读写microSD卡文件，其他系列仅支持用microSD卡来升级固件 请参考: <a class="reference internal" href="../start/create_project/create_project_10.html#sd"><span class="std std-ref">通过SD卡下载工程到串口屏</span></a></p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>microSD卡也是有写入寿命的,具体取决于SD卡的质量。</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>microSD卡不能超过32GB（例如：512M、1GB、2GB、4GB、8GB、16GB、32GB都是可用的）。</p>
+</div>
+<section id="id1">
+<h2>1.检查文件是否存在<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>文件路径是字符串形式，需要被引号包裹起来，文件名建议使用英文和数字，使用其他可能会显示乱码（编码不一致导致的）</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">findfile</span> <span class="s2">&quot;sd0/1.txt&quot;</span><span class="p">,</span><span class="n">sys0</span>
+<span class="k">if</span><span class="p">(</span><span class="n">sys0</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="o">//</span><span class="n">文件存在</span>
+  <span class="n">msg</span><span class="o">.</span><span class="n">bco</span><span class="o">=</span><span class="n">GREEN</span>
+  <span class="n">msg</span><span class="o">.</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;文件存在&quot;</span>
+<span class="p">}</span><span class="k">else</span>
+<span class="p">{</span>
+  <span class="o">//</span><span class="n">文件不存在</span><span class="p">,</span><span class="n">新建文件</span>
+  <span class="n">newfile</span> <span class="s2">&quot;sd0/1.txt&quot;</span><span class="p">,</span><span class="mi">4096</span>
+  <span class="o">//</span><span class="n">再次检查文件是否存在</span>
+  <span class="n">findfile</span> <span class="s2">&quot;sd0/1.txt&quot;</span><span class="p">,</span><span class="n">sys0</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sys0</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="o">//</span><span class="n">文件创建成功</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">bco</span><span class="o">=</span><span class="n">GREEN</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;文件创建成功&quot;</span>
+  <span class="p">}</span><span class="k">else</span>
+  <span class="p">{</span>
+    <span class="o">//</span><span class="n">判断为SD卡不存在</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">bco</span><span class="o">=</span><span class="n">RED</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;找不到SD卡&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>也可以用文本控件来保存文件路径，但是请注意文本控件的txt_maxl属性需要足够大，建议设置为200，否则可能因为文件路径不完整而导致打开失败</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filePath</span><span class="o">.</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;sd0/1.txt&quot;</span>
+<span class="n">findfile</span> <span class="n">filePath</span><span class="o">.</span><span class="n">txt</span><span class="p">,</span><span class="n">sys0</span>
+<span class="k">if</span><span class="p">(</span><span class="n">sys0</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="o">//</span><span class="n">文件存在</span>
+  <span class="n">msg</span><span class="o">.</span><span class="n">bco</span><span class="o">=</span><span class="n">GREEN</span>
+  <span class="n">msg</span><span class="o">.</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;文件存在&quot;</span>
+<span class="p">}</span><span class="k">else</span>
+<span class="p">{</span>
+  <span class="o">//</span><span class="n">文件不存在</span><span class="p">,</span><span class="n">新建文件</span>
+  <span class="n">newfile</span> <span class="n">filePath</span><span class="o">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">4096</span>
+  <span class="o">//</span><span class="n">再次检查文件是否存在</span>
+  <span class="n">findfile</span> <span class="n">filePath</span><span class="o">.</span><span class="n">txt</span><span class="p">,</span><span class="n">sys0</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sys0</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="o">//</span><span class="n">文件创建成功</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">bco</span><span class="o">=</span><span class="n">GREEN</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;文件创建成功&quot;</span>
+  <span class="p">}</span><span class="k">else</span>
+  <span class="p">{</span>
+    <span class="o">//</span><span class="n">判断为SD卡不存在</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">bco</span><span class="o">=</span><span class="n">RED</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;找不到SD卡&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>2.打开文件<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>操作文件需要使用文件流控件</p>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">filePath</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;sd0/1.txt&quot;</span><span class="w"></span>
+<span class="n">findfile</span><span class="w"> </span><span class="n">filePath</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">sys0</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">sys0</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//文件存在,打开文件</span>
+<span class="w">  </span><span class="n">sys0</span><span class="o">=</span><span class="n">fs0</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">.</span><span class="n">txt</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">sys0</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//文件打开成功</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">bco</span><span class="o">=</span><span class="n">GREEN</span><span class="w"></span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;文件打开成功&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//文件不存在,新建文件</span>
+<span class="w">  </span><span class="n">newfile</span><span class="w"> </span><span class="n">filePath</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">4096</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//再次检查文件是否存在</span>
+<span class="w">  </span><span class="n">findfile</span><span class="w"> </span><span class="n">filePath</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">sys0</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">sys0</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//文件存在,打开文件</span>
+<span class="w">    </span><span class="n">sys0</span><span class="o">=</span><span class="n">fs0</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">.</span><span class="n">txt</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">sys0</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">//文件打开成功</span>
+<span class="w">      </span><span class="n">msg</span><span class="p">.</span><span class="n">bco</span><span class="o">=</span><span class="n">GREEN</span><span class="w"></span>
+<span class="w">      </span><span class="n">msg</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;文件创建成功&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="k">for</span><span class="p">(</span><span class="n">sys0</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">sys0</span><span class="o">&lt;</span><span class="mi">1024</span><span class="p">;</span><span class="n">sys0</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//手动初始化整个文件，循环1024次，每次写入4字节，总共写入4096个字节，将0-4095初始化为0x00</span>
+<span class="w">        </span><span class="n">fs0</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="n">fs0</span><span class="p">.</span><span class="n">close</span><span class="p">()</span><span class="w"> </span><span class="c1">//有打开就要有关闭，最好写完后立刻关闭</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//判断为SD卡不存在</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">bco</span><span class="o">=</span><span class="n">RED</span><span class="w"></span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;找不到SD卡&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>也可以通过文件浏览器来获取文件路径，但是请注意文本控件的txt_maxl属性需要足够大，建议设置为200，否则可能因为文件路径不完整而导致各种问题</p>
+<p>此时可以不判断文件是否存在,只需判断fbrowser0.txt非空即可</p>
+<p>fbrowser0.txt在你选中了文件之后会自动改变</p>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">filePath</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="n">fbrowser0</span><span class="p">.</span><span class="n">dir</span><span class="o">+</span><span class="n">fbrowser0</span><span class="p">.</span><span class="n">txt</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">fbrowser0</span><span class="p">.</span><span class="n">txt</span><span class="o">!=</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">sys0</span><span class="o">=</span><span class="n">fs0</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">.</span><span class="n">txt</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">sys0</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//文件打开成功</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">bco</span><span class="o">=</span><span class="n">GREEN</span><span class="w"></span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;文件打开成功&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>3.读、写、查找<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>保存数据时请注意以下几点</p>
+<p>1.从哪里写入就从哪里读取(写入和读取前设置文件流的val属性,即读取的位置)。</p>
+<p>2.写入时对应指针地址是什么属性，读取时就是什么属性，写入时是字符串属性，读取时就要读取到字符串属性中。写入时是数值属性，读取时就要读取到数值属性中。</p>
+<p><a class="reference internal" href="../widgets/FileStream.html#read"><span class="std std-ref">read-从文件流读取数据</span></a></p>
+<p><a class="reference internal" href="../widgets/FileStream.html#write"><span class="std std-ref">write-将数据写入文件流</span></a></p>
+<p><a class="reference internal" href="../widgets/FileStream.html#find"><span class="std std-ref">find-按关键字查询并定位文件流指针</span></a></p>
+</section>
+<section id="id4">
+<h2>4.关闭文件<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>有打开就必须有关闭</p>
+<p><a class="reference internal" href="../widgets/FileStream.html#close"><span class="std std-ref">close-关闭文件流</span></a></p>
+</section>
+<section id="id5">
+<h2>文件流控件-注意事项<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<section id="id6">
+<h3>新建文件时为什么要初始化文件<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<p>电脑上在创建文件时，会自动将整个文件都初始化为0x00,但是在串口屏上并不会</p>
+<p>这是因为电脑的cpu是多线程的且电脑的性能远远高于串口屏，而串口屏是单线程</p>
+<p>如果串口屏也自动初始化整个文件，当用户创建比较大的文件，如1GB的文件时，串口屏将会因为初始化文件的原因卡住一段时间，可能几分钟到十几分钟不等，取决于SD卡性能</p>
+</section>
+<section id="id7">
+<h3>没有初始化文件会怎么样<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<p>如果没有初始化文件，那么文件里面就会有之前删除过的文件数据，直接读取时就会有问题，例如读到未初始化的地方可能显示乱码。</p>
+</section>
+<section id="id8">
+<h3>如果我不想在屏幕里初始化怎么办呢<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h3>
+<p>你可以提前在电脑模拟器上创建好一个文件，然后把文件拷贝到SD卡里面</p>
+</section>
+</section>
+<section id="id9">
+<h2>SD卡读写文件流程-样例工程下载<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/控件详解/文件浏览器控件/文件浏览器v3.0.HMI">《文件浏览器v3.0》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/控件详解/文件流控件/使用文件流控件记录波形数据.HMI">《使用文件流控件记录波形数据》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/控件详解/文件流控件/文件流控件简单使用1.HMI">《文件流控件简单使用1》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/控件详解/文件流控件/文件流控件简单使用2.HMI">《文件流控件简单使用2》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/控件详解/文件流控件/文件流控件简单使用3.HMI">《文件流控件简单使用3》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transmit_data.html" class="btn btn-neutral float-left" title="运行中串口传输文件到内存或SD卡" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="expandIO.html" class="btn btn-neutral float-right" title="拓展IO资料" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

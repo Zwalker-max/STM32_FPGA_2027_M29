@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>获取串口屏设备唯一序列号 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="数据记录文件结构分析" href="datafile/index.html" />
+    <link rel="prev" title="读写用户存储区" href="wepo_repo.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">获取串口屏设备唯一序列号</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">通过串口获取</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">新方法-通过指令获取</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">获取设备唯一序列号例程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">串口屏高级应用详解</a> &raquo;</li>
+      <li>获取串口屏设备唯一序列号</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>获取串口屏设备唯一序列号<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>设备唯一序列号是每个串口屏出厂时由厂家烧录在芯片内的唯一标识码，类似于电脑的CPU序列号或者手机的IMEI码，可以用来区分每一台设备。</p>
+<p>传统方法只能通过串口获取到芯片的唯一序列号,串口屏自身无法获取到序列号,所有系列所有型号都支持</p>
+</div>
+<section id="id2">
+<h2>通过串口获取<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>单片机或者电脑向串口屏发送联机指令:connect+结束符</p>
+<p>发送的数据如下所示:</p>
+<img alt="../_images/getv_1.jpg" src="../_images/getv_1.jpg" />
+<p>此时串口屏会返回一串数据</p>
+<p>以TJC4024T032_011R设备为例，设备返回如下8组数据(每组数据逗号隔开):</p>
+<p>comok 1,101-0,TJC4024T032_011R,52,61488,D264B8204F0E1828,16777216</p>
+<p>comok:握手回应</p>
+<p>1:表示带触摸(0是不带触摸)</p>
+<p>101-0:设备内部预留数据-设备地址</p>
+<p>TJC4024T032_011R:设备型号</p>
+<p>52:设备固件版本号</p>
+<p>61488:设备主控芯片内部编码</p>
+<p>D264B8204F0E1828:设备唯一序列号</p>
+<p>16777216:设备FLASH大小(单位：字节)</p>
+</section>
+<section id="id3">
+<h2>新方法-通过指令获取<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>新方法仅T1系列和X系列支持,允许串口屏通过指令获取到设备唯一序列号,需要1.65.1以上版本的上位机</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>新方法仅支持在实物屏幕上使用,在模拟器中无法获取</p>
+</div>
+<p>1,新建一个文本控件t0。长度可以长一些，比如200字节，长度过短会读取失败，导致文本控件一片空白。</p>
+<p>2.写代码“getv t0.txt”</p>
+<p>这个命令会把串口发connect命令返回的所有数据装到t0.txt中</p>
+<p>此时就可以通过spstr指令将设备唯一序列号截取出来</p>
+<p>spstr t0.txt,t1.txt,”,”,5</p>
+</section>
+<section id="id4">
+<h2>获取设备唯一序列号例程下载<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/串口屏高级应用/获取串口屏设备唯一序列号/获取设备唯一序列号.HMI">《获取设备唯一序列号》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="wepo_repo.html" class="btn btn-neutral float-left" title="读写用户存储区" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="datafile/index.html" class="btn btn-neutral float-right" title="数据记录文件结构分析" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

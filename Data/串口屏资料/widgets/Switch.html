@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>状态开关控件 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="下拉框控件" href="ComboBox.html" />
+    <link rel="prev" title="二维码控件" href="QRcode.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">控件详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="component.html">认识控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Page.html">页面控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Text.html">文本控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scrolling_text.html">滚动文本控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Number.html">数字控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Xfloat.html">虚拟浮点数控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Button.html">按钮控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Progress_bar.html">进度条控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Picture.html">图片控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Crop.html">切图控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hotspot.html">触摸热区控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TouchCap.html">触摸捕捉控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Gauge.html">指针控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Waveform.html">曲线波形控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Slider.html">滑块控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Timer.html">定时器控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Variable.html">变量控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dual-state_button.html">双态按钮控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Checkbox.html">复选框控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Radio.html">单选框控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QRcode.html">二维码控件</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">状态开关控件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">状态开关控件-使用详解</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">修改状态开关的显示文本为打开/关闭</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">仅显示按钮，不显示文本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">如何修改状态开关控件显示的字体大小和样式</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">状态开关控件-样例工程下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">状态开关控件-相关链接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">状态开关控件-属性详解</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ComboBox.html">下拉框控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TextSelect.html">选择文本控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SLText.html">滑动文本控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DataRecord.html">数据记录控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FileBrowser.html">文件浏览器控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FileStream.html">文件流控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Gmov.html">动画控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Video.html">视频控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Audio.html">音频控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ExPicture.html">外部图片控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">关于控件属性的说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">所有控件详解</a> &raquo;</li>
+      <li>状态开关控件</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>状态开关控件<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>视频教程： <a class="reference external" href="https://www.bilibili.com/video/BV1jA4m1P7kT">状态开关控件</a></p>
+</div>
+<p>状态开关控件仅X2、X3、X5系列支持</p>
+<p>用于在串口屏上显示状态开关，仅X系列支持，其他系列可以用双态按钮代替，使用前需要提前导入字库，制作字库请参考 <a class="reference internal" href="../start/create_project/create_project_5.html#id1"><span class="std std-ref">创建字库和导入字库</span></a></p>
+<p>如何修改显示的字体大小：需要提前导入不同大小的字库，需要修改控件显示的字体大小时，通过上位机编辑或者通过指令修改控件的font属性即可，请参考 <a class="reference internal" href="../QA/QA45.html#id1"><span class="std std-ref">如何修改控件显示的字体</span></a></p>
+<p>数据开关中的txt属性要么为空,要么需要用斜杠隔离开,否则效果会不正常</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>导入字库请参考:  <a class="reference internal" href="../QA/QA115.html#id1"><span class="std std-ref">如何导入字库</span></a></p>
+<p>导入图片请参考:  <a class="reference internal" href="../QA/QA116.html#id1"><span class="std std-ref">如何导入图片</span></a></p>
+<p>导入动画请参考:  <a class="reference internal" href="../QA/QA117.html#id1"><span class="std std-ref">如何导入动画</span></a></p>
+<p>导入视频请参考:  <a class="reference internal" href="../QA/QA118.html#id1"><span class="std std-ref">如何导入视频</span></a></p>
+<p>导入音频请参考:  <a class="reference internal" href="../QA/QA119.html#id1"><span class="std std-ref">如何导入音频</span></a></p>
+</div>
+<section id="id3">
+<h2>状态开关控件-使用详解<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<section id="id4">
+<h3>修改状态开关的显示文本为打开/关闭<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<img alt="../_images/switch_1.jpg" src="../_images/switch_1.jpg" />
+<p>也可以通过指令修改</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sw0.txt<span class="o">=</span><span class="s2">&quot;打开/关闭&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>仅显示按钮，不显示文本<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<p>删除txt属性的内容</p>
+<img alt="../_images/switch_2.jpg" src="../_images/switch_2.jpg" />
+<p>也可以通过指令修改</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sw0.txt<span class="o">=</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>如何修改状态开关控件显示的字体大小和样式<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<p>请参考 <a class="reference internal" href="../QA/QA45.html#id1"><span class="std std-ref">如何修改控件显示的字体</span></a></p>
+</section>
+</section>
+<section id="id7">
+<h2>状态开关控件-样例工程下载<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/控件详解/状态开关/状态开关.HMI">《状态开关》演示工程下载</a></p>
+</section>
+<section id="id9">
+<h2>状态开关控件-相关链接<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h2>
+<p><a class="reference internal" href="../QA/QA10.html#id1"><span class="std std-ref">哪些控件属性可以运行中修改，哪些不能运行中修改，绿色属性和黑色属性有什么区别？</span></a></p>
+<p><a class="reference internal" href="../QA/QA11.html#txtval"><span class="std std-ref">txt属性和val属性有什么区别，为什么有些属性赋值要加双引号，有些不用加双引号</span></a></p>
+<p><a class="reference internal" href="../grammar/global_variable.html#id1"><span class="std std-ref">跨页面赋值，全局变量操作</span></a></p>
+</section>
+<section id="id10">
+<h2>状态开关控件-属性详解<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h2>
+<p><a class="reference internal" href="component.html#id6"><span class="std std-ref">控件属性解析</span></a></p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>绿色属性可以通过上位机或者串口屏指令进行修改，黑色属性只能在上位机中修改或者不可修改，可通过上位机进行修改指“选中控件后通过属性栏修改控件的属性”</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">type属性</span></code> -控件类型，固定值，不同类型的控件type值不同，相同类型的控件type值相同，可读，不可通过上位机修改，不可通过指令修改。参考： <a class="reference internal" href="component.html#id10"><span class="std std-ref">控件属性-控件id对照表</span></a></p>
+<p><code class="docutils literal notranslate"><span class="pre">id属性</span></code> -控件ID，可通过上位机左上角的上下箭头置顶或置底，可读，可通过上位机修改左上角的箭头置顶或置地间接修改，不可通过指令修改。参考： <a class="reference internal" href="../QA/QA28.html#id1"><span class="std std-ref">如何更改控件的前后图层关系</span></a></p>
+<p><code class="docutils literal notranslate"><span class="pre">objname属性</span></code> -控件名称。不可读，可通过上位机进行修改，不可通过指令更改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">vscope属性</span></code> -内存占用(私有占用只能在当前页面被访问，全局占用可以在所有页面被访问)，当设置为私有时，跳转页面后，该控件占用的内存会被释放，重新返回该页面后该控件会恢复到最初的设置。可读，可通过上位机进行修改，不可通过指令更改。参考：<a class="reference internal" href="../grammar/global_variable.html#id1"><span class="std std-ref">跨页面赋值，全局变量操作</span></a></p>
+<p><code class="docutils literal notranslate"><span class="pre">drag属性</span></code> -是否支持拖动:0-否;1-是。仅x系列支持。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">aph属性</span></code> -不透明度(0-127)，0为完全透明，127为完全不透明。仅x系列支持。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">effect属性</span></code> -加载特效:0-立即加载;1-上边飞入;2-下边飞入;3-左边飞入;4-右边飞入;5-左上角飞入;6-右上角飞入;7-左下角飞入;8-右下角飞入。仅x系列支持，在上位机中设置为立即加载时，无法通过指令变为其他特效，当在上位机中设置为非立即加载的特效时，可以变为立即加载，也可以再改为其他特效</p>
+<p><code class="docutils literal notranslate"><span class="pre">dez属性</span></code> -方向:0-横向;1-竖向。可读，可通过上位机修改，不可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">val属性</span></code> -当前值。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">bco属性</span></code> -状态0背景色。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">pco属性</span></code> -状态0圆心色。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">bco2属性</span></code> -状态1背景色。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">pco2属性</span></code> -状态1圆心色。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">pco1属性</span></code> -字体色。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">font属性</span></code> -字库。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">dis属性</span></code> -外形圆角半径百分比(0-100,0为直角)。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">txt属性</span></code> -字符内容(最大24个字符)。可读，可通过上位机修改，可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">x属性</span></code> -控件的X坐标。可读，可通过上位机修改，x系列可通过指令修改，其他系列不可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">y属性</span></code> -控件的Y坐标。可读，可通过上位机修改，x系列可通过指令修改，其他系列不可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">w属性</span></code> -控件的宽度。可读，可通过上位机修改，不可通过指令修改。</p>
+<p><code class="docutils literal notranslate"><span class="pre">h属性</span></code> -控件的高度。可读，可通过上位机修改，不可通过指令修改。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QRcode.html" class="btn btn-neutral float-left" title="二维码控件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="ComboBox.html" class="btn btn-neutral float-right" title="下拉框控件" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

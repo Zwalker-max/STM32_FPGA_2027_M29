@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HMI下载协议详解/OTA升级 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="开源TFT下载工具-代码示例" href="download_protocol/download_tools.html" />
+    <link rel="prev" title="解析不定长字符串(以回车换行结尾)" href="recmod/recmod_ascii/recmod_ascii_2.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HMI下载协议详解/OTA升级</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">未知串口号和波特率</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">已知串口号和波特率</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connect">【下载步骤1：联机操作】</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">【下载步骤1：流程图】</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">如果未开启主动解析模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">如果开启了主动解析模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">联机数据说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#download">【下载步骤2：开始下载】</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">【下载步骤2：流程图】</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tft">开源TFT下载工具下载</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="download_protocol/download_tools.html">开源TFT下载工具-代码示例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">串口屏高级应用详解</a> &raquo;</li>
+      <li>HMI下载协议详解/OTA升级</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hmi-ota">
+<h1>HMI下载协议详解/OTA升级<a class="headerlink" href="#hmi-ota" title="此标题的永久链接"></a></h1>
+<p>关键词：远程升级，通过单片机下载，OTA升级，云端升级</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>使用本协议进行HMI下载时,在串口屏工程中请务必使用bauds来进行波特率配置，避免升级失败后导致波特率改变导致无法联机，参考 <a class="reference internal" href="../QA/QA99.html#baudbauds"><span class="std std-ref">baud和bauds的区别</span></a></p>
+</div>
+<img alt="../_images/hmi_download_protocol_1.jpg" src="../_images/hmi_download_protocol_1.jpg" />
+<p>本文讲述的HMI下载协议仅适用于希望自己制作下载程序或者希望单片机去控制HMI下载资源文件的用户，属于高级应用范畴，不属于HMI界面设计的范畴，因此需要有一定基础的用户才能操作。</p>
+<p>深圳市淘晶驰电子有限公司仅仅只对此协议做一个公布说明，不提供任何跟下载协议有关的技术支持。</p>
+<p>如果对串口操作不熟悉的朋友建议忽略此说明，请直接使用USART HMI软件进行下载即可，无需对此协议有任何了解      <a class="reference internal" href="../start/create_project/create_project_9.html#id1"><span class="std std-ref">通过串口下载工程到串口屏</span></a>  / <a class="reference internal" href="../start/create_project/create_project_10.html#sd"><span class="std std-ref">通过SD卡下载工程到串口屏</span></a>  。</p>
+<p>以下部分为下载协议的介绍。</p>
+<p>下载情况分为2种：</p>
+<section id="id1">
+<h2>未知串口号和波特率<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>在windwos，linux，macos等通用操作系统上自己编写下载工具，通常使用的是USB转ttl工具，需要通过 <a class="reference internal" href="#connect"><span class="std std-ref">【下载步骤1：联机操作】</span></a> 先搜索HMI设备在哪个串口上，以及串口屏设备当前的波特率，然后通过 <a class="reference internal" href="#download"><span class="std std-ref">【下载步骤2：开始下载】</span></a> ，即可开始下载</p>
+</section>
+<section id="id2">
+<h2>已知串口号和波特率<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>使用单片机，已经知道串口和通讯波特率的情况下，直接跳到 <a class="reference internal" href="#download"><span class="std std-ref">【下载步骤2：开始下载】</span></a> ，即可开始下载。如果当前屏幕在主动解析模式下，请先退出主动解析模式。</p>
+</section>
+<section id="connect">
+<span id="id3"></span><h2>【下载步骤1：联机操作】<a class="headerlink" href="#connect" title="此标题的永久链接"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>此步骤主要用来搜索HMI设备在哪个串口上，以及设备当前的波特率。如果这两个条件是已知的，那么可以不用做这个步骤，在你的程序中直接固定串口号和设备当前使用的波特率后直接跳到步骤2开始下载。</p>
+</div>
+<section id="id4">
+<h3>【下载步骤1：流程图】<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<img alt="../_images/hmi_download_protocol_2.png" src="../_images/hmi_download_protocol_2.png" />
+<p>●搜索方法：</p>
+</section>
+<section id="id5">
+<h3>如果未开启主动解析模式<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<p>分别向电脑的每个串口分别用不同波特率发送一个联机指令:connect+结束符</p>
+<p>其hex格式如下所示： 00 FF FF FF 63 6F 6E 6E 65 63 74 FF FF FF</p>
+</section>
+<section id="id6">
+<h3>如果开启了主动解析模式<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<p>需要向串口屏发送一串数据用于强制退出主动解析模式,紧接着发送connect和结束符</p>
+<p><a class="reference internal" href="recmod/recmod_base.html#exit-recmod"><span class="std std-ref">如何退出主动解析</span></a></p>
+<p>其hex格式如下所示：44 52 41 4B 4A 48 53 55 59 44 47 42 4E 43 4A 48 47 4A 4B 53 48 42 44 4E FF FF FF 00 FF FF FF 63 6F 6E 6E 65 63 74 FF FF FF</p>
+</section>
+<section id="id7">
+<h3>联机数据说明<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<p>设备收到联机指令后会返回联机数据，如果收到正确的联机数据，说明设备联机成功，至此，得到当前设备的串口号和当前使用的波特率.</p>
+<p>●联机指令发送说明：</p>
+<p>因为一直在循环发送指令，所以当屏幕在正确的波特率上收到数据时，数据的最前面肯定会有部分上一次错误的波特率下的错误数据，因此这个时候第一条指令肯定是会被当成错误指令的。所以每次发送的时候需要发两条指令，第一条发4个字节的HEX空指令（00 ff ff ff）,第二条才是connect+结束符</p>
+<p>延时说明:每次尝试一次联机指令后需要等待数据返回的最短时间为(单位:ms): (1000000/尝试的波特率)+30</p>
+<p>假如在9600波特率下尝试联机，需要等待返回的最短时间为:</p>
+<p>1000000/9600+30=134ms</p>
+<p>其他波特率以此类推</p>
+<p>●数据解释：</p>
+<p>以TJC4024T032_011R设备为例，设备返回如下8组数据(每组数据逗号隔开):</p>
+<p>comok 1,101-0,TJC4024T032_011R,52,61488,D264B8204F0E1828,16777216\xff\xff\xff</p>
+<p>comok:握手回应</p>
+<p>1:表示带触摸(0是不带触摸)</p>
+<p>101-0:设备内部预留数据-设备地址</p>
+<p>TJC4024T032_011R:设备型号</p>
+<p>52:设备固件版本号</p>
+<p>61488:设备主控芯片内部编码</p>
+<p>D264B8204F0E1828:设备唯一序列号</p>
+<p>16777216:设备FLASH大小(单位：字节)</p>
+<p>\xff\xff\xff:结束符</p>
+</section>
+</section>
+<section id="download">
+<span id="id8"></span><h2>【下载步骤2：开始下载】<a class="headerlink" href="#download" title="此标题的永久链接"></a></h2>
+<p>此时已经知道设备在哪个串口号上，也知道设备当前的波特率了，可以发送下载指令了。</p>
+<p>■第一步：发送指令whmi-wri filesize,baud,res0\xff\xff\xff</p>
+<p>filesize:tft文件的大小(单位：字节)</p>
+<p>baud:强制下载使用的波特率</p>
+<p>res0:预留数据，使用任意ASCII字符即可</p>
+<p>假如需要下载的tft文件大小为10000字节,需要使用115200波特率下载，那么就发送指令：</p>
+<p>whmi-wri 10000,115200,0\xff\xff\xff</p>
+<p>发送完此指令以后，需要立即修改电脑（或单片机）的波特率为刚才设置的强制波特率（如果当前波特率和强制下载波特率不一致的话）</p>
+<p>■第二步：下发tft文件的二进制数据</p>
+<p>设备收到whmi-wri指令后在250ms左右后会返回一个0x05的数据（仅仅是一个字节，没有3个0XFF的结束符，波特率为刚才设置的强制下载波特率）,收到此数据后，可以开始下发tft文件的二进制数据，下发格式为每包下发4096字节，最后一包剩余多少就发多少，每包发送完成以后，需要等待屏幕返回响应信号，响应信号依然为一个单一字节的0x05。</p>
+<section id="id9">
+<h3>【下载步骤2：流程图】<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h3>
+<img alt="../_images/hmi_download_protocol_3.png" src="../_images/hmi_download_protocol_3.png" />
+<p>相关链接</p>
+<p><a class="reference internal" href="../QA/QA77.html#tft"><span class="std std-ref">TFT文件如何下载到串口屏中</span></a></p>
+<p><a class="reference internal" href="../start/create_project/create_project_10.html#tft"><span class="std std-ref">如何输出TFT生产文件</span></a></p>
+</section>
+</section>
+<section id="tft">
+<h2>开源TFT下载工具下载<a class="headerlink" href="#tft" title="此标题的永久链接"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="download_protocol/download_tools.html">开源TFT下载工具-代码示例</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="recmod/recmod_ascii/recmod_ascii_2.html" class="btn btn-neutral float-left" title="解析不定长字符串(以回车换行结尾)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="download_protocol/download_tools.html" class="btn btn-neutral float-right" title="开源TFT下载工具-代码示例" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

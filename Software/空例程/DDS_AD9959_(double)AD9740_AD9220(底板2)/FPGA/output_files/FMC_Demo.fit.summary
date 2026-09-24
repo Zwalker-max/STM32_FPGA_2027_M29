@@ -1,0 +1,16 @@
+Fitter Status : Successful - Wed Jul 22 13:07:15 2026
+Quartus II 64-Bit Version : 14.1.0 Build 186 12/03/2014 SJ Full Version
+Revision Name : FMC_Demo
+Top-level Entity Name : FMC_Demo
+Family : Cyclone IV E
+Device : EP4CE10E22I7
+Timing Models : Final
+Total logic elements : 1,225 / 10,320 ( 12 % )
+    Total combinational functions : 877 / 10,320 ( 8 % )
+    Dedicated logic registers : 931 / 10,320 ( 9 % )
+Total registers : 931
+Total pins : 70 / 92 ( 76 % )
+Total virtual pins : 0
+Total memory bits : 88,064 / 423,936 ( 21 % )
+Embedded Multiplier 9-bit elements : 0 / 46 ( 0 % )
+Total PLLs : 1 / 2 ( 50 % )

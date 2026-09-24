@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>串口指令增加CRC校验 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="程序中使用CRC校验数据" href="crc2.html" />
+    <link rel="prev" title="串口屏实现的下载工具" href="download_protocol/tjc_code.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">串口指令增加CRC校验</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">结束符不同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crc16">CRC16校验算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.CRC16校验码写入方式</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">串口屏高级应用详解</a> &raquo;</li>
+      <li>串口指令增加CRC校验</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="crc">
+<h1>串口指令增加CRC校验<a class="headerlink" href="#crc" title="此标题的永久链接"></a></h1>
+<p>(单片机向串口屏发送的指令中增加crc校验，0.56及其以上上位机版本支持)</p>
+<p>正常情况下，指令直接发送即可，不需要校验，如果您的项目对指令传输要求很严格必须开启校验请按照下列说明发送指令</p>
+<p>切记注意：上位软件版本0.56开始才支持指令CRC，之前的版本是不支持的。</p>
+<p>带校验或不带校验无需做任何配置，只需修改指令即可，您可以上一条指令带校验，下一条指令不带校验也是可以的。两种指令的区别如下：</p>
+<section id="id1">
+<h2>结束符不同<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>普通指令结束符为\xFF\xFF\xFF</p>
+<p>带校验的指令结束符为\xFE\xFE\xFE</p>
+</section>
+<section id="crc16">
+<h2>CRC16校验算法<a class="headerlink" href="#crc16" title="此标题的永久链接"></a></h2>
+<p>指令CRC16校验算法使用MODBUS的CRC16校验算法。其校验结果是2字节（16bit）的数据</p>
+<p>需要校验的数据为所有指令数据，如果是带地址的指令，从地址开始算，不带地址的指令，就从指令第一个字节开始计算，结束符不计算在内。</p>
+<p>如果您的单片机需要在指令中添加crc校验，那么单片机里的计算函数如下，您可以参考，也可以使用自己原有的MODBUS_CRC16代码。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//单片机MODBUS_CRC16代码</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">U8</span><span class="w"> </span><span class="nf">InvertUint8</span><span class="p">(</span><span class="n">U8</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">U8</span><span class="w"> </span><span class="n">newtemp8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">newtemp8</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="n">U8</span><span class="p">)(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">));</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">newtemp8</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="n">U16</span><span class="w"> </span><span class="nf">InvertUint16</span><span class="p">(</span><span class="n">U16</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">U16</span><span class="w"> </span><span class="n">newtemp16</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">newtemp16</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="n">U16</span><span class="p">)(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="mi">15</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">));</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">newtemp16</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">U16</span><span class="w"> </span><span class="nf">CRC16_MODBUS</span><span class="p">(</span><span class="n">U8</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lenth</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">U16</span><span class="w"> </span><span class="n">wCRCin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xFFFF</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">U16</span><span class="w"> </span><span class="n">wCPoly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x8005</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">U16</span><span class="w"> </span><span class="n">wChar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">lenth</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">wChar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">data</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">wChar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InvertUint8</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">U8</span><span class="p">)</span><span class="n">wChar</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">wCRCin</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="p">(</span><span class="n">U16</span><span class="p">)(</span><span class="n">wChar</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">wCRCin</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x8000</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">wCRCin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">U16</span><span class="p">)(</span><span class="w"> </span><span class="p">(</span><span class="n">wCRCin</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="n">wCPoly</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="k">else</span><span class="w"></span>
+<span class="w">         </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">wCRCin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">U16</span><span class="p">)(</span><span class="n">wCRCin</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="n">lenth</span><span class="o">=</span><span class="n">lenth</span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="n">wCRCin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InvertUint16</span><span class="p">(</span><span class="n">wCRCin</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">wCRCin</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>3.CRC16校验码写入方式<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>指令后面，结束符前面，加上2字节的CRC16校验码(HEX)+1字节的常数:0x01(HEX),相当于在指令和结束符中间插入了3个字节，CRC校验码的储存方式是小端模式,低位在前。</p>
+<p>常规指令示例</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>n0.val<span class="o">=</span><span class="m">1</span><span class="se">\x</span>FF<span class="se">\x</span>FF<span class="se">\x</span>FF
+</pre></div>
+</div>
+<img alt="../_images/crc1_1.png" src="../_images/crc1_1.png" />
+<p>带crc指令示例</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>n1.val<span class="o">=</span><span class="m">1</span><span class="se">\x</span><span class="m">26</span><span class="se">\x</span>4C<span class="se">\x</span><span class="m">01</span><span class="se">\x</span>FE<span class="se">\x</span>FE<span class="se">\x</span>FE
+</pre></div>
+</div>
+<img alt="../_images/crc1_2.jpg" src="../_images/crc1_2.jpg" />
+<p>如果屏幕收到带校验的指令后发现校验失败，会返回错误：0x09 0xff 0xff 0xff</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="download_protocol/tjc_code.html" class="btn btn-neutral float-left" title="串口屏实现的下载工具" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="crc2.html" class="btn btn-neutral float-right" title="程序中使用CRC校验数据" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

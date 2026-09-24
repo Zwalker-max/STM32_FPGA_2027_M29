@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>解析AT指令 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../../_static/custom.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="接收json数据字符串" href="recmod_ascii_json.html" />
+    <link rel="prev" title="解析字符串格式指令" href="index.html" />
+    <link href="../../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">主动解析模式应用详解</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../recmod_base.html">主动解析基本知识</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fixed_hex/index.html">解析定长hex格式指令-自定义协议</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../unfixed_hex/index.html">解析不定长hex格式指令-自定义协议</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">解析字符串格式指令</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">解析AT指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recmod_ascii_json.html">接收json数据字符串</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recmod_ascii_2.html">解析不定长字符串(以回车换行结尾)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">串口屏高级应用详解</a> &raquo;</li>
+          <li><a href="../index.html">主动解析模式应用详解</a> &raquo;</li>
+          <li><a href="index.html">解析字符串格式指令</a> &raquo;</li>
+      <li>解析AT指令</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="at">
+<h1>解析AT指令<a class="headerlink" href="#at" title="此标题的永久链接"></a></h1>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>每个页面仅建议在一个定时器中读取串口缓冲区的数据,在多个定时器中读取串口缓冲区的数据容易照成逻辑混乱。</p>
+</div>
+<p>首先我们自定义了几个指令给屏幕赋值</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">+</span><span class="n">n0</span><span class="o">=</span><span class="mi">100</span>\<span class="n">r</span>\<span class="n">n</span>   <span class="o">//</span><span class="n">给n0赋值100</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">n1</span><span class="o">=</span><span class="mi">50</span>\<span class="n">r</span>\<span class="n">n</span>   <span class="o">//</span><span class="n">给n1赋值50</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">n2</span><span class="o">=-</span><span class="mi">30</span>\<span class="n">r</span>\<span class="n">n</span>   <span class="o">//</span><span class="n">给n2赋值</span><span class="o">-</span><span class="mi">30</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">n3333</span><span class="o">=</span><span class="mi">9999</span>\<span class="n">r</span>\<span class="n">n</span>   <span class="o">//</span><span class="n">给n3333赋值9999</span>
+</pre></div>
+</div>
+<p>控件是固定的n0，n1，n2，n3333，但是给他们赋值的参数是不固定的</p>
+<p>program.s中的配置如图所示</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">以下代码只在上电时运行一次</span><span class="p">,</span><span class="n">一般用于全局变量定义和上电初始化数据</span>
+<span class="o">//</span><span class="n">全局变量定义目前仅支持4字节有符号整形</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span><span class="n">不支持其他类型的全局变量声明</span><span class="p">,</span><span class="n">如需使用字符串类型可以在页面中使用变量控件来实现</span>
+<span class="nb">int</span> <span class="n">sys0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">sys1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">sys2</span><span class="o">=</span><span class="mi">0</span>
+<span class="nb">int</span> <span class="n">length</span><span class="p">,</span><span class="n">totalLength</span><span class="p">,</span><span class="n">getFrameHead</span><span class="p">,</span><span class="n">getFrameEnd</span>
+<span class="n">bauds</span><span class="o">=</span><span class="mi">115200</span> <span class="o">//</span><span class="n">波特率115200</span>
+<span class="n">recmod</span><span class="o">=</span><span class="mi">1</span>    <span class="o">//</span><span class="n">打开主动解析</span>
+<span class="n">page</span> <span class="mi">0</span>                       <span class="o">//</span><span class="n">上电刷新第0页</span>
+</pre></div>
+</div>
+<p>界面布局如下图所示</p>
+<img alt="../../../_images/recmod_ascii_1.jpg" src="../../../_images/recmod_ascii_1.jpg" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>注意文本控件的txt_maxl属性，目前我都是设置为30</p>
+</div>
+<p>需要搭配sscom5.13.1使用</p>
+<img alt="../../../_images/recmod_ascii_2.jpg" src="../../../_images/recmod_ascii_2.jpg" />
+<hr class="docutils" />
+<p>解析定时器（tim为50）中的代码如下图所示</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>while(usize&gt;=2&amp;&amp;getFrameHead==0)
+{
+  if(u[0]==0x41&amp;&amp;u[1]==0x54)
+  {
+    //找到帧头&quot;AT&quot;,退出循环
+    getFrameHead=1
+    getFrameEnd=0
+  }else
+  {
+    //如果帧头不对，就一直删除1个字节，直到不满足条件退出循环
+    udelete 1
+  }
+}
+//查找帧尾\r\n
+if(getFrameHead==1&amp;&amp;getFrameEnd==0)
+{
+  for(sys0=2;sys0&lt;=usize;sys0++)
+  {
+    if(u[sys0]==0x0d&amp;&amp;u[sys0+1]==0x0a)
+    {
+      getFrameEnd=1
+      length=sys0
+      totalLength=sys0+2
+      sys0=usize+1
+    }
+  }
+}
+//AT开头，\r\n结尾
+if(getFrameHead==1&amp;&amp;getFrameEnd==1)
+{
+  getFrameHead=0
+  getFrameEnd=0
+  ucopy rxbuffer.txt,0,length,0
+  udelete totalLength
+  click b0,1
+  if(CMD.txt==&quot;n0&quot;)
+  {
+    n0.val=param.val
+  }else if(CMD.txt==&quot;n1&quot;)
+  {
+    n1.val=param.val
+  }else if(CMD.txt==&quot;n2&quot;)
+  {
+    n2.val=param.val
+  }else if(CMD.txt==&quot;n3333&quot;)
+  {
+    n3.val=param.val
+  }
+}
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>下面对代码进行逐行讲解</p>
+<p>program.s中定义的变量</p>
+<p>length：获取帧内数据长度</p>
+<p>totalLength：通过length+结束符\r\n的长度</p>
+<p>getFrameHead：是否获取到帧头的标志位，1为获取到帧头，0为未获取到帧头</p>
+<p>getFrameEnd：是否获取到帧尾的标志位，1为获取到帧尾，0为未获取到帧尾</p>
+<p>第1行为什么是判断usize&gt;=2</p>
+<p>代码中取“AT”作为帧头的判断标志，只要大于2字节，就有可能是AT这两个字母，当然也可以取“AT+”作为帧头的判断标志，那么第1行就是是判断usize&gt;=3</p>
+<p>第3-12行是判断帧头是否符合协议中的要求，如果不是，则删除串口缓冲区最前面1字节，直到找到帧头或者usize小于2</p>
+<p>如何退出循环：当getFrameHead!=0或者usize&lt;2,不满足while的条件，就会退出循环</p>
+<p>第2行0x41是“A”对应的ASCII码表的16进制，0x54是“T”对应的ASCII码表的16进制</p>
+<p>第17行，从u[2]开始查找帧尾\r\n，\r对应的ASCII码表的16进制是0x0d，\n对应的ASCII码表的16进制是0x0a</p>
+<p>第22行，当查找到\r\n时，此时的sys0刚好就是除去\r\n的数据长度，</p>
+<p>第23行，sys0+2则是加上\r\n的总的数据的长度</p>
+<p>第24行，让sys0&gt;usize,才能退出循环</p>
+<p>第29行，已经找到了帧头和帧尾，可以开始解析了</p>
+<p>第33行，使用ucopy指令将除了\r\n之外的数据拷贝至rxbuffer.txt进行解析</p>
+<p>第34行，删除已经拷贝过的数据</p>
+<p>第35行，在b0按钮中对数据进行解析，使用click去触发b0按钮，相当于调用了函数，具体如何解析请查看b0按钮</p>
+<section id="id1">
+<h2>解析AT指令-样例工程下载<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/串口屏高级应用/主动解析/AT指令解析.HMI">《AT指令解析》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="解析字符串格式指令" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="recmod_ascii_json.html" class="btn btn-neutral float-right" title="接收json数据字符串" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

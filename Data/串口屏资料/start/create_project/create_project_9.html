@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>通过串口下载工程到串口屏 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="使用TFT文件下载助手(TFTFileDownload)通过串口下载工程到串口屏" href="create_project_9_2.html" />
+    <link rel="prev" title="安装串口驱动" href="create_project_8.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">快速入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../download_ide.html">下载和安装上位机软件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ide_introduce/index.html">上位机基本功能介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first_test.html">到手测试</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">创建工程</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="create_project_1.html">新建一个工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_2.html">制作开机页面</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_3.html">制作主页面1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_4.html">报错：字库ID无效</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_5.html">创建字库和导入字库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_6.html">按钮控件美化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_7.html">通过代码修改控件属性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_8.html">安装串口驱动</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">通过串口下载工程到串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_9_2.html">使用TFT文件下载助手(TFTFileDownload)通过串口下载工程到串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_10.html">通过SD卡下载工程到串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_11.html">修改设备型号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_12.html">RTC相关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_13.html">配置亮度</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_14.html">配置串口波特率</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_15.html">配置休眠</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_16.html">跨页面操作变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_project_17.html">页面滑动切换</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../codespace/index.html">代码编写</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">快速入门</a> &raquo;</li>
+          <li><a href="index.html">创建工程</a> &raquo;</li>
+      <li>通过串口下载工程到串口屏</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>通过串口下载工程到串口屏<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>1.下载前先切换到program.s中，配置一下亮度和波特率，请注意，等号两边不要有空格，否则会报错</p>
+<p>注意这里的波特率应该和单片机的波特率一致。</p>
+<img alt="../../_images/uartDownload1.png" src="../../_images/uartDownload1.png" />
+<hr class="docutils" />
+<p>2.连接下载器和屏幕</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>连接方式如下所示</p>
+</div>
+<p><strong>5V接串口屏5V</strong></p>
+<p><strong>TX接串口屏RX</strong></p>
+<p><strong>RX接串口屏TX</strong></p>
+<p><strong>GND接串口屏GND</strong></p>
+<p>TX是Transmit（发送），RX是Receive（接收），发送对接收，接收对发送。</p>
+<p>另外说明：有些板子和原理图标注的是TXD和RXD。TX就是TXD，RX就是RXD。概念都是一样的，可以不做区分。</p>
+<img alt="../../_images/computer2hmi.png" src="../../_images/computer2hmi.png" />
+<hr class="docutils" />
+<p>3.点击下载按钮</p>
+<img alt="../../_images/uartDownload2.png" src="../../_images/uartDownload2.png" />
+<hr class="docutils" />
+<p>4.串口号选择com4（与设备管理器中的串口号一致），波特率选择921600，点击联机并开始下载</p>
+<p>大家不用担心下载波特率和之前配置的bauds=115200有冲突，下载波特率和通讯波特率是分开的，上位机和串口屏之间通过通讯波特率联机成功后，会切换为下载波特率，将整个工程下载完毕后，重新切换回通讯波特率。</p>
+<img alt="../../_images/uartDownload3.png" src="../../_images/uartDownload3.png" />
+<hr class="docutils" />
+<p>5.联机成功会显示以下信息，等待下载完成即可</p>
+<img alt="../../_images/uartDownload4.png" src="../../_images/uartDownload4.png" />
+<hr class="docutils" />
+<p>6.如果长时间进度没有动，请检查usb转ttl串口工具，参考： <a class="reference internal" href="../../QA/QA95.html#ch340"><span class="std std-ref">为什么不建议用ch340</span></a></p>
+<p>X3/X5系列使用232通讯通讯下载时，下载波特率请勿超过256000，如果还是无法下载，请将屏幕断电重启后，继续将下载波特率调低再尝试下载</p>
+<p>使用485进行通讯时，需要下载工程时请参考 <a class="reference internal" href="../first_test.html#id2"><span class="std std-ref">485接口的串口屏</span></a></p>
+<p>不管是使用ttl电平/232电平/485电平，如果无法通过串口下载,可以查看下一章节 <a class="reference internal" href="create_project_10.html#sd"><span class="std std-ref">通过SD卡下载工程到串口屏</span></a></p>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="create_project_8.html" class="btn btn-neutral float-left" title="安装串口驱动" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="create_project_9_2.html" class="btn btn-neutral float-right" title="使用TFT文件下载助手(TFTFileDownload)通过串口下载工程到串口屏" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

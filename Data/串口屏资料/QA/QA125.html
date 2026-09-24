@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>能不能用printf一次性发送多条指令 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="如何显示和计算百分比" href="QA134.html" />
+    <link rel="prev" title="baud和bauds的区别" href="QA99.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常见问题</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">硬件相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">结构设计相关</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id4">软件相关</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="QA4.html">设计好的工程有哪些下载方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA5.html">tft文件串口/SD卡下载失败如何解决</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA6.html">调试或下载时联机失败</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA8.html">指定字库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA10.html">哪些控件属性可以运行中修改，哪些不能运行中修改，绿色属性和黑色属性有什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA11.html">txt属性和val属性有什么区别，为什么有些属性赋值要加双引号，有些不用加双引号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA12.html">运行中控件属性被修改后，离开页面再回来，不希望属性回到初始值怎么操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA13.html">SD卡有哪些作用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA15.html">串口屏卡顿的原因</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA16.html">文本控件或按钮控件不显示我输入的字符内容或显示不全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA17.html">单片机发指令给屏幕没有反应</a></li>
+<li class="toctree-l3"><a class="reference internal" href="baudrate.html">如何配置亮度,主动解析,波特率</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA19.html">系统内置的触摸键盘怎么修改风格</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA20.html">滑块或进度条控件默认是横向，为什么我设为竖向后没有变化，还是显示横向呢</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA24.html">单片机和串口屏通信为什么单片机上电后要延时一会再发指令，延时多久合适</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA25.html">单片机上电后为什么要先发一次 0x00 0xff 0xff 0xff给屏幕</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA26.html">屏幕地址怎么设置，怎么使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA27.html">注释乱码或者不显示</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA28.html">如何更改控件的前后图层关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA31.html">如何设计多语言界面</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA34.html">K系列和T系列如何实现透明效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA35.html">单片机如何接收和解析串口屏数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA36.html">如何对掉电存储空间进行初始化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA41.html">转义字符相关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA42.html">使用sscom时，sscom可以接收到串口数据，但是sscom发送的数据屏幕接收不到</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA54.html">如何实现按位取反</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA62.html">如何实现按位同或运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA81.html">页面和页面控件的区别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA88.html">休眠替代方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA91.html">淘晶驰串口屏支持哪些通讯格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA98.html">dim和dims的区别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA99.html">baud和bauds的区别</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">能不能用printf一次性发送多条指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA134.html">如何显示和计算百分比</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA135.html">内存文件存储区相关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA136.html">页面名称乱码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA137.html">为什么wepo写入后不允许立刻读取或者断电</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA139.html">常用英语</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA140.html">页面跳转后,控件怎么保持原来的状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA141.html">串口屏重启后,控件怎么保持原来的状态</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">错误提示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">其他</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">常见问题</a> &raquo;</li>
+      <li>能不能用printf一次性发送多条指令</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="printf">
+<h1>能不能用printf一次性发送多条指令<a class="headerlink" href="#printf" title="此标题的永久链接"></a></h1>
+<p>不建议</p>
+<p>比如以下代码</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>printf(&quot;n0.val=666\xff\xff\xffb0.val=1\xff\xff\xff&quot;); //b0会被识别为HEX，导致串口屏无法正确识别
+</pre></div>
+</div>
+<img alt="../_images/QA125_1.jpg" src="../_images/QA125_1.jpg" />
+<p>其中b0.val中的b0会被printf认为是16进制而不是字符串，导致串口屏无法收到正确的指令</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>printf(&quot;n0.val=666\xff\xff\xffz0.val=1\xff\xff\xff&quot;); //z0会被识别为字符串，串口屏正确识别
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QA99.html" class="btn btn-neutral float-left" title="baud和bauds的区别" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="QA134.html" class="btn btn-neutral float-right" title="如何显示和计算百分比" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

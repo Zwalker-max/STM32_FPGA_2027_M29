@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>功能选型 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="X2系列" href="X2_serial_compare.html" />
+    <link rel="prev" title="产品命名规则" href="NamingRules.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">产品选型和规格书</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="new_datasheet/index.html">新版规格书和出厂工程下载</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">产品选型</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="NamingRules.html">产品命名规则</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">功能选型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">功能选型-相关资料</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="X2_serial_compare.html">X2系列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="X3_serial_compare.html">X3系列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="X5_serial_compare.html">X5系列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="K0_serial_compare.html">K0系列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="T1_serial_compare.html">T1系列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="T0_serial_compare.html">T0系列（即将停产）不推荐新项目选型</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">产品选型和规格书</a> &raquo;</li>
+      <li>功能选型</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>功能选型<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<p>资料更新时间： 2026-07-20 10:12:06</p>
+<table class="longtable docutils align-default" id="id3">
+<caption><span class="caption-text">产品功能选型</span><a class="headerlink" href="#id3" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>功能</p></td>
+<td><p>x5系列</p></td>
+<td><p>X3系列</p></td>
+<td><p>X2系列</p></td>
+<td><p>K0系列</p></td>
+<td><p>T1系列</p></td>
+<td><p>T0系列</p></td>
+</tr>
+<tr class="row-even"><td><p>备注</p></td>
+<td><p>性能强大</p></td>
+<td><p>性价比高</p></td>
+<td><p>性价比高</p></td>
+<td></td>
+<td><p>小屏专属</p></td>
+<td><p>即将停产</p></td>
+</tr>
+<tr class="row-odd"><td><p>FLASH特性</p></td>
+<td><p>NandFlash</p></td>
+<td><p>SpiFlash</p></td>
+<td><p>SpiFlash</p></td>
+<td><p>SpiFlash</p></td>
+<td><p>SpiFlash</p></td>
+<td><p>SpiFlash</p></td>
+</tr>
+<tr class="row-even"><td><p>flash容量</p></td>
+<td><p>128M</p></td>
+<td><p>8M/16M</p></td>
+<td><p>8M/16M</p></td>
+<td><p>16M/32M</p></td>
+<td><p>4M/8M</p></td>
+<td><p>4M/16M</p></td>
+</tr>
+<tr class="row-odd"><td><p>FLASH速度</p></td>
+<td><p>12MB/S</p></td>
+<td><p>3MB/S</p></td>
+<td><p>速度3MB/S</p></td>
+<td><p>速度3MB/S</p></td>
+<td><p>速度4MB/S</p></td>
+<td><p>速度3MB/S</p></td>
+</tr>
+<tr class="row-even"><td><p>控件图层保持</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>页面加载特效</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>滑动翻页功能</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>控件加载特效</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>控件移动功能</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>控件触摸拖动</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>控件半透明</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>PNG透明图片</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>PNG图片抗锯齿</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>百变指针功能</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>指针抗锯齿</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>独立音频</p></td>
+<td><p>2路</p></td>
+<td><p>2路</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>动画播放</p></td>
+<td><p>支持</p></td>
+<td><p>支持</p></td>
+<td><p>支持</p></td>
+<td><p>注释①</p></td>
+<td><p>注释①</p></td>
+<td><p>注释①</p></td>
+</tr>
+<tr class="row-odd"><td><p>视频播放</p></td>
+<td><p>6路</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>系统运行内存</p></td>
+<td><p>512K</p></td>
+<td><p>512K</p></td>
+<td><p>512K</p></td>
+<td><p>3.5K</p></td>
+<td><p>3.5K</p></td>
+<td><p>3.5K</p></td>
+</tr>
+<tr class="row-odd"><td><p>图片压缩存储</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td><p>●</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>全屏图片数量</p></td>
+<td><p>1000-2000</p></td>
+<td><p>120-160</p></td>
+<td><p>60-80</p></td>
+<td><p>80-110</p></td>
+<td><p>25-60</p></td>
+<td><p>25-60</p></td>
+</tr>
+<tr class="row-odd"><td><p>字体抗锯齿</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+</tr>
+<tr class="row-even"><td><p>自定义字库</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+</tr>
+<tr class="row-odd"><td><p>设置显示方向</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+</tr>
+<tr class="row-even"><td><p>TTL串口</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+</tr>
+<tr class="row-odd"><td><p>RS232串口</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>设备地址设置</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+</tr>
+<tr class="row-odd"><td><p>界面开发软件</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+</tr>
+<tr class="row-even"><td><p>RTC时钟</p></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>扩展IO</p></td>
+<td><p>8路</p></td>
+<td></td>
+<td><p>注释②</p></td>
+<td><p>8路</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>PWM</p></td>
+<td><p>1路PWM</p></td>
+<td></td>
+<td><p>注释②</p></td>
+<td><p>4路PWM</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>用户数据存储</p></td>
+<td><p>1024字节</p></td>
+<td><p>1024字节</p></td>
+<td><p>1024字节</p></td>
+<td><p>1024字节</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>带外壳</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>带铁框</p></td>
+<td></td>
+<td></td>
+<td><p>选配</p></td>
+<td></td>
+<td><p>选配</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>电阻触摸</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+</tr>
+<tr class="row-odd"><td><p>电容触摸</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>电容触摸加盖玻璃</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>–加盖3mm玻璃</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>–加盖5mm玻璃</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td><p>选配</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>备注:TJC4848X540_011(86盒),只有电容屏,不支持TTL/232切换,可以选购ttl或485接口(485版本是宽电压供电)。</p>
+<p>备注:FPC版本的X2无外部IO接口(也无PWM)。</p>
+<p>注释①：动画播放功能可以用图片控件加定时器代替。</p>
+<p>注释②：X2系列是否支持外部IO需要根据具体的设备型号来确定。</p>
+<section id="id2">
+<h2>功能选型-相关资料<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p><a class="reference internal" href="NamingRules.html#id1"><span class="std std-ref">产品命名规则</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="NamingRules.html" class="btn btn-neutral float-left" title="产品命名规则" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="X2_serial_compare.html" class="btn btn-neutral float-right" title="X2系列" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

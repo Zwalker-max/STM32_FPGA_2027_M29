@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>树莓派pico使用MicroPython与串口屏通讯 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="MicroPython通讯演示工程下载" href="micropython_download.html" />
+    <link rel="prev" title="与MicroPython联调" href="index.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">串口屏调试</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../simulator/index.html">模拟器调试基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_ttl.html">和USB转TTL的接线说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connect_mcu.html">和单片机的接线说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../base/index.html">联机调试基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usart_protocol/index.html">串口屏通讯协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_sscom.html">串口助手软件(sscom)和屏幕联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd.html">串口助手软件(sscom)和串口屏模拟器联调1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debug_with_vspd2.html">串口助手软件(sscom)和串口屏模拟器联调2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_uart_assistant/index.html">其他串口助手</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stm32/index.html">与stm32单片机联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timcu/index.html">与TI（德州仪器）单片机联调</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arduino/index.html">与arduino联调</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">与MicroPython联调</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">树莓派pico使用MicroPython与串口屏通讯</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">树莓派pico使用MicroPython与串口屏通讯工程下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">树莓派pico使用MicroPython与串口屏通讯的连接方式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">树莓派pico使用MicroPython与串口屏通讯代码</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="micropython_download.html">MicroPython通讯演示工程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">与python联调</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">串口屏调试</a> &raquo;</li>
+          <li><a href="index.html">与MicroPython联调</a> &raquo;</li>
+      <li>树莓派pico使用MicroPython与串口屏通讯</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="picomicropython">
+<h1>树莓派pico使用MicroPython与串口屏通讯<a class="headerlink" href="#picomicropython" title="此标题的永久链接"></a></h1>
+<p>如何安装树莓派pico开发工具和配置请参考   <a class="reference external" href="https://blog.csdn.net/m0_53590279/article/details/127227792">树莓派Pico开发软件安装(Thonny)及烧录(flash)</a></p>
+<section id="id1">
+<h2>树莓派pico使用MicroPython与串口屏通讯工程下载<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p><a class="reference external" href="micropython_download.html"><img alt="download-logo" src="../../_images/download_project.png" /></a></p>
+<p>串口屏怎么下载程序</p>
+<p><a class="reference internal" href="../../start/create_project/create_project_9.html#id1"><span class="std std-ref">通过串口下载工程到串口屏</span></a></p>
+<p><a class="reference internal" href="../../start/create_project/create_project_9_2.html#tft-tftfiledownload"><span class="std std-ref">使用TFT文件下载助手(TFTFileDownload)通过串口下载工程到串口屏</span></a></p>
+<p><a class="reference internal" href="../../start/create_project/create_project_10.html#sd"><span class="std std-ref">通过SD卡下载工程到串口屏</span></a></p>
+</section>
+<section id="id2">
+<h2>树莓派pico使用MicroPython与串口屏通讯的连接方式<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<img alt="../../_images/raspberrypi_pico.png" src="../../_images/raspberrypi_pico.png" />
+</section>
+<section id="id3">
+<h2>树莓派pico使用MicroPython与串口屏通讯代码<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>以下代码仅为演示代码，用于测试显示屏能实现最基本的通信功能，如果您需要在正式产品中进行使用，请根据自己的需求对代码进行相应的优化和修改，或以自己的方式实现相应的功能</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>以下代码适用于树莓派pico</p>
+<p>thonny只支持utf8编码，因此需要发送汉字时，在新建串口屏工程时请选择UTF8编码，导入字库时也要使用UTF8字库，参考 <a class="reference internal" href="../../QA/QA103.html#arduino"><span class="std std-ref">arduino发送中文时乱码</span></a></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 树莓派pico的GND接串口屏或串口工具的GND,共地</span>
+<span class="c1"># 树莓派pico的GP0接串口屏或串口工具的RX</span>
+<span class="c1"># 树莓派pico的GP1接串口屏或串口工具的TX</span>
+<span class="c1"># 树莓派pico的5V接串口屏的5V,如果是串口工具,不用接5V也可以</span>
+<span class="kn">import</span> <span class="nn">machine</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># 一帧的长度</span>
+<span class="n">FRAME_LENGTH</span><span class="o">=</span><span class="mi">7</span>
+
+<span class="n">a</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">nowtime</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="c1"># 这里设置串口 0 的波特率为 115200</span>
+<span class="n">uart</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">UART</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">115200</span><span class="p">)</span>
+
+<span class="c1"># 使用 25 号引脚作为 LED 连接引脚</span>
+<span class="n">led_pin</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+
+
+<span class="c1"># 发送结束符</span>
+<span class="k">def</span> <span class="nf">sendEnd</span><span class="p">():</span>
+    <span class="c1"># 要发送的十六进制数据</span>
+    <span class="n">hex_data</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">]</span>
+
+    <span class="c1"># 将十六进制数据转换为字节数组并发送</span>
+    <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">hex_data</span><span class="p">))</span>
+
+
+<span class="c1"># 定义定时器回调函数</span>
+<span class="k">def</span> <span class="nf">tm0</span><span class="p">(</span><span class="n">timer</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">a</span>
+    <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;n0.val=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">sendEnd</span><span class="p">()</span>
+
+    <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;t0.txt=</span><span class="se">\&quot;</span><span class="s2">现在是</span><span class="si">{}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">sendEnd</span><span class="p">()</span>
+
+
+    <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;click b0,1&quot;</span>
+    <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">sendEnd</span><span class="p">()</span>
+
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;click b0,0&quot;</span>
+    <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">sendEnd</span><span class="p">()</span>
+    <span class="n">a</span><span class="o">+=</span><span class="mi">1</span>
+
+
+<span class="c1"># 创建一个定时器</span>
+<span class="n">timer</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">Timer</span><span class="p">()</span>
+
+
+<span class="c1"># 初始化定时器，每 1 秒钟触发一次回调函数</span>
+<span class="n">timer</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">tm0</span><span class="p">)</span>
+
+<span class="c1"># ubuffer用于存放串口数据</span>
+<span class="n">ubuffer</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># 如果串口有数据，全部存放入ubuffer</span>
+    <span class="k">while</span> <span class="n">uart</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">uart</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">ubuffer</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># 当ubuffer的长度大于等于一帧的长度时</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ubuffer</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">FRAME_LENGTH</span><span class="p">:</span>
+        <span class="c1"># 判断帧头帧尾</span>
+        <span class="k">if</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x55</span> <span class="ow">and</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xff</span> <span class="ow">and</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xff</span> <span class="ow">and</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xff</span><span class="p">:</span>
+            <span class="c1"># 如果下发的是led数据</span>
+            <span class="k">if</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x01</span><span class="p">:</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">if</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x01</span><span class="p">:</span>
+                    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;on&quot;</span>
+                    <span class="k">if</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x00</span><span class="p">:</span>
+                        <span class="n">led_pin</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;off&quot;</span>
+                    <span class="k">if</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x00</span><span class="p">:</span>
+                        <span class="n">led_pin</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;msg.txt=</span><span class="se">\&quot;</span><span class="s2">led </span><span class="si">{}</span><span class="s2"> is </span><span class="si">{}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ubuffer</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">status</span><span class="p">)</span>
+                <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+                <span class="n">sendEnd</span><span class="p">()</span>
+            <span class="c1"># 如果下发的是进度条h0的数据</span>
+            <span class="k">elif</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x02</span><span class="p">:</span>
+                <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;msg.txt=</span><span class="se">\&quot;</span><span class="s2">h0.val is </span><span class="si">{}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ubuffer</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+                <span class="n">sendEnd</span><span class="p">()</span>
+            <span class="c1"># 如果下发的是进度条h1的数据</span>
+            <span class="k">elif</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x03</span><span class="p">:</span>
+                <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;msg.txt=</span><span class="se">\&quot;</span><span class="s2">h1.val is </span><span class="si">{}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ubuffer</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+                <span class="n">sendEnd</span><span class="p">()</span>
+            <span class="c1"># 删除1帧数据</span>
+            <span class="k">del</span> <span class="n">ubuffer</span><span class="p">[:</span><span class="n">FRAME_LENGTH</span><span class="p">]</span>
+
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 删除最前面的1个数据</span>
+            <span class="k">del</span> <span class="n">ubuffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>其他参考链接</p>
+<p><a class="reference internal" href="../../QA/QA7.html#id1"><span class="std std-ref">屏幕通电后不断的闪烁(供电不足导致不断重启)</span></a></p>
+<hr class="docutils" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="与MicroPython联调" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="micropython_download.html" class="btn btn-neutral float-right" title="MicroPython通讯演示工程下载" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

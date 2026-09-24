@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rtc0~rtc6-RTC时钟变量 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="pio0~pio7-扩展IO端口" href="pio0-pio7.html" />
+    <link rel="prev" title="crcval-crc校验结果" href="crcval.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">系统变量</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">常用变量</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sys0-sys2.html">sys0-sys2默认变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dp.html">dp-当前页面ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="volume.html">volume-系统音量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dims.html">dims-上电默认背光亮度值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dim.html">dim-当前背光亮度值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bauds.html">bauds-上电默认波特率值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="baud.html">baud-当前波特率值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ussp.html">ussp-无串口数据自动睡眠时间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thsp.html">thsp-无触摸操作自动睡眠时间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thup.html">thup-睡眠模式下触摸自动唤醒开关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usup.html">usup-睡眠模式下串口数据自动唤醒开关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wup.html">wup-睡眠唤醒后刷新页面设置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sleep.html">sleep-睡眠</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lowpower.html">lowpower-睡眠模式设定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bkcmd.html">bkcmd-串口指令执行状态数据返回</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delay.html">delay-延时</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rand.html">rand-随机数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crcval.html">crcval-crc校验结果</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rtc0~rtc6-RTC时钟变量</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rtc-1">rtc-示例1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtc-2">rtc-示例2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtc-3">rtc-示例3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtc-c">rtc-c语言示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtc">rtc-样例工程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pio0-pio7.html">pio0~pio7-扩展IO端口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pwm4-pwm7.html">pwm4~pwm7-扩展IO占空比</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pwmf.html">pwmf-PWM输出的频率</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio0-audio1.html">audio0~audio1-音频通道控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hmi_color.html">串口HMI颜色代号表</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">不常用变量</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">系统变量</a> &raquo;</li>
+      <li>rtc0~rtc6-RTC时钟变量</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rtc0-rtc6-rtc">
+<h1>rtc0~rtc6-RTC时钟变量<a class="headerlink" href="#rtc0-rtc6-rtc" title="此标题的永久链接"></a></h1>
+<p>需要支持RTC的型号才能使用。</p>
+<p>支持RTC的屏幕,屏幕背面会有电池座用于放RTC电池,确保断电的情况下时钟也能正常工作，默认不带RTC电池，需要自己装入RTC电池才能在断电时正常走时（型号：CR1220）  <a class="reference internal" href="../QA/QA127.html#rtc"><span class="std std-ref">如何判断屏幕是否支持RTC实时时钟</span></a> 。</p>
+<p>需配合文本控件/数字控件/指针控件将RTC时间显示到屏幕上</p>
+<p>rtc0-rtc6分别代表 年、月、日、时、分、秒、星期</p>
+<p>rtc6中，1-6分别表示星期一到星期六，0表示星期天</p>
+<section id="rtc-1">
+<h2>rtc-示例1<a class="headerlink" href="#rtc-1" title="此标题的永久链接"></a></h2>
+<p>获取rtc时间</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//获取年</span>
+<span class="n">n0</span><span class="p">.</span><span class="n">val</span><span class="o">=</span><span class="n">rtc0</span><span class="w"></span>
+
+<span class="c1">//获取月</span>
+<span class="n">n1</span><span class="p">.</span><span class="n">val</span><span class="o">=</span><span class="n">rtc1</span><span class="w"></span>
+
+<span class="c1">//获取日</span>
+<span class="n">n2</span><span class="p">.</span><span class="n">val</span><span class="o">=</span><span class="n">rtc2</span><span class="w"></span>
+
+<span class="c1">//获取小时</span>
+<span class="n">n3</span><span class="p">.</span><span class="n">val</span><span class="o">=</span><span class="n">rtc3</span><span class="w"></span>
+
+<span class="c1">//获取分钟</span>
+<span class="n">n4</span><span class="p">.</span><span class="n">val</span><span class="o">=</span><span class="n">rtc4</span><span class="w"></span>
+
+<span class="c1">//获取秒钟</span>
+<span class="n">n5</span><span class="p">.</span><span class="n">val</span><span class="o">=</span><span class="n">rtc5</span><span class="w"></span>
+<span class="c1">//获取星期</span>
+<span class="k">if</span><span class="p">(</span><span class="n">rtc6</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;星期日&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rtc6</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;星期一&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rtc6</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;星期二&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rtc6</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;星期三&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rtc6</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;星期四&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rtc6</span><span class="o">==</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;星期五&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rtc6</span><span class="o">==</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;星期六&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>在页面的前初始化事件中写入以下代码</p>
+<img alt="../_images/rtc_3.jpg" src="../_images/rtc_3.jpg" />
+<p>在页面的定时器事件中写入以下代码</p>
+<img alt="../_images/rtc_4.jpg" src="../_images/rtc_4.jpg" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>获取RTC时，请将上述代码写在页面前初始化事件和定时器中，定时器时间建议为300ms（300比较均匀，太快浪费性能，太慢觉得卡顿）</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>如果跳转页面时，显示RTC时间的控件会闪一下才变成正确的时间，是因为没有把刷新时间的代码写在页面前初始化事件中，当跳转页面时，需要等到定时器事件到了，才会刷新时间</p>
+</div>
+</section>
+<section id="rtc-2">
+<h2>rtc-示例2<a class="headerlink" href="#rtc-2" title="此标题的永久链接"></a></h2>
+<p>设置rtc时间示例：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//设置年</span>
+<span class="n">rtc0</span><span class="o">=</span><span class="n">n0</span><span class="p">.</span><span class="n">val</span><span class="w"></span>
+
+<span class="c1">//设置月</span>
+<span class="n">rtc1</span><span class="o">=</span><span class="n">n1</span><span class="p">.</span><span class="n">val</span><span class="w"></span>
+
+<span class="c1">//设置月</span>
+<span class="n">rtc2</span><span class="o">=</span><span class="n">n2</span><span class="p">.</span><span class="n">val</span><span class="w"></span>
+
+<span class="c1">//设置时</span>
+<span class="n">rtc3</span><span class="o">=</span><span class="n">n3</span><span class="p">.</span><span class="n">val</span><span class="w"></span>
+
+<span class="c1">//设置分</span>
+<span class="n">rtc4</span><span class="o">=</span><span class="n">n4</span><span class="p">.</span><span class="n">val</span><span class="w"></span>
+
+<span class="c1">//设置秒</span>
+<span class="n">rtc5</span><span class="o">=</span><span class="n">n5</span><span class="p">.</span><span class="n">val</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>仅x5/k0系列支持RTC。</p>
+<p>rtc0-rtc6分别表示年，月，日，时，分，秒，星期。rtc6(星期)为只读，根据当前的年月日自动计算生成。</p>
+<p>rtc晶振的精度为20ppm</p>
+</div>
+</section>
+<section id="rtc-3">
+<h2>rtc-示例3<a class="headerlink" href="#rtc-3" title="此标题的永久链接"></a></h2>
+<p>使用文本控件获取rtc时间</p>
+<p>1、新建一个文本控件date，date控件的txt_maxl设置为100。</p>
+<p>2、新建两个变量控件，均设置为字符串格式，txt_maxl设置为20，两个控件分别改名为str和weekArr，str的txt设置为空，weekArr的txt设置为“日一二三四五六”。</p>
+<img alt="../_images/rtc_0.jpg" src="../_images/rtc_0.jpg" />
+<img alt="../_images/rtc_1.jpg" src="../_images/rtc_1.jpg" />
+<p>3、新建一个定时器，定时器tim设置为300，在定时器内编写以下代码。</p>
+<img alt="../_images/rtc_2.jpg" src="../_images/rtc_2.jpg" />
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>covx rtc0,str.txt,4,0 //将年份转换为字符串，长度4字节
+date.txt<span class="o">=</span>str.txt+<span class="s2">&quot;-&quot;</span>  //拼接字符串 yyyy-
+covx rtc1,str.txt,2,0  //将月份转换为字符串，长度2字节
+date.txt<span class="o">=</span>date.txt+str.txt+<span class="s2">&quot;-&quot;</span> //拼接字符串 yyyy-mm-
+covx rtc2,str.txt,2,0 //将日期转换为字符串，长度2字节
+date.txt<span class="o">=</span>date.txt+str.txt+<span class="s2">&quot;-&quot;</span> //拼接字符串 yyyy-mm-dd-
+covx rtc3,str.txt,2,0 //将小时转换为字符串，长度2字节
+date.txt<span class="o">=</span>date.txt+str.txt+<span class="s2">&quot;-&quot;</span> //拼接字符串 yyyy-mm-dd-HH-
+covx rtc4,str.txt,2,0 //将分钟转换为字符串，长度2字节
+date.txt<span class="o">=</span>date.txt+str.txt+<span class="s2">&quot;-&quot;</span> //拼接字符串 yyyy-mm-dd-HH-MM-
+covx rtc5,str.txt,2,0 //将秒钟转换为字符串，长度2字节
+date.txt<span class="o">=</span>date.txt+str.txt+<span class="s2">&quot;-&quot;</span> //拼接字符串 yyyy-mm-dd-HH-MM-SS-
+substr weekArr.txt,str.txt,rtc6,1 //截取星期
+date.txt<span class="o">=</span>date.txt+<span class="s2">&quot;星期&quot;</span>+str.txt      //拼接字符串 yyyy-mm-dd-HH-MM-SS-星期
+</pre></div>
+</div>
+<p>4、把代码复制到“前初始化事件”中，这样一跳转页面才会及时刷新</p>
+<img alt="../_images/rtc_2_1.jpg" src="../_images/rtc_2_1.jpg" />
+</section>
+<section id="rtc-c">
+<h2>rtc-c语言示例<a class="headerlink" href="#rtc-c" title="此标题的永久链接"></a></h2>
+<p>单片机通过串口更新串口屏的RTC时间</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;rtc0=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">year</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;rtc1=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">month</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;rtc2=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">day</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;rtc3=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">hour</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;rtc4=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">minute</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;rtc5=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">second</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>针对没有RTC的屏幕，也可以直接给对应的数字变量赋值即可</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;date.year.val=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">year</span><span class="p">);</span><span class="w">      </span><span class="c1">//给date页面的year控件的val属性赋值</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;date.month.val=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">month</span><span class="p">);</span><span class="w">    </span><span class="c1">//给date页面的month控件的val属性赋值</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;date.day.val=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">day</span><span class="p">);</span><span class="w">        </span><span class="c1">//给date页面的day控件的val属性赋值</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;date.hour.val=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">hour</span><span class="p">);</span><span class="w">      </span><span class="c1">//给date页面的hour控件的val属性赋值</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;date.minute.val=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">minute</span><span class="p">);</span><span class="w">  </span><span class="c1">//给date页面的minute控件的val属性赋值</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;date.second.val=%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">second</span><span class="p">);</span><span class="w">  </span><span class="c1">//给date页面的second控件的val属性赋值</span>
+</pre></div>
+</div>
+<p>也可以直接给文本控件赋值</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;date.time.txt=</span><span class="se">\&quot;</span><span class="s">%d-%d-%d %d:%d:%d</span><span class="se">\&quot;\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="p">,</span><span class="n">day</span><span class="p">,</span><span class="n">hour</span><span class="p">,</span><span class="n">minute</span><span class="p">,</span><span class="n">second</span><span class="p">);</span><span class="w">    </span><span class="c1">//给date页面的time控件的txt属性赋值</span>
+</pre></div>
+</div>
+<p>rtc-相关链接</p>
+<p><a class="reference internal" href="../start/create_project/create_project_12.html#id1"><span class="std std-ref">校准RTC时钟</span></a></p>
+<p><a class="reference internal" href="../start/create_project/create_project_12.html#id2"><span class="std std-ref">RTC电池型号</span></a></p>
+<p><a class="reference internal" href="../QA/QA127.html#rtc"><span class="std std-ref">如何判断屏幕是否支持RTC实时时钟</span></a></p>
+</section>
+<section id="rtc">
+<h2>rtc-样例工程下载<a class="headerlink" href="#rtc" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/系统变量/rtc0~rtc6/RTC时钟.HMI">《RTC时钟》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="crcval.html" class="btn btn-neutral float-left" title="crcval-crc校验结果" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="pio0-pio7.html" class="btn btn-neutral float-right" title="pio0~pio7-扩展IO端口" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>python实现的下载工具 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="串口屏实现的下载工具" href="tjc_code.html" />
+    <link rel="prev" title="c#实现的下载工具" href="csharp_code.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../hmi_download_protocol.html">HMI下载协议详解/OTA升级</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../hmi_download_protocol.html#id1">未知串口号和波特率</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hmi_download_protocol.html#id2">已知串口号和波特率</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hmi_download_protocol.html#connect">【下载步骤1：联机操作】</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hmi_download_protocol.html#download">【下载步骤2：开始下载】</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../hmi_download_protocol.html#tft">开源TFT下载工具下载</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="download_tools.html">开源TFT下载工具-代码示例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">串口屏高级应用详解</a> &raquo;</li>
+          <li><a href="../hmi_download_protocol.html">HMI下载协议详解/OTA升级</a> &raquo;</li>
+          <li><a href="download_tools.html">开源TFT下载工具-代码示例</a> &raquo;</li>
+      <li>python实现的下载工具</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python">
+<h1>python实现的下载工具<a class="headerlink" href="#python" title="此标题的永久链接"></a></h1>
+<img alt="../../_images/tjcwiki_tft_download_python.jpg" src="../../_images/tjcwiki_tft_download_python.jpg" />
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/串口屏高级应用/HMI下载协议/tftdownloader.py">TFTFileDownload python源代码下载</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span><span class="p">,</span> <span class="n">filedialog</span>
+<span class="kn">import</span> <span class="nn">serial</span>
+<span class="kn">import</span> <span class="nn">serial.tools.list_ports</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">class</span> <span class="nc">TJCDownloadTool</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;淘晶驰串口屏下载工具&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;800x600&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 串口相关变量</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serial_port</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect_baud</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">download_baud</span> <span class="o">=</span> <span class="mi">921600</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connecting</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">downloading</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transferred</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_update</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># 创建界面组件</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_widgets</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scan_serial_ports</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">create_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 串口选择</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;串口选择:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_combobox</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_combobox</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+        <span class="c1"># 波特率选择</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;下载波特率:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baud_combobox</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span>
+            <span class="mi">2400</span><span class="p">,</span> <span class="mi">4800</span><span class="p">,</span> <span class="mi">9600</span><span class="p">,</span> <span class="mi">19200</span><span class="p">,</span> <span class="mi">38400</span><span class="p">,</span> <span class="mi">57600</span><span class="p">,</span>
+            <span class="mi">115200</span><span class="p">,</span> <span class="mi">230400</span><span class="p">,</span> <span class="mi">256000</span><span class="p">,</span> <span class="mi">512000</span><span class="p">,</span> <span class="mi">921600</span>
+        <span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baud_combobox</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">921600</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baud_combobox</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+
+        <span class="c1"># 文件选择</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_btn</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;选择文件&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_btn</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+        <span class="c1"># 下载按钮</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">download_btn</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;开始下载&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start_download</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">download_btn</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">140</span><span class="p">)</span>
+
+        <span class="c1"># 下载速度显示</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;下载速度:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed_label</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;0 kB/s&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed_label</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+        <span class="c1"># 进度条</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Progressbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">750</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;determinate&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">220</span><span class="p">)</span>
+
+        <span class="c1"># 日志文本框</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">260</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">scan_serial_ports</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ports</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">serial</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">list_ports</span><span class="o">.</span><span class="n">comports</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_combobox</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">device</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ports</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">ports</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">port_combobox</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ports</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">select_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">(</span><span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;TFT files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.tft&quot;</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">see</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">downloading</span><span class="p">:</span>
+            <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">elapsed</span> <span class="o">=</span> <span class="n">now</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_update</span>
+            <span class="k">if</span> <span class="n">elapsed</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transferred</span> <span class="o">/</span> <span class="n">elapsed</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">speed_label</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> kB/s&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">last_update</span> <span class="o">=</span> <span class="n">now</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transferred</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_speed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start_download</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">downloading</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">downloading</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transferred</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">last_update</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">download_btn</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;正在联机...&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_speed</span><span class="p">)</span>
+            <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">download_process</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">download_process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">port_combobox</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">port</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">file_path</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;请先选择串口和文件&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reset_btn</span><span class="p">()</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># 尝试联机</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;开始联机...&quot;</span><span class="p">)</span>
+            <span class="n">connect_bauds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9600</span><span class="p">,</span> <span class="mi">115200</span><span class="p">,</span> <span class="mi">19200</span><span class="p">,</span> <span class="mi">38400</span><span class="p">,</span> <span class="mi">57600</span><span class="p">,</span>
+                        <span class="mi">230400</span><span class="p">,</span> <span class="mi">256000</span><span class="p">,</span> <span class="mi">512000</span><span class="p">,</span> <span class="mi">921600</span><span class="p">,</span> <span class="mi">4800</span><span class="p">,</span> <span class="mi">2400</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">baud</span> <span class="ow">in</span> <span class="n">connect_bauds</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;尝试 </span><span class="si">{</span><span class="n">baud</span><span class="si">}</span><span class="s2"> 波特率...&quot;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="n">serial</span><span class="o">.</span><span class="n">Serial</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">baud</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="k">as</span> <span class="n">ser</span><span class="p">:</span>
+                        <span class="n">connect_cmd</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span>
+                            <span class="s2">&quot;44 52 41 4B 4A 48 53 55 59 44 47 42 4E 43 4A 48 47 4A 4B 53 48 42 44 4E FF FF FF 00 FF FF FF 63 6F 6E 6E 65 63 74 FF FF FF&quot;</span>
+                        <span class="p">)</span>
+                        <span class="n">ser</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">connect_cmd</span><span class="p">)</span>
+                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">((</span><span class="mi">1000000</span> <span class="o">/</span> <span class="n">baud</span> <span class="o">+</span> <span class="mi">30</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+                        <span class="n">response</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;comok&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">connect_baud</span> <span class="o">=</span> <span class="n">baud</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;联机成功! 波特率: </span><span class="si">{</span><span class="n">baud</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;设备响应: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                            <span class="k">break</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect_baud</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;联机失败!&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">reset_btn</span><span class="p">()</span>
+                <span class="k">return</span>
+
+            <span class="c1"># 开始下载</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">download_btn</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;正在下载...&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send_download_command</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;发生错误: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reset_btn</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">send_download_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># 获取文件大小</span>
+            <span class="n">file_size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+            <span class="n">download_baud</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baud_combobox</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">[</span><span class="s1">&#39;maximum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_size</span>
+
+            <span class="c1"># 发送whmi-wri指令</span>
+            <span class="k">with</span> <span class="n">serial</span><span class="o">.</span><span class="n">Serial</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect_baud</span><span class="p">)</span> <span class="k">as</span> <span class="n">ser</span><span class="p">:</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;whmi-wri </span><span class="si">{</span><span class="n">file_size</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">download_baud</span><span class="si">}</span><span class="s2">,0&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+                <span class="n">ser</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xff\xff\xff</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.35</span><span class="p">)</span>
+
+                <span class="c1"># 切换波特率</span>
+                <span class="n">ser</span><span class="o">.</span><span class="n">baudrate</span> <span class="o">=</span> <span class="n">download_baud</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">response</span> <span class="o">!=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x05</span><span class="s1">&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;设备未响应准备信号&quot;</span><span class="p">)</span>
+                    <span class="k">return</span>
+
+                <span class="c1"># 发送文件数据</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;开始传输文件...&quot;</span><span class="p">)</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                        <span class="n">chunk</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">chunk</span><span class="p">:</span>
+                            <span class="k">break</span>
+                        <span class="n">ser</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">transferred</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+                        <span class="c1"># 等待响应</span>
+                        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                            <span class="n">resp</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">resp</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x05</span><span class="s1">&#39;</span><span class="p">:</span>
+                                <span class="k">break</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;文件传输完成!&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;下载失败: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reset_btn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">downloading</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect_baud</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">download_btn</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;开始下载&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed_label</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;0 kB/s&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">TJCDownloadTool</span><span class="p">()</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>相关链接</p>
+<p><a class="reference internal" href="../hmi_download_protocol.html#hmi-ota"><span class="std std-ref">HMI下载协议详解/OTA升级</span></a></p>
+<p><a class="reference internal" href="csharp_code.html#c"><span class="std std-ref">c#实现的下载工具</span></a></p>
+<p><a class="reference internal" href="tjc_code.html#id1"><span class="std std-ref">串口屏实现的下载工具</span></a></p>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="csharp_code.html" class="btn btn-neutral float-left" title="c#实现的下载工具" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="tjc_code.html" class="btn btn-neutral float-right" title="串口屏实现的下载工具" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

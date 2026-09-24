@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>program.s文件 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="控件事件" href="cmp_event.html" />
+    <link rel="prev" title="代码编写" href="index.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">快速入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../download_ide.html">下载和安装上位机软件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ide_introduce/index.html">上位机基本功能介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first_test.html">到手测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../create_project/index.html">创建工程</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">代码编写</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#main">main函数在哪里</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#id2">代码写在哪里</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">program.s文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmp_event.html">控件事件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="macro_event.html">宏代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">快速入门</a> &raquo;</li>
+          <li><a href="index.html">代码编写</a> &raquo;</li>
+      <li>program.s文件</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-s">
+<h1>program.s文件<a class="headerlink" href="#program-s" title="此标题的永久链接"></a></h1>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<dl>
+<dt>program.s主要有以下作用</dt><dd><dl>
+<dt>1.使用int 定义整形全局变量</dt><dd><p>只有在program.s中，才可以使用int定义全局的数值变量，使用int定义的整形变量一定是全局的，int为4字节有符号整形，范围为-2147483648~2147483647。</p>
+<p>不允许定义字符串。要存放字符串，请使用文本控件或者将一个变量控件的sta设置为“字符串”。</p>
+</dd>
+</dl>
+<p>2.提前初始化其他页面的全局变量。</p>
+<p>3.设置亮度和波特率，参考:  <a class="reference internal" href="../../QA/baudrate.html#id1"><span class="std std-ref">如何配置亮度,主动解析,波特率</span></a></p>
+<p>4.输出上电信息到串口  <a class="reference internal" href="../../return/return88FFFFFF.html#x88"><span class="std std-ref">0X88 系统启动成功</span></a></p>
+<p>5.program.s中最后一行通过page指令跳转到工程的第一个页面。</p>
+</dd>
+</dl>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>program.s中使用int定义的整形均为全局变量，目前仅能定义int类型，无法定义其他类型（如字符串，浮点数等），int定义需放在其他代码之前，否则会报错。</p>
+</div>
+<dl>
+<dt>使用int定义的整形全局变量与数值控件(vscope设置为全局)以及变量控件(vscope设置为全局)使用上的区别</dt><dd><p>使用int定义的整形全局变量，是一个纯粹的变量,例如sys0，可以用sys0=0这样的方式直接赋值</p>
+<p>使用数值控件或变量控件，它是一个对象,它有多个属性,赋值时需要使用n0.val=0或者va0.val=0这样的方式进行复制(即需要指明具体的属性)</p>
+</dd>
+</dl>
+<img alt="../../_images/codeSpace_1.jpg" src="../../_images/codeSpace_1.jpg" />
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="代码编写" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="cmp_event.html" class="btn btn-neutral float-right" title="控件事件" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

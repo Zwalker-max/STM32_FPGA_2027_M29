@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spstr-字符串分割 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="touch_j-触摸校准" href="touch_j.html" />
+    <link rel="prev" title="substr-字符串截取" href="substr.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">基本指令集</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">常用指令集</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="page.html">page-页面跳转指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prints.html">prints-从串口打印一个变量/常量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="printh.html">printh-从串口打印16进制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="click.html">click-激活控件的按下/弹起事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vis.html">vis-隐藏/显示控件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tsw.html">tsw-控件触摸使能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="randset.html">randset-随机数范围设置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="covx.html">covx-变量类型转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strlen.html">strlen-字符串变量字符长度测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="btlen.html">btlen-字符串变量字节长度测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="substr.html">substr-字符串截取</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">spstr-字符串分割</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#spstr-1">spstr-示例1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spstr-2">spstr-示例2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">spstr-示例:截取换行符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">spstr-示例:获取名人名言左右两边的数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">spstr-示例:截取冒号和句号之间的数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">spstr-示例:分割浮点数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spstr-json">spstr-示例:解析json格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">spstr指令-样例工程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="touch_j.html">touch_j-触摸校准</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add.html">add-往曲线控件添加数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addt.html">addt-曲线数据透传指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cle.html">cle-清除曲线控件中的数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html">rest-复位串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="return.html">return-退出当前过程或事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goto.html">goto-跳转到标签处运行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">call-宏调用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">高级指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">文件操作指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">不常用指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#crc">CRC校验指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#gui">GUI绘图指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hmi">HMI颜色代号表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">关于废弃指令的说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">指令集</a> &raquo;</li>
+      <li>spstr-字符串分割</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spstr">
+<h1>spstr-字符串分割<a class="headerlink" href="#spstr" title="此标题的永久链接"></a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>spstr src,dec,key,index
+
+src:源变量(必须是字符串变量)
+
+dec:目标变量(必须是字符串变量)
+
+key:分隔符字符串(必须是字符串变量)
+
+index:取第几份(在src字符串中用key字符串做分割后，取第index份字符内容赋值给dec变量)
+</pre></div>
+</div>
+<section id="spstr-1">
+<h2>spstr-示例1<a class="headerlink" href="#spstr-1" title="此标题的永久链接"></a></h2>
+<p>data0控件为数据记录控件</p>
+<p>data0.txt的字符内容为:aaaa^bbbb^cccc^dddd</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">spstr</span><span class="w"> </span><span class="n">data0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;^&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w">    </span><span class="c1">//以^为分隔符,截取第0个,t0为&quot;aaaa&quot;</span>
+<span class="n">spstr</span><span class="w"> </span><span class="n">data0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t1</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;^&quot;</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="c1">//以^为分隔符,截取第1个,t1为&quot;bbbb&quot;</span>
+<span class="n">spstr</span><span class="w"> </span><span class="n">data0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t2</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;^&quot;</span><span class="p">,</span><span class="mi">2</span><span class="w">    </span><span class="c1">//以^为分隔符,截取第2个,t2为&quot;cccc&quot;</span>
+<span class="n">spstr</span><span class="w"> </span><span class="n">data0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t3</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;^&quot;</span><span class="p">,</span><span class="mi">3</span><span class="w">    </span><span class="c1">//以^为分隔符,截取第3个,t3为&quot;dddd&quot;</span>
+</pre></div>
+</div>
+<img alt="../_images/spstr_1.jpg" src="../_images/spstr_1.jpg" />
+</section>
+<section id="spstr-2">
+<h2>spstr-示例2<a class="headerlink" href="#spstr-2" title="此标题的永久链接"></a></h2>
+<p>ipAddress.txt的字符内容为:192.168.1.1</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ipAddress</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;192.168.1.1&quot;</span><span class="w"></span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">ipAddress</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w">    </span><span class="c1">//以.为分隔符,截取第0个,t0为&quot;192&quot;</span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">ipAddress</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t1</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="c1">//以.为分隔符,截取第1个,t1为&quot;168&quot;</span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">ipAddress</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t2</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="mi">2</span><span class="w">    </span><span class="c1">//以.为分隔符,截取第2个,t2为&quot;1&quot;</span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">ipAddress</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t3</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="mi">3</span><span class="w">    </span><span class="c1">//以.为分隔符,截取第3个,t3为&quot;1&quot;</span>
+</pre></div>
+</div>
+<img alt="../_images/spstr_2.jpg" src="../_images/spstr_2.jpg" />
+</section>
+<section id="id1">
+<h2>spstr-示例:截取换行符<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>test.txt的字符内容为:</p>
+<p>人生得意须尽欢，</p>
+<p>莫使金樽空对月。</p>
+<p>天生我材必有用，</p>
+<p>千金散尽还复来。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// \r在串口屏中代表回车换行的意思</span>
+
+<span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;人生得意须尽欢，</span><span class="se">\r</span><span class="s">莫使金樽空对月。</span><span class="se">\r</span><span class="s">天生我材必有用，</span><span class="se">\r</span><span class="s">千金散尽还复来。&quot;</span><span class="w"></span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w">    </span><span class="c1">//以\r为分隔符,截取第0个,t0为&quot;人生得意须尽欢，&quot;</span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t1</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="c1">//以\r为分隔符,截取第1个,t1为&quot;莫使金樽空对月。&quot;</span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t2</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span><span class="p">,</span><span class="mi">2</span><span class="w">    </span><span class="c1">//以\r为分隔符,截取第2个,t2为&quot;天生我材必有用，&quot;</span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t3</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span><span class="p">,</span><span class="mi">3</span><span class="w">    </span><span class="c1">//以\r为分隔符,截取第3个,t3为&quot;千金散尽还复来。&quot;</span>
+</pre></div>
+</div>
+<img alt="../_images/spstr_3.jpg" src="../_images/spstr_3.jpg" />
+</section>
+<section id="id2">
+<h2>spstr-示例:获取名人名言左右两边的数据<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;出淤泥而不染，濯清涟而不妖。——周敦颐&quot;</span><span class="w"></span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;。——&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w">    </span><span class="c1">//以&quot;。——&quot;为分隔符,截取左边的数据,t0为  出淤泥而不染，濯清涟而不妖</span>
+<span class="n">spstr</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t1</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;。——&quot;</span><span class="p">,</span><span class="mi">1</span><span class="w">   </span><span class="c1">//以&quot;。——&quot;为分隔符,截取右边的数据,t0为  周敦颐</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>spstr-示例:截取冒号和句号之间的数据<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;周敦颐：出淤泥而不染，濯清涟而不妖。&quot;</span><span class="w"></span>
+
+<span class="n">spstr</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">temp_str</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;：&quot;</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="c1">//以冒号为分隔符,截取冒号右边的数据  出淤泥而不染，濯清涟而不妖。</span>
+<span class="n">spstr</span><span class="w"> </span><span class="n">temp_str</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;。&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w">    </span><span class="c1">//以句号为分隔符,截取句号左边的数据,t0为  出淤泥而不染，濯清涟而不妖</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>spstr-示例:分割浮点数<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">spstr</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w">    </span><span class="c1">//以.为分隔符,截取第0个,t0为整数部分</span>
+<span class="n">spstr</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="n">t1</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="c1">//以.为分隔符,截取第1个,t1为小数部分</span>
+</pre></div>
+</div>
+</section>
+<section id="spstr-json">
+<h2>spstr-示例:解析json格式<a class="headerlink" href="#spstr-json" title="此标题的永久链接"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;Info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;pass&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>在实际传输时，json会被压缩为以下格式（被压缩为1行，不带换行和缩进等）</p>
+<p><code class="docutils literal notranslate"><span class="pre">{&quot;name&quot;:&quot;test&quot;,&quot;Info&quot;:{&quot;age&quot;:16,&quot;pass&quot;:false}}</span></code></p>
+<p>如何提取到name属性(字符串属性)</p>
+<p>以 <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;:&quot;</span></code> 为分隔符，获取到右边部分 <code class="docutils literal notranslate"><span class="pre">test&quot;,&quot;Info&quot;:{&quot;age&quot;:16,&quot;pass&quot;:false}}</span></code></p>
+<p>再以 <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> 为分隔符，获取到左边部分的属性 <code class="docutils literal notranslate"><span class="pre">test</span></code></p>
+<p>如何提取到``age``属性(数值属性)</p>
+<p>以 <code class="docutils literal notranslate"><span class="pre">&quot;age&quot;:</span></code> 为分隔符，获取到右边部分 <code class="docutils literal notranslate"><span class="pre">16,&quot;pass&quot;:false}}</span></code></p>
+<p>再以 <code class="docutils literal notranslate"><span class="pre">,</span></code> 为分隔符，获取到左边部分的属性 <code class="docutils literal notranslate"><span class="pre">16</span></code></p>
+<p>如何提取到 <code class="docutils literal notranslate"><span class="pre">age</span></code> 属性(布尔值属性)</p>
+<p>设置一个文本控件tBool，txt_maxl长度为4</p>
+<p>以 <code class="docutils literal notranslate"><span class="pre">&quot;pass&quot;:</span></code> 为分隔符，获取到右边部分将值放入tBool，因为tBool的txt_maxl长度为4，所以会截取到前4字节 <code class="docutils literal notranslate"><span class="pre">fals</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+<p>由于json通常只在串口传输中使用，一般是在主动解析模式下使用，需要的请参考下面的主动解析教程链接。 <a class="reference internal" href="../advanced/recmod/recmod_ascii/recmod_ascii_json.html#json"><span class="std std-ref">接收json数据字符串</span></a></p>
+</section>
+<section id="id5">
+<h2>spstr指令-样例工程下载<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/基本指令集/spstr指令/spstr指令.HMI">《spstr指令》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="substr.html" class="btn btn-neutral float-left" title="substr-字符串截取" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="touch_j.html" class="btn btn-neutral float-right" title="touch_j-触摸校准" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

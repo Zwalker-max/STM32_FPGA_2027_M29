@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rdfile-串口屏发送文件给单片机 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="newfile-创建文件" href="newfile.html" />
+    <link rel="prev" title="twfile-单片机发送文件给串口屏" href="twfile.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">基本指令集</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">常用指令集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">高级指令</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id4">文件操作指令</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="twfile.html">twfile-单片机发送文件给串口屏</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rdfile-串口屏发送文件给单片机</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rdfile-1">rdfile-示例1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rdfile-2">rdfile-示例2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rdfile-3">rdfile-示例3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">rdfile指令-样例工程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="newfile.html">newfile-创建文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delfile.html">delfile-删除文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refile.html">refile-重命名文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="findfile.html">findfile-查找文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="newdir.html">newdir-创建文件夹</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deldir.html">deldir-删除文件夹</a></li>
+<li class="toctree-l3"><a class="reference internal" href="redir.html">redir-重命名文件夹</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finddir.html">finddir-查找文件夹</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">不常用指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#crc">CRC校验指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#gui">GUI绘图指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hmi">HMI颜色代号表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">关于废弃指令的说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">指令集</a> &raquo;</li>
+      <li>rdfile-串口屏发送文件给单片机</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rdfile">
+<h1>rdfile-串口屏发送文件给单片机<a class="headerlink" href="#rdfile" title="此标题的永久链接"></a></h1>
+<p>仅X2、X3、X5系列支持</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>1、使用rdfile发送文件时，请确保文件是存在的,建议用findfile指令先检查文件是否存在</p>
+<p>2、透传文件是手动将文件一部分一部分传出来，不是一次性传出来，建议每次传输几十个字节即可，如果要发送一个完整的文件，在定时器中循环发送整个文件即可</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rdfile</span> <span class="n">filepath</span><span class="p">,</span><span class="n">addr</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="n">crc</span>
+
+<span class="n">filepath</span><span class="p">:</span><span class="n">文件路径</span>
+
+<span class="n">addr</span><span class="p">:</span><span class="n">件数据起始地址</span>
+
+<span class="n">size</span><span class="p">:</span><span class="n">透传读数据大小</span> <span class="p">(</span><span class="n">如果为0</span><span class="p">,</span><span class="n">则返回小端模式的4字节整形数据表示文件大小</span><span class="p">)</span>
+
+<span class="n">crc</span><span class="p">:</span><span class="n">数据尾部添加CRC检验码设置</span><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="n">无crc</span><span class="p">;</span><span class="mi">1</span><span class="o">-</span><span class="n">crc16</span><span class="p">;)</span>
+</pre></div>
+</div>
+<section id="rdfile-1">
+<h2>rdfile-示例1<a class="headerlink" href="#rdfile-1" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//从SD卡根目录中的&quot;a.jpg&quot;文件的数据0位置开始，读取10个字节透传到串口,并在数据尾部加入crc16校验码。</span>
+<span class="c1">//合计是10+4=14字节</span>
+<span class="n">rdfile</span><span class="w"> </span><span class="s">&quot;sd0/a.jpg&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>CRC16校验算法为MODBUS CRC16，请参考 <a class="reference internal" href="../advanced/crc.html#crc16"><span class="std std-ref">CRC16校验算法</span></a>  。</p>
+</div>
+</section>
+<section id="rdfile-2">
+<h2>rdfile-示例2<a class="headerlink" href="#rdfile-2" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//从SD卡根目录中的&quot;a.jpg&quot;文件的数据0位置开始，读取10个字节透传到串口,并在数据尾部加入crc16校验码。</span>
+<span class="c1">//合计是10+4=14字节</span>
+<span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;sd0/a.jpg&quot;</span><span class="w"></span>
+<span class="n">rdfile</span><span class="w"> </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>CRC16校验算法为MODBUS CRC16，请参考 <a class="reference internal" href="../advanced/crc.html#crc16"><span class="std std-ref">CRC16校验算法</span></a>  。</p>
+</div>
+</section>
+<section id="rdfile-3">
+<h2>rdfile-示例3<a class="headerlink" href="#rdfile-3" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//从内存文件系统中的&quot;0.jpg&quot;文件的数据0位置开始，读取10个字节透传到串口,并在数据尾部加入crc16校验码。</span>
+<span class="c1">//合计是10+2=12字节</span>
+<span class="n">rdfile</span><span class="w"> </span><span class="s">&quot;ram/0.jpg&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/rdfile_1.jpg" src="../_images/rdfile_1.jpg" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>要使用内存文件系统必须先在工程配置选项中配置内存文件系统的大小，新建工程默认内存文件系统大小为0，即不可能使用。</p>
+<p>CRC16校验算法为MODBUS CRC16，请参考 <a class="reference internal" href="../advanced/crc.html#crc16"><span class="std std-ref">CRC16校验算法</span></a>  。</p>
+</div>
+</section>
+<section id="id1">
+<h2>rdfile指令-样例工程下载<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/基本指令集/rdfile指令/rdfile指令.HMI">《rdfile指令》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="twfile.html" class="btn btn-neutral float-left" title="twfile-单片机发送文件给串口屏" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="newfile.html" class="btn btn-neutral float-right" title="newfile-创建文件" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

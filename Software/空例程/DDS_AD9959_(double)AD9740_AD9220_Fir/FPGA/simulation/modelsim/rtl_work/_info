@@ -1,0 +1,158 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/simulation/modelsim
+vdac_control
+Z1 !s110 1784730797
+!i10b 1
+!s100 [^KCQJOW9i9^MdV8P9QWV1
+I>oVj7;lFN=o1VzIY9TaV22
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+w1782556738
+8D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/dac_control.v
+FD:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/dac_control.v
+Z3 L0 14
+Z4 OV;L;10.3c;59
+r1
+!s85 0
+31
+!s108 1784730797.109000
+!s107 D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/dac_control.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA|D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/dac_control.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA
+vdds_core
+R1
+!i10b 1
+!s100 KY=BIkE_6X47O]dFhAo=d0
+IU76VCz^fg2DZFjnKZ0Kj32
+R2
+R0
+w1782549528
+8D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/dds_core.v
+FD:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/dds_core.v
+R3
+R4
+r1
+!s85 0
+31
+!s108 1784730797.028000
+!s107 D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/dds_core.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA|D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/dds_core.v|
+!i113 1
+R5
+R6
+vFMC_Demo
+R1
+!i10b 1
+!s100 N34c2@9OP50fgN:f19P>L3
+I@4C]PVTFDSeefGL64;iZc3
+R2
+R0
+w1784721180
+8D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/FMC_Demo.v
+FD:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/FMC_Demo.v
+L0 12
+R4
+r1
+!s85 0
+31
+!s108 1784730797.190000
+!s107 D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/FMC_Demo.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA|D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/FMC_Demo.v|
+!i113 1
+R5
+R6
+n@f@m@c_@demo
+vpll1
+R1
+!i10b 1
+!s100 l2kca1Q?WflhQCN2z6M_z3
+In`NTT_l=biH0JbA9c8c_61
+R2
+R0
+w1783172566
+8D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/pll1.v
+FD:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/pll1.v
+L0 40
+R4
+r1
+!s85 0
+31
+!s108 1784730797.268000
+!s107 D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/pll1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA|D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/pll1.v|
+!i113 1
+R5
+R6
+vpll1_altpll1
+R1
+!i10b 1
+!s100 aX=IYQ`4`j6S@bR3F^7_01
+I[gURX35XGne625LTSYzcE0
+R2
+R0
+w1783233826
+8D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/db/pll1_altpll1.v
+FD:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/db/pll1_altpll1.v
+L0 30
+R4
+r1
+!s85 0
+31
+!s108 1784730797.344000
+!s107 D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/db/pll1_altpll1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/db|D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/db/pll1_altpll1.v|
+!i113 1
+R5
+!s92 -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/db
+vram_2port1
+Z7 !s110 1784730796
+!i10b 1
+!s100 HJTIB71KDPcRhGF`125j]3
+I0DD:LFGd29H]`:`ON2_Rm0
+R2
+R0
+w1782554198
+8D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/ram_2port1.v
+FD:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/ram_2port1.v
+L0 9
+R4
+r1
+!s85 0
+31
+!s108 1784730796.957000
+!s107 D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/ram_2port1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA|D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/ram_2port1.v|
+!i113 1
+R5
+R6
+vstm32_fmc_16bit
+R7
+!i10b 1
+!s100 ;1hLY`_I^R=Hgjg41:5co0
+Ih4k2d7jW7Y;:[eBiDlja@1
+R2
+R0
+w1784720462
+8D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/stm32_fmc_16bit.v
+FD:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/stm32_fmc_16bit.v
+L0 38
+R4
+r1
+!s85 0
+31
+!s108 1784730796.823000
+!s107 D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/stm32_fmc_16bit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA|D:/File/CubeMX/STM-FPGA/DDS_AD9959_(double)AD9740_AD9220/FPGA/stm32_fmc_16bit.v|
+!i113 1
+R5
+R6

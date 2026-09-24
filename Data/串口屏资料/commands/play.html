@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>play-音频播放 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="twfile-单片机发送文件给串口屏" href="twfile.html" />
+    <link rel="prev" title="move-控件移动" href="move.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">基本指令集</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">常用指令集</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id3">高级指令</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="wepo.html">wepo-写入数据到掉电存储空间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repo.html">repo-从掉电存储空间读取数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wept.html">wept-通过串口透传数据到掉电存储空间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rept.html">rept-从掉电存储空间读取数据并透传发送到串口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beep.html">beep-蜂鸣器鸣叫</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfgpio.html">cfgpio-扩展IO模式配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="setlayer.html">setlayer-运行中改变控件图层顺序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">move-控件移动</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">play-音频播放</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#play-1">play-示例1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#play-2">play-示例2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#play-c">play-c语言示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">play指令-样例工程下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">play指令-相关链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">文件操作指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">不常用指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#crc">CRC校验指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#gui">GUI绘图指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hmi">HMI颜色代号表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">关于废弃指令的说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">指令集</a> &raquo;</li>
+      <li>play-音频播放</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="play">
+<h1>play-音频播放<a class="headerlink" href="#play" title="此标题的永久链接"></a></h1>
+<p>仅X3,X5系列支持</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>play ch,audio,loop
+
+ch:音频通道序号
+
+audio:音频ID
+
+loop：是否循环
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>导入音频请参考:  <a class="reference internal" href="../QA/QA119.html#id1"><span class="std std-ref">如何导入音频</span></a></p>
+</div>
+<section id="play-1">
+<h2>play-示例1<a class="headerlink" href="#play-1" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//在音频通道1上播放ID为3的音频文件，只播放1次</span>
+<span class="n">play</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/play_1.jpg" src="../_images/play_1.jpg" />
+</section>
+<section id="play-2">
+<h2>play-示例2<a class="headerlink" href="#play-2" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//在音频通道0上播放ID为1的音频文件，循环播放</span>
+<span class="n">play</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/play_2.jpg" src="../_images/play_2.jpg" />
+</section>
+<section id="play-c">
+<h2>play-c语言示例<a class="headerlink" href="#play-c" title="此标题的永久链接"></a></h2>
+<p>单片机通过串口在音频通道1上播放ID为3的音频文件，不循环播放</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">ch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">audio</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">loop</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;play %d,%d,%d</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ch</span><span class="p">,</span><span class="w"> </span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="n">loop</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>如果使用了“play”指令后屏幕黑屏、重启，说明供电不足，请更换更大功率的电源</p>
+<p>play指令仅用于配置和启动音频播放，暂停和停止操作请参考： <a class="reference internal" href="../variables/audio0-audio1.html#audio0-audio1"><span class="std std-ref">audio0~audio1-音频通道控制</span></a> 。</p>
+<p>play指令控制的是独立于视频之外的音频通道，与视频中使用的音频通道没有关系，也不会产生冲突。</p>
+<p>音频播放功能是全局的，不属于某个页面，因此play指令启动播放后，即便是跳转页面，音频依然会继续播放，如果希望离开页面后停止播放，可以在页面的离开事件中使用audio0/audio1系统变量来关闭或暂停指定通道的音频播放状态。</p>
+</div>
+</section>
+<section id="id1">
+<h2>play指令-样例工程下载<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/基本指令集/play指令/play指令.HMI">《play指令》演示工程下载</a></p>
+</section>
+<section id="id3">
+<h2>play指令-相关链接<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p><a class="reference internal" href="../variables/audio0-audio1.html#audio0-audio1"><span class="std std-ref">audio0~audio1-音频通道控制</span></a></p>
+<p><a class="reference internal" href="../variables/volume.html#volume"><span class="std std-ref">volume-系统音量</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="move.html" class="btn btn-neutral float-left" title="move-控件移动" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="twfile.html" class="btn btn-neutral float-right" title="twfile-单片机发送文件给串口屏" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

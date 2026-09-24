@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>提示：没有控件可以粘贴 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="明明型号是对的，但是烧录的时候提示Model does not match" href="QA111.html" />
+    <link rel="prev" title="提示：请先选择控件" href="QA108.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常见问题</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">硬件相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">结构设计相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">软件相关</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id5">错误提示</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="QA9.html">编译报错：XXX初始值无效</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA18.html">单片机发指令给屏幕，屏幕返回1A FF FF FF或1C FF FF FF四个字节的HEX数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA38.html">串口连接不上屏幕</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA39.html">串口屏黑屏原因</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA40.html">变量名称无效zstr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA43.html">file version is too low</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA44.html">报错:file is too large for destination device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA29.html">在做字库的时候有部分字体无法选择</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA30.html">如何解决调用系统键盘给控件赋值无效</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA33.html">软件输出生产文件，出现提示框拒绝访问</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA32.html">window7无法打开软件安装包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA56.html">用串口下载程序，成功但显示Update failed check error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA60.html">串口屏开机时死机/不断的闪烁/不断重启</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA63.html">调试时可以正常显示，但是下载进屏幕就无法使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA68.html">视频IDO文件方向与当前工程显示方向不一致</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA70.html">提示语句错误：无前括号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA75.html">提示转义字符使用错误</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA83.html">编译时提示变量名称无效</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA84.html">编译时提示无效指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA89.html">提示Show Picture Error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA90.html">下载一半失败后下载不进去</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA102.html">输入中文时上位机卡死</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA104.html">no find cpu model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA108.html">提示：请先选择控件</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">提示：没有控件可以粘贴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA111.html">明明型号是对的，但是烧录的时候提示Model does not match</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA112.html">MAC电脑下拷贝文件时提示有多个TFT文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA113.html">错误的资源文件或者资源文件已经受损</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA123.html">烧录文件提示 open file error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">其他</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">常见问题</a> &raquo;</li>
+      <li>提示：没有控件可以粘贴</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>提示：没有控件可以粘贴<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<img alt="../_images/QA109_1.png" src="../_images/QA109_1.png" />
+<p>这是因为没有复制或剪切控件就进行粘贴导致的问题，请选中控件后复制或剪切，在进行粘贴。</p>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QA108.html" class="btn btn-neutral float-left" title="提示：请先选择控件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="QA111.html" class="btn btn-neutral float-right" title="明明型号是对的，但是烧录的时候提示Model does not match" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/stm32_fmc_16bit.v}
+vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/ram_2port1.v}
+vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/dds_core.v}
+vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/dac_control.v}
+vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/FMC_Demo.v}
+vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/pll1.v}
+vlog -vlog01compat -work work +incdir+D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/db {D:/File/CubeMX/STM-FPGA/DDS_AD9740/FPGA/db/pll1_altpll.v}
+

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>指令集 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="page-页面跳转指令" href="page.html" />
+    <link rel="prev" title="外部图片控件" href="../widgets/ExPicture.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">基本指令集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">常用指令集</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="page.html">page-页面跳转指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prints.html">prints-从串口打印一个变量/常量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="printh.html">printh-从串口打印16进制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="click.html">click-激活控件的按下/弹起事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vis.html">vis-隐藏/显示控件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tsw.html">tsw-控件触摸使能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="randset.html">randset-随机数范围设置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="covx.html">covx-变量类型转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strlen.html">strlen-字符串变量字符长度测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="btlen.html">btlen-字符串变量字节长度测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="substr.html">substr-字符串截取</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spstr.html">spstr-字符串分割</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch_j.html">touch_j-触摸校准</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add.html">add-往曲线控件添加数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addt.html">addt-曲线数据透传指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cle.html">cle-清除曲线控件中的数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html">rest-复位串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="return.html">return-退出当前过程或事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goto.html">goto-跳转到标签处运行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">call-宏调用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">高级指令</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="wepo.html">wepo-写入数据到掉电存储空间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repo.html">repo-从掉电存储空间读取数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wept.html">wept-通过串口透传数据到掉电存储空间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rept.html">rept-从掉电存储空间读取数据并透传发送到串口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beep.html">beep-蜂鸣器鸣叫</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfgpio.html">cfgpio-扩展IO模式配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="setlayer.html">setlayer-运行中改变控件图层顺序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">move-控件移动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="play.html">play-音频播放</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">文件操作指令</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twfile.html">twfile-单片机发送文件给串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rdfile.html">rdfile-串口屏发送文件给单片机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="newfile.html">newfile-创建文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delfile.html">delfile-删除文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refile.html">refile-重命名文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="findfile.html">findfile-查找文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="newdir.html">newdir-创建文件夹</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deldir.html">deldir-删除文件夹</a></li>
+<li class="toctree-l3"><a class="reference internal" href="redir.html">redir-重命名文件夹</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finddir.html">finddir-查找文件夹</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">不常用指令</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doevents.html">doevents-强制刷新屏幕</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sendme.html">sendme-发送当前页面ID号到串口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="get.html">get-带格式获取变量值/常量值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">ref-重绘控件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_stop.html">ref_stop-暂停屏幕刷新</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_star.html">ref_star-恢复屏幕刷新</a></li>
+<li class="toctree-l3"><a class="reference internal" href="com_stop.html">com_stop-暂停串口指令执行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="com_star.html">com_star-恢复串口指令执行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_c.html">code_c-清空串口指令缓冲区</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#crc">CRC校验指令</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crcrest.html">crcrest-复位crc初始值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crcputs.html">crcputs-crc校验一个变量/常量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crcputh.html">crcputh-crc校验一组Hex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crcputu.html">crcputu-crc校验一段串口缓冲区数据</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gui">GUI绘图指令</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cls.html">cls-清屏指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pic.html">pic-刷图指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="picq.html">picq-切图指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpic.html">xpic-高级切图指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xstr.html">xstr-写字指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fill.html">fill-区域填充指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="line.html">line-画线指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draw.html">draw-画空心矩形</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cir.html">cir-画空心圆</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cirs.html">cirs-画实心圆</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hmi">HMI颜色代号表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">关于废弃指令的说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>指令集</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>指令集<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="id2">
+<h2>常用指令集<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>所有型号的串口屏均支持常用指令，且指令的使用频率较高</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page.html">page-页面跳转指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prints.html">prints-从串口打印一个变量/常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printh.html">printh-从串口打印16进制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="click.html">click-激活控件的按下/弹起事件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vis.html">vis-隐藏/显示控件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsw.html">tsw-控件触摸使能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="randset.html">randset-随机数范围设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="covx.html">covx-变量类型转换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strlen.html">strlen-字符串变量字符长度测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="btlen.html">btlen-字符串变量字节长度测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="substr.html">substr-字符串截取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spstr.html">spstr-字符串分割</a></li>
+<li class="toctree-l1"><a class="reference internal" href="touch_j.html">touch_j-触摸校准</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add.html">add-往曲线控件添加数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addt.html">addt-曲线数据透传指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cle.html">cle-清除曲线控件中的数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">rest-复位串口屏</a></li>
+<li class="toctree-l1"><a class="reference internal" href="return.html">return-退出当前过程或事件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goto.html">goto-跳转到标签处运行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="call.html">call-宏调用</a></li>
+</ul>
+</div>
+</section>
+<section id="id3">
+<h2>高级指令<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>仅部分型号的串口屏支持下列指令</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wepo.html">wepo-写入数据到掉电存储空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repo.html">repo-从掉电存储空间读取数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wept.html">wept-通过串口透传数据到掉电存储空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rept.html">rept-从掉电存储空间读取数据并透传发送到串口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beep.html">beep-蜂鸣器鸣叫</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfgpio.html">cfgpio-扩展IO模式配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setlayer.html">setlayer-运行中改变控件图层顺序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="move.html">move-控件移动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="play.html">play-音频播放</a></li>
+</ul>
+</div>
+</section>
+<section id="id4">
+<h2>文件操作指令<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>仅X系列串口屏支持下列指令</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="twfile.html">twfile-单片机发送文件给串口屏</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rdfile.html">rdfile-串口屏发送文件给单片机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newfile.html">newfile-创建文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delfile.html">delfile-删除文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="refile.html">refile-重命名文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="findfile.html">findfile-查找文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newdir.html">newdir-创建文件夹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deldir.html">deldir-删除文件夹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="redir.html">redir-重命名文件夹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finddir.html">finddir-查找文件夹</a></li>
+</ul>
+</div>
+</section>
+<section id="id5">
+<h2>不常用指令<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>所有型号的串口屏均支持的指令，但是较少使用</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doevents.html">doevents-强制刷新屏幕</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sendme.html">sendme-发送当前页面ID号到串口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get.html">get-带格式获取变量值/常量值</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref.html">ref-重绘控件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_stop.html">ref_stop-暂停屏幕刷新</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_star.html">ref_star-恢复屏幕刷新</a></li>
+<li class="toctree-l1"><a class="reference internal" href="com_stop.html">com_stop-暂停串口指令执行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="com_star.html">com_star-恢复串口指令执行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_c.html">code_c-清空串口指令缓冲区</a></li>
+</ul>
+</div>
+</section>
+<section id="crc">
+<h2>CRC校验指令<a class="headerlink" href="#crc" title="此标题的永久链接"></a></h2>
+<p>用于校验crc_modbus16的指令</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crcrest.html">crcrest-复位crc初始值</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crcputs.html">crcputs-crc校验一个变量/常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crcputh.html">crcputh-crc校验一组Hex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crcputu.html">crcputu-crc校验一段串口缓冲区数据</a></li>
+</ul>
+</div>
+</section>
+<section id="gui">
+<h2>GUI绘图指令<a class="headerlink" href="#gui" title="此标题的永久链接"></a></h2>
+<p>不推荐使用GUI绘图指令,绘图指令不要写在页面的前初始化事件中，否则在页面渲染完成后，将会被页面控件（每个页面ID为0的控件是与页面名称相同的页面控件）完全覆盖。</p>
+<p>绘图指令在跳转页面后会丢失。</p>
+<p>绘图指令和控件有重叠时，当控件刷新时，和控件重叠的部分会丢失。</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cls.html">cls-清屏指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pic.html">pic-刷图指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="picq.html">picq-切图指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xpic.html">xpic-高级切图指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xstr.html">xstr-写字指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">fill-区域填充指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="line.html">line-画线指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="draw.html">draw-画空心矩形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cir.html">cir-画空心圆</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cirs.html">cirs-画实心圆</a></li>
+</ul>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>GUI绘图指令主要应用在如下场合：当上位界面编辑软件无法实现您的某些特殊显示要求的时候，使用GUI指令自己绘图来实现自己想要的显示效果。大多数情况下其实是不需要使用这些绘图指令的，大多数的应用都可以通过界面编辑软件的控件操作来实现。</p>
+</div>
+</section>
+<section id="hmi">
+<h2>HMI颜色代号表<a class="headerlink" href="#hmi" title="此标题的永久链接"></a></h2>
+<table class="colwidths-given longtable docutils align-default" id="id7">
+<caption><span class="caption-text">所有代号的书写均为大写</span><a class="headerlink" href="#id7" title="此表格的永久链接"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>代号</p></th>
+<th class="head"><p>10进制</p></th>
+<th class="head"><p>所表示的颜色</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RED</p></td>
+<td><p>63488</p></td>
+<td><p>红色</p></td>
+</tr>
+<tr class="row-odd"><td><p>BLUE</p></td>
+<td><p>31</p></td>
+<td><p>蓝色</p></td>
+</tr>
+<tr class="row-even"><td><p>GRAY</p></td>
+<td><p>33840</p></td>
+<td><p>灰色</p></td>
+</tr>
+<tr class="row-odd"><td><p>BLACK</p></td>
+<td><p>0</p></td>
+<td><p>黑色</p></td>
+</tr>
+<tr class="row-even"><td><p>WHITE</p></td>
+<td><p>65535</p></td>
+<td><p>白色</p></td>
+</tr>
+<tr class="row-odd"><td><p>GREEN</p></td>
+<td><p>2016</p></td>
+<td><p>绿色</p></td>
+</tr>
+<tr class="row-even"><td><p>BROWN</p></td>
+<td><p>48192</p></td>
+<td><p>橙色</p></td>
+</tr>
+<tr class="row-odd"><td><p>YELLOW</p></td>
+<td><p>65504</p></td>
+<td><p>黄色</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id6">
+<h2>关于废弃指令的说明<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<p>部分指令已经被废弃,例如print指令和cov指令,但是目前依然可以使用,在上位机中输入时,废弃指令不会进行智能提示补全</p>
+<p>print指令请用prints指令来代替</p>
+<p>cov指令请用covx指令来代替</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../widgets/ExPicture.html" class="btn btn-neutral float-left" title="外部图片控件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="page.html" class="btn btn-neutral float-right" title="page-页面跳转指令" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

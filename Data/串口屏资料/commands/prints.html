@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>prints-从串口打印一个变量/常量 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="printh-从串口打印16进制" href="printh.html" />
+    <link rel="prev" title="page-页面跳转指令" href="page.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">基本指令集</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">常用指令集</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="page.html">page-页面跳转指令</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prints-从串口打印一个变量/常量</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prints-1">prints-示例1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prints-2">prints-示例2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prints-3">prints-示例3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prints-4">prints-示例4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prints-5">prints-示例5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prints-6">prints-示例6</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prints-7">prints-示例7</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prints-8">prints-示例8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prints-9">prints-示例9</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">prints-发送日期时间</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">prints指令-样例工程下载</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="printh.html">printh-从串口打印16进制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="click.html">click-激活控件的按下/弹起事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vis.html">vis-隐藏/显示控件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tsw.html">tsw-控件触摸使能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="randset.html">randset-随机数范围设置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="covx.html">covx-变量类型转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strlen.html">strlen-字符串变量字符长度测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="btlen.html">btlen-字符串变量字节长度测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="substr.html">substr-字符串截取</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spstr.html">spstr-字符串分割</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch_j.html">touch_j-触摸校准</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add.html">add-往曲线控件添加数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addt.html">addt-曲线数据透传指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cle.html">cle-清除曲线控件中的数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html">rest-复位串口屏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="return.html">return-退出当前过程或事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goto.html">goto-跳转到标签处运行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.html">call-宏调用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">高级指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">文件操作指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">不常用指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#crc">CRC校验指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#gui">GUI绘图指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hmi">HMI颜色代号表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">关于废弃指令的说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">指令集</a> &raquo;</li>
+      <li>prints-从串口打印一个变量/常量</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="prints">
+<h1>prints-从串口打印一个变量/常量<a class="headerlink" href="#prints" title="此标题的永久链接"></a></h1>
+<p>将变量/常量从串口发送出去</p>
+<p>如果要发送固定的16进制数据请使用printh，请参考 <a class="reference internal" href="printh.html#printh-16"><span class="std std-ref">printh-从串口打印16进制</span></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prints</span> <span class="n">att</span><span class="p">,</span><span class="n">lenth</span>
+
+<span class="n">att</span><span class="p">:</span><span class="n">变量名称</span>
+
+<span class="n">lenth</span><span class="p">:</span><span class="n">发送长度</span><span class="p">(</span><span class="mi">0</span><span class="n">为自动长度</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>当att为数值类型时，length最大为4，length为0和length为4的效果是完全相同的。</p>
+<p>当att为字符串类型时，length为0会发出整个完整的字符串,当length小于字符串长度时，发出指定的字节数（不是字符数），在99%的情况下，当att为字符串时，length都是为0。</p>
+</div>
+<section id="prints-1">
+<h2>prints-示例1<a class="headerlink" href="#prints-1" title="此标题的永久链接"></a></h2>
+<p>在按钮的按下事件（或弹起事件）中编写以下代码</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;abcdefg&quot;</span><span class="w"></span>
+<span class="c1">//发送控件t0的txt属性值,长度为文本实际长度，也就是发出整个文本。</span>
+<span class="n">prints</span><span class="w"> </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/prints1_1.jpg" src="../_images/prints1_1.jpg" />
+<p>点击调试后，点击按钮，即可发出对应的数据</p>
+<img alt="../_images/prints1_2.jpg" src="../_images/prints1_2.jpg" />
+</section>
+<section id="prints-2">
+<h2>prints-示例2<a class="headerlink" href="#prints-2" title="此标题的永久链接"></a></h2>
+<p>在按钮的按下事件（或弹起事件）中编写以下代码</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="s">&quot;abcdefg&quot;</span><span class="w"></span>
+<span class="c1">//发送控件t0的txt属性值,长度为4字节。</span>
+<span class="n">prints</span><span class="w"> </span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">4</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/prints1_3.jpg" src="../_images/prints1_3.jpg" />
+<p>点击调试后，点击按钮，即可发出对应的数据</p>
+<img alt="../_images/prints1_4.jpg" src="../_images/prints1_4.jpg" />
+</section>
+<section id="prints-3">
+<h2>prints-示例3<a class="headerlink" href="#prints-3" title="此标题的永久链接"></a></h2>
+<p>在按钮的按下事件（或弹起事件）中编写以下代码</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//发送控件j0的val属性值,默认长度为4字节整形数据，小端模式发送</span>
+<span class="n">prints</span><span class="w"> </span><span class="n">j0</span><span class="p">.</span><span class="n">val</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/prints1_5.jpg" src="../_images/prints1_5.jpg" />
+<p>点击调试后，点击按钮，即可发出对应的数据</p>
+<img alt="../_images/prints1_6.jpg" src="../_images/prints1_6.jpg" />
+</section>
+<section id="prints-4">
+<h2>prints-示例4<a class="headerlink" href="#prints-4" title="此标题的永久链接"></a></h2>
+<p>在按钮的按下事件（或弹起事件）中编写以下代码</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//发送控件j0的val属性值,长度为1字节整形数据</span>
+<span class="n">prints</span><span class="w"> </span><span class="n">j0</span><span class="p">.</span><span class="n">val</span><span class="p">,</span><span class="mi">1</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/prints1_7.jpg" src="../_images/prints1_7.jpg" />
+<p>点击调试后，点击按钮，即可发出对应的数据</p>
+<img alt="../_images/prints1_8.jpg" src="../_images/prints1_8.jpg" />
+</section>
+<section id="prints-5">
+<h2>prints-示例5<a class="headerlink" href="#prints-5" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//发送常量字符串&quot;123&quot;即：0x31 0x32 0x33</span>
+<span class="n">prints</span><span class="w"> </span><span class="s">&quot;123&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="prints-6">
+<h2>prints-示例6<a class="headerlink" href="#prints-6" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//发送常量数值：123 即: 0x7b 0x00 0x00 0x00</span>
+<span class="n">prints</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="prints-7">
+<h2>prints-示例7<a class="headerlink" href="#prints-7" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//发送常量数值：123的低1字节数据 即: 0x7b</span>
+<span class="n">prints</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="mi">1</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="prints-8">
+<h2>prints-示例8<a class="headerlink" href="#prints-8" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//发送字符串&quot;abcdef&quot;</span>
+<span class="n">prints</span><span class="w"> </span><span class="s">&quot;abcdef&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="prints-9">
+<h2>prints-示例9<a class="headerlink" href="#prints-9" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//发送中文字符串&quot;你好哈哈&quot;</span>
+<span class="n">prints</span><span class="w"> </span><span class="s">&quot;你好哈哈&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>prints-发送日期时间<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//拼接字符串并发送</span>
+<span class="n">covx</span><span class="w"> </span><span class="n">rtc0</span><span class="p">,</span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+<span class="n">covx</span><span class="w"> </span><span class="n">rtc1</span><span class="p">,</span><span class="n">t1</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+<span class="n">covx</span><span class="w"> </span><span class="n">rtc2</span><span class="p">,</span><span class="n">t2</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+<span class="n">covx</span><span class="w"> </span><span class="n">rtc3</span><span class="p">,</span><span class="n">t3</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+<span class="n">covx</span><span class="w"> </span><span class="n">rtc4</span><span class="p">,</span><span class="n">t4</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+<span class="n">covx</span><span class="w"> </span><span class="n">rtc5</span><span class="p">,</span><span class="n">t5</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+<span class="n">sendStr</span><span class="p">.</span><span class="n">txt</span><span class="o">=</span><span class="n">t0</span><span class="p">.</span><span class="n">txt</span><span class="o">+</span><span class="s">&quot;年&quot;</span><span class="o">+</span><span class="n">t1</span><span class="p">.</span><span class="n">txt</span><span class="o">+</span><span class="s">&quot;月&quot;</span><span class="o">+</span><span class="n">t2</span><span class="p">.</span><span class="n">txt</span><span class="o">+</span><span class="s">&quot;日&quot;</span><span class="o">+</span><span class="n">t3</span><span class="p">.</span><span class="n">txt</span><span class="o">+</span><span class="s">&quot;时&quot;</span><span class="o">+</span><span class="n">t4</span><span class="p">.</span><span class="n">txt</span><span class="o">+</span><span class="s">&quot;分&quot;</span><span class="o">+</span><span class="n">t5</span><span class="p">.</span><span class="n">txt</span><span class="o">+</span><span class="s">&quot;秒&quot;</span><span class="w"></span>
+<span class="n">prints</span><span class="w"> </span><span class="n">sendStr</span><span class="p">.</span><span class="n">txt</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>使用prints发送的变量为字符串类型时，设备直接返回字符串内码，如果是数值类型(如进度条的val属性)设备直接返回变量的4字节整形数据(Hex数据，储存方式为小端模式，即低位在前)。</p>
+<p>使用prints指令获取数据的时候，设备仅仅只发送数据内容，没有起始标示符，也没有结束符。</p>
+<p>prints指令可以配合printh指令在前面加一段自定义标示来告诉单片机此变量是属于哪个控件的。</p>
+<p>prints指令和get指令很类似,区别是get发送的数据带了起始标示符（0x70或0x71）和结束符(0xff 0xff 0xff)，而prints没有,不过prints可以在后面继续用printh语句来加任何自定义标识符。</p>
+<p>从串口打印一个Hex请使用printh，点击查看详细资料 <a class="reference internal" href="printh.html#printh-16"><span class="std std-ref">printh-从串口打印16进制</span></a></p>
+</div>
+</section>
+<section id="id2">
+<h2>prints指令-样例工程下载<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/基本指令集/prints指令/prints指令.HMI">《prints指令》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="page.html" class="btn btn-neutral float-left" title="page-页面跳转指令" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="printh.html" class="btn btn-neutral float-right" title="printh-从串口打印16进制" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.调试窗口 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="12.下载窗口" href="ide_introduce12.html" />
+    <link rel="prev" title="10.属性窗口" href="ide_introduce10.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">快速入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../download_ide.html">下载和安装上位机软件</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">上位机基本功能介绍</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce1.html">1.菜单栏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce2.html">2.工具栏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce3.html">3.工具箱</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce4.html">4.资源文件窗口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce5.html">5.界面</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce6.html">6.特殊控件窗口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce7.html">7.输出窗口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce8.html">8.事件编辑窗口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce9.html">9.页面窗口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce10.html">10.属性窗口</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">11.调试窗口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce12.html">12.下载窗口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ide_introduce13.html">13.设备</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../first_test.html">到手测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../create_project/index.html">创建工程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../codespace/index.html">代码编写</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">快速入门</a> &raquo;</li>
+          <li><a href="index.html">上位机基本功能介绍</a> &raquo;</li>
+      <li>11.调试窗口</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>11.调试窗口<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<img alt="../../_images/debugWindow1.png" src="../../_images/debugWindow1.png" />
+<p>点击软件工具栏中的调试将进入调试窗口</p>
+<img alt="../../_images/debugWindow2.png" src="../../_images/debugWindow2.png" />
+<p>1.操作菜单</p>
+<img alt="../../_images/debugWindow3.png" src="../../_images/debugWindow3.png" />
+<dl class="simple">
+<dt>1.1校准设备RTC时钟</dt><dd><p>对电脑正在联机的屏幕中rtc时钟进行校准。（仅k0，x5支持rtc）</p>
+</dd>
+</dl>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>使用到屏幕中rtc必须装电池，否则重新上电rtc值为随机值。电池型号为cr1220 3v。</p>
+</div>
+<dl class="simple">
+<dt>1.2校准模拟器rtc时钟</dt><dd><p>对模拟器中rtc时钟进行校准。</p>
+</dd>
+<dt>1.3重启设备</dt><dd><p>重新启动和电脑联机的屏幕。</p>
+</dd>
+<dt>1.4重启模拟器</dt><dd><p>重新启动模拟器。</p>
+</dd>
+</dl>
+<p>2.与串口屏联机进行调试</p>
+<img alt="../../_images/debugWindow4.png" src="../../_images/debugWindow4.png" />
+<p>软件支持3种调试方式</p>
+<p>2.1当前模拟器</p>
+<img alt="../../_images/debugWindow5.png" src="../../_images/debugWindow5.png" />
+<p>将软件做好的工程在调试界面进行模拟仿真。选择当前模拟器，指令输入区输入指令控制的是模拟器。</p>
+<p>2.2本机串口</p>
+<img alt="../../_images/debugWindow6.png" src="../../_images/debugWindow6.png" />
+<p>将软件做好的工程在调试界面进行模拟仿真。选择本机串口，点击联机按钮，联机成功后，设备状态会出现联机设备型号等设备信息，调试输入区输入指令控制的是设备。</p>
+<p>2.3模拟器和串口</p>
+<img alt="../../_images/debugWindow7.png" src="../../_images/debugWindow7.png" />
+<p>将软件做好的工程在调试界面进行模拟仿真。选择模拟器和串口，点击联机按钮，联机成功后，设备状态会出现联机设备型号等设备信息，调试输入区输入指令控制的是设备和模拟器。能调试看到模拟效果和实际仿真，方便查找问题。</p>
+<p>3.模拟器状态</p>
+<img alt="../../_images/debugWindow8.png" src="../../_images/debugWindow8.png" />
+<p>显示模拟器当前背光亮度，可通过dim，dims指令修改。屏幕是否处于睡眠中，通过sleep指令直接修改，ussp指令，thsp指令间接修改。</p>
+<p>4.指令编码</p>
+<img alt="../../_images/debugWindow9.png" src="../../_images/debugWindow9.png" />
+<p>指令输入区发送指令是用什么字符编码发送的。</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>字符编码不一致时会出现乱码</p>
+</div>
+<p>5.模拟器显示区域</p>
+<img alt="../../_images/debugWindow10.png" src="../../_images/debugWindow10.png" />
+<p>模拟工程运行，运行显示界面，鼠标可以模拟触摸。鼠标左键点击触发按下事件，松开左键触发弹起事件。</p>
+<p>6.指令发送格式</p>
+<img alt="../../_images/debugWindow11.png" src="../../_images/debugWindow11.png" />
+<dl class="simple">
+<dt>6.1.string</dt><dd><p>选择string发送，指令以字符串形式发送。输入指令后将会默认在后面加上3个16进制ff。</p>
+</dd>
+<dt>6.2.hex</dt><dd><p>选择hex发送，指令以16进制形式发送。</p>
+</dd>
+</dl>
+<p>7.指令存储</p>
+<img alt="../../_images/debugWindow12.png" src="../../_images/debugWindow12.png" />
+<p>点击1,2,3,4按钮指令输入区将出现保存在里面指令代码。点S是将指令输入区中指令代码保存到1到4按钮中。方便重复的指令调试。</p>
+<p>8.指令输入区</p>
+<img alt="../../_images/debugWindow13.png" src="../../_images/debugWindow13.png" />
+<p>在区域里输入指令，通过执行所有指令按钮，指令成功执行，模拟器显示区域（或串口设备）将会执行相应的操作。</p>
+<dl class="simple">
+<dt>8.1 crc</dt><dd><p>发送的字符串指令将主动加上crc校验再发送到模拟器（或串口设备）。默认关闭。</p>
+</dd>
+<dt>8.2 敲回车执行最后一条</dt><dd><p>开启后，敲键盘回车能够执行指令输入区的代码；关闭后，敲键盘回车不能够执行指令输入区的代码。默认开启。</p>
+</dd>
+</dl>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>开启或关闭，都需要重新鼠标点击指令输入区；否则不生效。</p>
+</div>
+<p>9.模拟器返回数据窗口</p>
+<img alt="../../_images/debugWindow14.png" src="../../_images/debugWindow14.png" />
+<p>当模拟界面工程串口发送数据出去的时候，串口发送的数据就会显示在这个窗口。</p>
+<p>指令执行失败，将会在模拟器返回数据窗口返回失败原因（可通过bkcmd指令开启或关闭）。</p>
+<dl class="simple">
+<dt>9.1 H 显示</dt><dd><p>发送数据以16进制显示</p>
+</dd>
+<dt>9.2 S 显示</dt><dd><p>发送数据以字符串显示</p>
+</dd>
+<dt>9.3 L 显示</dt><dd><p>串口发送数据以行的形式显示。同一个控件同一个事件下串口发送的数据算一行。</p>
+</dd>
+<dt>9.4 T 显示</dt><dd><p>串口发送数据以发送数据先后显示，不分行。并以16进制数据显示。</p>
+</dd>
+<dt>9.5 清空</dt><dd><p>清空模拟器返回数据窗口里的所有数据</p>
+</dd>
+<dt>9.6串口设备返回数据窗口</dt><dd><p>当串口设备串口发送数据到模拟器，模拟器会将接收到的数据显示在这个窗口。</p>
+</dd>
+</dl>
+<p>10.串口设备返回数据窗口</p>
+<img alt="../../_images/debugWindow15.png" src="../../_images/debugWindow15.png" />
+<dl class="simple">
+<dt>10.1 H 显示</dt><dd><p>模拟器接收到数据以16进制显示</p>
+</dd>
+<dt>10.2 S 显示</dt><dd><p>模拟器接收到数据以字符串显示</p>
+</dd>
+<dt>10.3 L 显示</dt><dd><p>模拟器接收到数据数据以行的形式显示。同一个控件同一个事件下串口屏发送的数据算一行。mcu每条指令加上3个16进制结束符算一行。</p>
+</dd>
+<dt>10.4 T 显示</dt><dd><p>模拟器接收到数据数据以接收数据先后显示，不分行。并以16进制数据显示。</p>
+</dd>
+</dl>
+<p>11.模拟器和mcu单片机联机调试</p>
+<img alt="../../_images/debugWindow16.png" src="../../_images/debugWindow16.png" />
+<dl class="simple">
+<dt>将软件做好的工程在调试界面进行模拟仿真。</dt><dd><p>①指令发送到选择当前模拟器
+②下面选择用户mcu输入
+③选择好串口号，波特率，点击开始。
+联机成功后，就可以mcu和模拟器进行调试。</p>
+</dd>
+</dl>
+<p>12.设备状态</p>
+<img alt="../../_images/debugWindow17.png" src="../../_images/debugWindow17.png" />
+<p>指令发送到选择本机串口（模拟器和串口），开始联机，联机成功后会出现如上图所示的内容。</p>
+<p>13.曲线数据发生器</p>
+<img alt="../../_images/debugWindow18.png" src="../../_images/debugWindow18.png" />
+<p>仿真曲线/波形控件每添加一个点会形成的波形，方便用户调试出自己想要波形图。获取它的数据点以及时间间隔。</p>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ide_introduce10.html" class="btn btn-neutral float-left" title="10.属性窗口" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="ide_introduce12.html" class="btn btn-neutral float-right" title="12.下载窗口" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

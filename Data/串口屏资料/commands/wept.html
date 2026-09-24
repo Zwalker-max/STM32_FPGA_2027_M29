@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wept-通过串口透传数据到掉电存储空间 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="rept-从掉电存储空间读取数据并透传发送到串口" href="rept.html" />
+    <link rel="prev" title="repo-从掉电存储空间读取数据" href="repo.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">基本指令集</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">常用指令集</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id3">高级指令</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="wepo.html">wepo-写入数据到掉电存储空间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repo.html">repo-从掉电存储空间读取数据</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">wept-通过串口透传数据到掉电存储空间</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">wept-示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wept-c">wept-c语言示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">wept指令-样例工程下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">wept指令-相关链接</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rept.html">rept-从掉电存储空间读取数据并透传发送到串口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beep.html">beep-蜂鸣器鸣叫</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfgpio.html">cfgpio-扩展IO模式配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="setlayer.html">setlayer-运行中改变控件图层顺序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">move-控件移动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="play.html">play-音频播放</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">文件操作指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">不常用指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#crc">CRC校验指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#gui">GUI绘图指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hmi">HMI颜色代号表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">关于废弃指令的说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">指令集</a> &raquo;</li>
+      <li>wept-通过串口透传数据到掉电存储空间</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wept">
+<h1>wept-通过串口透传数据到掉电存储空间<a class="headerlink" href="#wept" title="此标题的永久链接"></a></h1>
+<p>(仅k0系列/x系列支持)</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>第一次使用掉电存储空间前（新屏幕），必须对掉电存储空间进行初始化 <a class="reference internal" href="../QA/QA36.html#id1"><span class="std std-ref">如何对掉电存储空间进行初始化</span></a></p>
+<p>未初始化的掉电存储空间里面有什么数据是不确定的，可能会导致程序运行出错，例如会导致模拟器中的效果与串口屏实物的效果不一致</p>
+<p>存储空间的读写范围是0-1023。</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">危险</p>
+<p>危险提示！！！</p>
+<p>掉电存储空间写入寿命有限，请勿频繁擦写，只建议存储低频次修改的数据，例如用户名，密码等，写入消耗掉电存储空间寿命，读取不消耗掉电存储空间寿命</p>
+<p>掉电存储空间就像1张纸一样，读取不消耗寿命，但是写入时需要擦除，此时纸张越来越薄，直到有一天纸张破了，就无法写入了，这将会导致屏幕功能异常！！！</p>
+<p>不建议用户使用掉电存储空间来记录开关机时间！！！</p>
+<p>如果以1秒1次的速度向eeprom写入数据，一天将会写入86400次左右，大约1-10天的时间便会将掉电存储空间的寿命用尽！！！</p>
+<p>写入数据后不能马上从原有位置读取数据,需等待几秒后再读取</p>
+<p>写入数据后不允许立刻断电,需等待几秒后再断电</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wept</span> <span class="n">add</span><span class="p">,</span><span class="n">lenth</span>
+
+<span class="n">add</span><span class="p">:</span> <span class="n">用户存储区位置</span><span class="p">(</span><span class="n">从0开始</span><span class="p">)</span>
+
+<span class="n">lenth</span><span class="p">:</span><span class="n">透传长度</span>
+</pre></div>
+</div>
+<section id="id1">
+<h2>wept-示例<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//透传30个字节的数据存到掉电存储空间的10位置，占用空间为10-39</span>
+<span class="n">wept</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="../_images/wept_1.jpg" src="../_images/wept_1.jpg" />
+<p>备注：</p>
+<p>1.发完透传指令后，用户需要等待设备响应才能开始透传数据，设备收到透传指令后，准备透传初始化数据大概需要5ms左右(如果在透传指令执行前串口缓冲区还有很多别的指令，那时间会更长)，设备透传初始化准备好以后会发送一个透传就绪的数据给用户（0XFE+结束符），表示设备已经准备好，此时可以开始发送透传数据。透传数据为纯16进制数据，不再使用字符串，也不再需要结束符,设备收完指定的数据量以后，才会恢复指令接收状态。否则一直处于数据透传状态，透传数据完成以后,设备会发送结束标记给用户（0XFD+结束符）。</p>
+<p>2.用户存储区大小为1k，位置为0-1023</p>
+</section>
+<section id="wept-c">
+<h2>wept-c语言示例<a class="headerlink" href="#wept-c" title="此标题的永久链接"></a></h2>
+<p>透传30个字节的数据存到掉电存储空间的10位置，占用空间为10-39</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//透传30个字节的数据存到掉电存储空间的10位置，占用空间为10-39</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;wept 10,30</span><span class="se">\xff\xff\xff</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">//等待适量时间</span>
+<span class="n">delay_ms</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">30</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//发送16进制数据</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%c&quot;</span><span class="p">,(</span><span class="kt">int</span><span class="p">)(</span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">256</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">//确保透传结束，以免影响下一条指令</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\x01\xff\xff\xff</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>wept指令-样例工程下载<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/基本指令集/wepo指令和repo指令/wepo指令和repo指令.HMI">《wepo指令和repo指令》演示工程下载</a></p>
+</section>
+<section id="id3">
+<h2>wept指令-相关链接<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p><a class="reference internal" href="../QA/QA36.html#id1"><span class="std std-ref">如何对掉电存储空间进行初始化</span></a></p>
+<p><a class="reference internal" href="wepo.html#wepo"><span class="std std-ref">wepo-写入数据到掉电存储空间</span></a></p>
+<p><a class="reference internal" href="repo.html#repo"><span class="std std-ref">repo-从掉电存储空间读取数据</span></a></p>
+<p><a class="reference internal" href="rept.html#rept"><span class="std std-ref">rept-从掉电存储空间读取数据并透传发送到串口</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="repo.html" class="btn btn-neutral float-left" title="repo-从掉电存储空间读取数据" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="rept.html" class="btn btn-neutral float-right" title="rept-从掉电存储空间读取数据并透传发送到串口" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

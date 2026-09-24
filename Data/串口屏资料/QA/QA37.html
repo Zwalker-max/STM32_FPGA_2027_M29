@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>喇叭相关问题 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="关于串口工具(cp2102/ft232/ch340/pl2303)" href="QA95.html" />
+    <link rel="prev" title="屏幕通电后不断的闪烁(供电不足导致不断重启)" href="QA7.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常见问题</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">硬件相关</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="QA1.html">ESD能过多少V，EMI性能如何</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA2.html">串口通讯线最长能接多少米</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA3.html">通讯口电压多少V，是否可以直接接单片机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA7.html">屏幕通电后不断的闪烁(供电不足导致不断重启)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">喇叭相关问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">觉得喇叭声音小怎么办</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">喇叭接口型号</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">喇叭的正负极</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">喇叭插上有电流声</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QA95.html">关于串口工具(cp2102/ft232/ch340/pl2303)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA45.html">如何修改控件显示的字体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA47.html">串口驱动相关问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA49.html">串口电平状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA50.html">关于一上电就关闭屏幕背光</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA55.html">结构兼容性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA71.html">拓展IO相关问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA72.html">如何修改设备型号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA74.html">屏幕边框为什么不对称</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA79.html">外部供电接法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA126.html">如何判断屏幕是否支持蜂鸣器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA127.html">如何判断屏幕是否支持RTC实时时钟</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA128.html">为什么232通讯不能超过256000</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA129.html">如何判断屏幕是否支持喇叭</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA133.html">串口屏常用接口型号说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QA142.html">关于串口屏看门狗</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">结构设计相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">软件相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">错误提示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">其他</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">常见问题</a> &raquo;</li>
+      <li>喇叭相关问题</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>喇叭相关问题<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="id2">
+<h2>觉得喇叭声音小怎么办<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>有2个解决方法</p>
+<p>一是增加喇叭的功率，前提是你的电源要能够带得动，最大支持3W的喇叭，则必须增加600mA以上的电流冗余，如果供电不足会导致无法开机，重启，闪烁等异常。</p>
+<p>参考</p>
+<p><a class="reference internal" href="QA60.html#id1"><span class="std std-ref">串口屏开机时死机/不断的闪烁/不断重启</span></a></p>
+<p><a class="reference internal" href="QA79.html#id1"><span class="std std-ref">外部供电接法</span></a></p>
+<p>二是是给喇叭做一个好的音腔(共振腔)。因为仅仅是喇叭功率变大，不一定能很明显提升音量，加上共振腔就能明显提升音量</p>
+<img alt="../_images/speaker1.jpg" src="../_images/speaker1.jpg" />
+<img alt="../_images/speaker2.jpg" src="../_images/speaker2.jpg" />
+<p>参考资料:</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/常见问题/喇叭/扬声器音腔设计.pdf">《扬声器音腔设计.pdf》下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/常见问题/喇叭/有关喇叭的音腔的设计规范.pdf">《有关喇叭的音腔的设计规范.pdf》下载</a></p>
+</section>
+<section id="id4">
+<h2>喇叭接口型号<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>PH1.25</p>
+</section>
+<section id="id5">
+<h2>喇叭的正负极<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>虽然上面标有“+/-”，但是那不是表示正负的意思，是相位。</p>
+<p>接法决定喇叭的运动方向，在同一个音箱上面，一根信号线应和所有的喇叭的同一极连接，另一根接另一极，使所有的喇叭的运动方向一致，才会使声音加强，否则的话会造成声短路，极大地影响音质，同时会缩短喇叭上纸盆的寿命</p>
+<p>用一节1.5伏电池短时通断喇叭接线端，如果纸盆向外运动，电池的正极就是喇叭正极。</p>
+<p>分正负是因为多只喇叭同时工作是的声音相位相同，不至于不同相位的声音相互抵消。</p>
+<p>总结：喇叭的话保证出声的时候纸盆是往外鼓的</p>
+</section>
+<section id="id6">
+<h2>喇叭插上有电流声<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<p>我们自己测过的，只有耳朵贴着听的时候才能听到，很细微的只能将就一下，毕竟我们不是专业做音乐设备的</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QA7.html" class="btn btn-neutral float-left" title="屏幕通电后不断的闪烁(供电不足导致不断重启)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="QA95.html" class="btn btn-neutral float-right" title="关于串口工具(cp2102/ft232/ch340/pl2303)" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,337 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+(header "graphic" (version "1.4"))
+(pin
+	(input)
+	(rect 376 104 544 120)
+	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
+	(text "FMC_NE1" (rect 5 0 55 12)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 328 120 376 136))
+)
+(pin
+	(input)
+	(rect 368 120 544 136)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "FMC_NOE" (rect 5 0 58 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 320 136 368 152))
+)
+(pin
+	(input)
+	(rect 368 136 544 152)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "FMC_NWE" (rect 5 0 60 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 320 152 368 168))
+)
+(pin
+	(input)
+	(rect -88 224 80 240)
+	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
+	(text "CLK_50M" (rect 5 0 52 12)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect -136 240 -88 256))
+)
+(pin
+	(input)
+	(rect 360 152 544 168)
+	(text "INPUT" (rect 141 0 169 10)(font "Arial" (font_size 6)))
+	(text "FMC_A[14..0]" (rect 5 0 73 12)(font "Arial" ))
+	(pt 184 8)
+	(drawing
+		(line (pt 100 12)(pt 125 12))
+		(line (pt 100 4)(pt 125 4))
+		(line (pt 129 8)(pt 184 8))
+		(line (pt 100 12)(pt 100 4))
+		(line (pt 125 4)(pt 129 8))
+		(line (pt 125 12)(pt 129 8))
+	)
+	(text "VCC" (rect 144 7 164 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 312 168 360 184))
+)
+(pin
+	(bidir)
+	(rect 912 160 1095 176)
+	(text "BIDIR" (rect 1 0 25 10)(font "Arial" (font_size 6)))
+	(text "FMC_D[15..0]" (rect 90 0 159 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 56 4)(pt 78 4))
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 56 12)(pt 78 12))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 78 12)(pt 82 8))
+		(line (pt 56 4)(pt 52 8))
+		(line (pt 52 8)(pt 56 12))
+	)
+	(text "VCC" (rect 4 7 24 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 1095 176 1143 192))
+)
+(symbol
+	(rect 656 136 872 280)
+	(text "stm32_fmc_16bit" (rect 5 0 91 12)(font "Arial" ))
+	(text "inst1" (rect 8 128 31 140)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "FMC_NE1" (rect 0 0 50 12)(font "Arial" ))
+		(text "FMC_NE1" (rect 21 27 71 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "FMC_NOE" (rect 0 0 53 12)(font "Arial" ))
+		(text "FMC_NOE" (rect 21 43 74 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "FMC_NWE" (rect 0 0 55 12)(font "Arial" ))
+		(text "FMC_NWE" (rect 21 59 76 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "FMC_A[14..0]" (rect 0 0 68 12)(font "Arial" ))
+		(text "FMC_A[14..0]" (rect 21 75 89 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "clk_125m" (rect 0 0 47 12)(font "Arial" ))
+		(text "clk_125m" (rect 21 91 68 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "rst_n" (rect 0 0 24 12)(font "Arial" ))
+		(text "rst_n" (rect 21 107 45 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112))
+	)
+	(port
+		(pt 216 32)
+		(bidir)
+		(text "FMC_D[15..0]" (rect 0 0 69 12)(font "Arial" ))
+		(text "FMC_D[15..0]" (rect 138 27 207 39)(font "Arial" ))
+		(line (pt 216 32)(pt 200 32)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 200 128))
+	)
+)
+(symbol
+	(rect 568 256 600 272)
+	(text "VCC" (rect 7 0 27 10)(font "Arial" (font_size 6)))
+	(text "inst2" (rect 3 5 26 17)(font "Arial" )(invisible))
+	(port
+		(pt 16 16)
+		(output)
+		(text "1" (rect 19 7 24 19)(font "Courier New" (bold))(invisible))
+		(text "1" (rect 19 7 24 19)(font "Courier New" (bold))(invisible))
+		(line (pt 16 16)(pt 16 8))
+	)
+	(drawing
+		(line (pt 8 8)(pt 24 8))
+	)
+)
+(symbol
+	(rect 200 160 480 352)
+	(text "pll1" (rect 128 0 151 16)(font "Arial" (font_size 10)))
+	(text "inst" (rect 8 176 25 188)(font "Arial" ))
+	(port
+		(pt 0 72)
+		(input)
+		(text "inclk0" (rect 0 0 31 14)(font "Arial" (font_size 8)))
+		(text "inclk0" (rect 4 56 35 70)(font "Arial" (font_size 8)))
+		(line (pt 0 72)(pt 48 72))
+	)
+	(port
+		(pt 280 72)
+		(output)
+		(text "c0" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "c0" (rect 262 56 276 70)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 280 96)
+		(output)
+		(text "c1" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "c1" (rect 262 80 276 94)(font "Arial" (font_size 8)))
+	)
+	(drawing
+		(text "Cyclone IV E" (rect 186 172 252 184)(font "Arial" ))
+		(text "inclk0 frequency: 50.000 MHz" (rect 58 66 205 78)(font "Arial" ))
+		(text "Operation Mode: Normal" (rect 58 82 177 94)(font "Arial" ))
+		(text "Clk " (rect 59 107 79 119)(font "Arial" ))
+		(text "Ratio" (rect 84 107 109 119)(font "Arial" ))
+		(text "Ph (dg)" (rect 117 107 152 119)(font "Arial" ))
+		(text "DC (%)" (rect 161 107 197 119)(font "Arial" ))
+		(text "c0" (rect 63 124 74 136)(font "Arial" ))
+		(text "5/2" (rect 90 124 105 136)(font "Arial" ))
+		(text "0.00" (rect 125 124 146 136)(font "Arial" ))
+		(text "50.00" (rect 166 124 193 136)(font "Arial" ))
+		(text "c1" (rect 63 141 74 153)(font "Arial" ))
+		(text "5/2" (rect 90 141 105 153)(font "Arial" ))
+		(text "90.00" (rect 122 141 149 153)(font "Arial" ))
+		(text "50.00" (rect 166 141 193 153)(font "Arial" ))
+		(line (pt 0 0)(pt 281 0))
+		(line (pt 281 0)(pt 281 193))
+		(line (pt 0 193)(pt 281 193))
+		(line (pt 0 0)(pt 0 193))
+		(line (pt 56 105)(pt 202 105))
+		(line (pt 56 121)(pt 202 121))
+		(line (pt 56 138)(pt 202 138))
+		(line (pt 56 155)(pt 202 155))
+		(line (pt 56 105)(pt 56 155))
+		(line (pt 81 105)(pt 81 155)(line_width 3))
+		(line (pt 114 105)(pt 114 155)(line_width 3))
+		(line (pt 158 105)(pt 158 155)(line_width 3))
+		(line (pt 201 105)(pt 201 155))
+		(line (pt 48 56)(pt 247 56))
+		(line (pt 247 56)(pt 247 175))
+		(line (pt 48 175)(pt 247 175))
+		(line (pt 48 56)(pt 48 175))
+		(line (pt 279 72)(pt 247 72))
+		(line (pt 279 96)(pt 247 96))
+	)
+)
+(connector
+	(pt 872 168)
+	(pt 912 168)
+	(bus)
+)
+(connector
+	(pt 656 248)
+	(pt 624 248)
+)
+(connector
+	(pt 584 272)
+	(pt 584 288)
+)
+(connector
+	(pt 584 288)
+	(pt 624 288)
+)
+(connector
+	(pt 624 248)
+	(pt 624 288)
+)
+(connector
+	(pt 600 168)
+	(pt 600 112)
+)
+(connector
+	(pt 656 168)
+	(pt 600 168)
+)
+(connector
+	(pt 544 112)
+	(pt 600 112)
+)
+(connector
+	(pt 656 216)
+	(pt 576 216)
+	(bus)
+)
+(connector
+	(pt 576 216)
+	(pt 576 160)
+	(bus)
+)
+(connector
+	(pt 576 160)
+	(pt 544 160)
+	(bus)
+)
+(connector
+	(pt 656 200)
+	(pt 584 200)
+)
+(connector
+	(pt 584 200)
+	(pt 584 144)
+)
+(connector
+	(pt 584 144)
+	(pt 544 144)
+)
+(connector
+	(pt 656 184)
+	(pt 592 184)
+)
+(connector
+	(pt 592 184)
+	(pt 592 128)
+)
+(connector
+	(pt 592 128)
+	(pt 544 128)
+)
+(connector
+	(pt 80 232)
+	(pt 200 232)
+)
+(connector
+	(pt 480 232)
+	(pt 656 232)
+)

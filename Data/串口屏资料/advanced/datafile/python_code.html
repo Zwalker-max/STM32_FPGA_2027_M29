@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数据记录文件转换-python代码 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../../_static/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="数据记录文件转换-js代码" href="js_code.html" />
+    <link rel="prev" title="数据记录文件结构分析详解" href="datafile.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transmit_data.html">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">数据记录文件结构分析</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="datafile.html">数据记录文件结构分析详解</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">数据记录文件转换-python代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="js_code.html">数据记录文件转换-js代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_download.html">下载《数据记录文件解析》例程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">串口屏高级应用详解</a> &raquo;</li>
+          <li><a href="index.html">数据记录文件结构分析</a> &raquo;</li>
+      <li>数据记录文件转换-python代码</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python">
+<h1>数据记录文件转换-python代码<a class="headerlink" href="#python" title="此标题的永久链接"></a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span><span class="p">,</span> <span class="n">filedialog</span><span class="p">,</span> <span class="n">messagebox</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">class</span> <span class="nc">DataToCsvConverter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Data文件转换工具&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;600x500&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 变量初始化</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoding_var</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;GB2312&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">length_var</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;每条记录最大字节数: &quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dez_var</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;字段数量: &quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_rows_var</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;最大行数: &quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actual_rows_var</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;实际行数: &quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_widgets</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">create_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 编码选择</span>
+        <span class="n">encoding_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;编码设置&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">encoding_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">encoding_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;选择编码:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">encoding_combo</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">encoding_frame</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding_var</span><span class="p">,</span>
+                                    <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GB2312&quot;</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="s2">&quot;GBK&quot;</span><span class="p">,</span> <span class="s2">&quot;big5&quot;</span><span class="p">],</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span>
+        <span class="n">encoding_combo</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;ew&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">encoding_frame</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 文件选择区域</span>
+        <span class="n">file_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;文件选择&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">file_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">file_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;原始文件:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">file_frame</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;ew&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">file_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;选择文件&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">file_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;输出文件:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">file_frame</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;ew&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">file_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;选择路径&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">select_output_path</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="n">file_frame</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 文件信息显示</span>
+        <span class="n">info_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;文件信息&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">info_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">info_frame</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">length_var</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">info_frame</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dez_var</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">info_frame</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_rows_var</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">info_frame</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">actual_rows_var</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 转换按钮</span>
+        <span class="n">button_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">button_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">button_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;开始转换&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_file</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="c1"># 日志区域</span>
+        <span class="n">log_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;日志&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">log_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">log_frame</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;disabled&quot;</span><span class="p">)</span>
+        <span class="n">scrollbar</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Scrollbar</span><span class="p">(</span><span class="n">log_frame</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">yview</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">yscrollcommand</span><span class="o">=</span><span class="n">scrollbar</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">scrollbar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">log_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;添加日志信息&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="n">message</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">see</span><span class="p">(</span><span class="s2">&quot;end&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_text</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">&quot;disabled&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">select_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;选择原始文件&quot;&quot;&quot;</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;选择.data文件&quot;</span><span class="p">,</span>
+            <span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;Data files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.data&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;All files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.*&quot;</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">file_path</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+            <span class="c1"># 自动生成输出路径</span>
+            <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">read_file_info</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">select_output_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;选择输出文件路径&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+            <span class="n">default_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">get</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">default_name</span> <span class="o">=</span> <span class="s2">&quot;output.csv&quot;</span>
+
+        <span class="n">output_path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">asksaveasfilename</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;保存为CSV文件&quot;</span><span class="p">,</span>
+            <span class="n">defaultextension</span><span class="o">=</span><span class="s2">&quot;.csv&quot;</span><span class="p">,</span>
+            <span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;CSV files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.csv&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;All files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.*&quot;</span><span class="p">)],</span>
+            <span class="n">initialfile</span><span class="o">=</span><span class="n">default_name</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">output_path</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_file_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;读取文件头信息&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="c1"># 读取每条记录最大字节数 (0x020c)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mh">0x020c</span><span class="p">)</span>
+                <span class="n">length_bytes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+                <span class="n">length</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;I&#39;</span><span class="p">,</span> <span class="n">length_bytes</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="c1"># 读取字段数量 (0x0214)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mh">0x0214</span><span class="p">)</span>
+                <span class="n">dez_bytes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+                <span class="n">dez</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;I&#39;</span><span class="p">,</span> <span class="n">dez_bytes</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="c1"># 读取最大行数 (0x0218)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mh">0x0218</span><span class="p">)</span>
+                <span class="n">max_rows_bytes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+                <span class="n">max_rows</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;I&#39;</span><span class="p">,</span> <span class="n">max_rows_bytes</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="c1"># 读取实际行数 (0x0208)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mh">0x0208</span><span class="p">)</span>
+                <span class="n">actual_rows_bytes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+                <span class="n">actual_rows</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;I&#39;</span><span class="p">,</span> <span class="n">actual_rows_bytes</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="c1"># 更新界面显示</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">length_var</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;每条记录最大字节数: </span><span class="si">{</span><span class="n">length</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dez_var</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;字段数量: </span><span class="si">{</span><span class="n">dez</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">max_rows_var</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;最大行数: </span><span class="si">{</span><span class="n">max_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">actual_rows_var</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;实际行数: </span><span class="si">{</span><span class="n">actual_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件信息读取成功:&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - 记录最大字节数: </span><span class="si">{</span><span class="n">length</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - 字段数量: </span><span class="si">{</span><span class="n">dez</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - 最大行数: </span><span class="si">{</span><span class="n">max_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - 实际行数: </span><span class="si">{</span><span class="n">actual_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;错误&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;读取文件信息失败: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;错误: 读取文件信息失败 - </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">try_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;尝试用指定编码解码数据&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">),</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">convert_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;执行文件转换&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;警告&quot;</span><span class="p">,</span> <span class="s2">&quot;请先选择原始文件&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;警告&quot;</span><span class="p">,</span> <span class="s2">&quot;请先选择输出文件路径&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="s2">&quot;开始转换文件...&quot;</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="c1"># 读取文件头信息</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mh">0x020c</span><span class="p">)</span>
+                <span class="n">length</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;I&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mh">0x0214</span><span class="p">)</span>
+                <span class="n">dez</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;I&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mh">0x0208</span><span class="p">)</span>
+                <span class="n">actual_rows</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&lt;I&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;转换参数: 记录长度=</span><span class="si">{</span><span class="n">length</span><span class="si">}</span><span class="s2">, 字段数=</span><span class="si">{</span><span class="n">dez</span><span class="si">}</span><span class="s2">, 实际行数=</span><span class="si">{</span><span class="n">actual_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="c1"># 定位到第一条记录 (0x0400)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mh">0x0400</span><span class="p">)</span>
+
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding_var</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+                    <span class="n">records_processed</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">encoding_issues</span> <span class="o">=</span> <span class="mi">0</span>
+
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">actual_rows</span><span class="p">):</span>
+                        <span class="c1"># 读取一条记录</span>
+                        <span class="n">record_bytes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">record_bytes</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">record_bytes</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;警告: 记录 </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> 数据不完整或文件已结束&quot;</span><span class="p">)</span>
+                            <span class="k">break</span>
+
+                        <span class="c1"># 找到字符串结束位置</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">null_pos</span> <span class="o">=</span> <span class="n">record_bytes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">)</span>
+                            <span class="n">record_bytes</span> <span class="o">=</span> <span class="n">record_bytes</span><span class="p">[:</span><span class="n">null_pos</span><span class="p">]</span>
+                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                            <span class="c1"># 如果没有找到结束符，使用全部数据</span>
+                            <span class="k">pass</span>
+
+                        <span class="c1"># 尝试使用用户选择的编码解码</span>
+                        <span class="n">selected_encoding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding_var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+                        <span class="n">record_text</span><span class="p">,</span> <span class="n">success</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">try_decode</span><span class="p">(</span><span class="n">record_bytes</span><span class="p">,</span> <span class="n">selected_encoding</span><span class="p">)</span>
+
+                        <span class="c1"># 如果解码失败，尝试其他编码</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+                            <span class="n">encoding_issues</span> <span class="o">+=</span> <span class="mi">1</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;记录 </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: 编码 </span><span class="si">{</span><span class="n">selected_encoding</span><span class="si">}</span><span class="s2"> 解码失败，尝试备用编码...&quot;</span><span class="p">)</span>
+
+                            <span class="c1"># 尝试其他编码</span>
+                            <span class="n">alternative_encodings</span> <span class="o">=</span> <span class="p">[</span><span class="n">enc</span> <span class="k">for</span> <span class="n">enc</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;GB2312&quot;</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="s2">&quot;GBK&quot;</span><span class="p">,</span> <span class="s2">&quot;big5&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">enc</span> <span class="o">!=</span> <span class="n">selected_encoding</span><span class="p">]</span>
+                            <span class="k">for</span> <span class="n">alt_enc</span> <span class="ow">in</span> <span class="n">alternative_encodings</span><span class="p">:</span>
+                                <span class="n">record_text</span><span class="p">,</span> <span class="n">success</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">try_decode</span><span class="p">(</span><span class="n">record_bytes</span><span class="p">,</span> <span class="n">alt_enc</span><span class="p">)</span>
+                                <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;记录 </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: 使用备用编码 </span><span class="si">{</span><span class="n">alt_enc</span><span class="si">}</span><span class="s2"> 成功解码&quot;</span><span class="p">)</span>
+                                    <span class="k">break</span>
+
+                            <span class="c1"># 如果所有编码都失败，使用错误处理</span>
+                            <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+                                <span class="k">try</span><span class="p">:</span>
+                                    <span class="n">record_text</span> <span class="o">=</span> <span class="n">record_bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">selected_encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;记录 </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: 使用错误替换方式解码&quot;</span><span class="p">)</span>
+                                <span class="k">except</span><span class="p">:</span>
+                                    <span class="n">record_text</span> <span class="o">=</span> <span class="s2">&quot;解码失败&quot;</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;记录 </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: 所有解码方式都失败&quot;</span><span class="p">)</span>
+
+                        <span class="c1"># 替换^为英文逗号</span>
+                        <span class="n">record_text</span> <span class="o">=</span> <span class="n">record_text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+                        <span class="c1"># 写入CSV文件</span>
+                        <span class="n">csv_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">record_text</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="n">records_processed</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                        <span class="c1"># 每处理100条记录显示进度</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已处理 </span><span class="si">{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2"> 条记录...&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># 转换完成统计</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;转换完成!&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;共处理记录数: </span><span class="si">{</span><span class="n">records_processed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">encoding_issues</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;编码问题记录数: </span><span class="si">{</span><span class="n">encoding_issues</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                    <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;成功&quot;</span><span class="p">,</span>
+                                    <span class="sa">f</span><span class="s2">&quot;文件转换完成!</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                    <span class="sa">f</span><span class="s2">&quot;输出文件: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                    <span class="sa">f</span><span class="s2">&quot;处理记录数: </span><span class="si">{</span><span class="n">records_processed</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                    <span class="sa">f</span><span class="s2">&quot;编码问题记录: </span><span class="si">{</span><span class="n">encoding_issues</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;转换失败: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;错误: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;错误&quot;</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">DataToCsvConverter</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="datafile.html" class="btn btn-neutral float-left" title="数据记录文件结构分析详解" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="js_code.html" class="btn btn-neutral float-right" title="数据记录文件转换-js代码" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

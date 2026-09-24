@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>运行中串口传输文件到内存或SD卡 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="SD卡读写文件流程" href="SDcard.html" />
+    <link rel="prev" title="程序中使用CRC校验数据" href="crc2.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">串口屏高级应用详解</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="keyboard/index.html">系统键盘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recmod/index.html">主动解析模式应用详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmi_download_protocol.html">HMI下载协议详解/OTA升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc.html">串口指令增加CRC校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crc2.html">程序中使用CRC校验数据</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">运行中串口传输文件到内存或SD卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SDcard.html">SD卡读写文件流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expandIO.html">拓展IO资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_property.html">获取控件自身的属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wepo_repo.html">读写用户存储区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getv.html">获取串口屏设备唯一序列号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafile/index.html">数据记录文件结构分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">串口屏高级应用详解</a> &raquo;</li>
+      <li>运行中串口传输文件到内存或SD卡</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sd">
+<h1>运行中串口传输文件到内存或SD卡<a class="headerlink" href="#sd" title="此标题的永久链接"></a></h1>
+<p>(0.56及其以上上位机版本支持)</p>
+<p>如果要传输文件到内存，请先在工程设置里面配置内存文件系统空间大小，默认是0，即没有空间用来储存内存文件。</p>
+<p>如果是传输文件到SD卡，请确保SD卡磁盘格式为FAT32,最大支持32G容量的卡</p>
+<p>温馨提示：官方有按照本协议开发好的专用串口透传文件工具(SerialFileUp)，并且开放源代码，欢迎下载使用：</p>
+<p>点击下载 <a class="reference internal" href="../download/tools/SerialFileUp.html#serialfileup"><span class="std std-ref">文件透传工具(SerialFileUp)</span></a></p>
+<p>以下以传输图片文件到内存为例，介绍如何使用串口传输图片文件到内存或SD卡，当然你也可以传输其他类型的文件，比如纯文本文件。</p>
+<p>1.如何使用内存中的图片文件</p>
+<blockquote>
+<div><p>使用“外部图片“控件，设置path属性为文件路径，如:ram/0.jpg</p>
+</div></blockquote>
+<p>2.如何使用SD卡中的图片文件</p>
+<blockquote>
+<div><p>使用“外部图片“控件，设置path属性为文件路径，如:sd0/0.jpg</p>
+</div></blockquote>
+<p>3.支持什么类型的图片文件</p>
+<blockquote>
+<div><p>jpg格式:如果使用jpg格式的图片，务必保证图片编码为:baseline DCT,否则将无法显示,使用ps打开jpg图片，将该图片另存为，保存时格式选择“基线（“标准”）”</p>
+<blockquote>
+<div><img alt="../_images/expicture_3.jpg" src="../_images/expicture_3.jpg" />
+</div></blockquote>
+<p>如果屏幕方向设置的是0度，直接使用jpg原图即可，如果屏幕方向设置的是90度，需要将图片顺时钟旋转90度再给屏幕使用，否则显示出来的图片方向是错的。其他方向180度，270度以此类推，屏幕方向是多少度，就需要您提前把图片顺时钟旋转多少度。</p>
+<p>xi格式:此格式为HMI外部图片控件专用图片格式，支持透明背景，推荐使用这种格式，xi格式的图片获取方式可以使用软件工具菜单中的图片转换工具:PictureBox转换</p>
+</div></blockquote>
+<p>外部图片控件目前仅支持以上两种格式的图片文件。</p>
+<p>4.串口传输协议</p>
+<p>第一步:发送串口传输文件指令:twfile filepath,filesize</p>
+<p>filepath:文件存放路径 如:ram/a.jpg 或 sd0/a.jpg</p>
+<p>filesize:文件实际大小</p>
+<p>假如要传一个文件到内存中，名字为a.jpg,大小为3282字节,指令为：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>twfile <span class="s2">&quot;ram/a.jpg&quot;</span>,3282
+</pre></div>
+</div>
+<p>假如要传一个文件到SD卡中，名字为a.jpg,大小为3282字节,指令为：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>twfile <span class="s2">&quot;sd0/a.jpg&quot;</span>,3282
+</pre></div>
+</div>
+<p>屏幕收到此指令后，会立即创建一个指定大小的文件在目标路径上，如果创建成功将返回:0xfe+结束符,表示已经进入透传状态，可以开始分包透传数据。如果创建文件失败会返回:0x06+结束符,并继续工作在指令接收状态。</p>
+<p>第二步：分包透传文件数据</p>
+<p>收到0xfe+结束符后，可以开始分包透传数据;一个完整的数据包由2部分组成：包头+数据</p>
+<p>包头:3a a1 bb 44 7f ff fe +校验类型(1字节整形数据)+包ID(2字节整形数据) +数据大小(2字节整形数据)，合计12字节</p>
+<p>校验类型:0x00为无校验,0x01为CRC16(MODBUS的CRC16校验算法,指令校验篇幅中有计算函数参考),0x0A为标准CRC32</p>
+<p>包ID:文件透传开始第一次包ID为0，每成功透传一包，ID加1.</p>
+<p>数据大小:数据大小用户随意指定，最小1字节，最大4096字节(此数据大小不包含12字节的包头，但是包含CRC校验码)</p>
+<p>数据:文件数据+CRC校验码数据(小端模式，低位在前),如果是无校验的包，就没有CRC校验码。如果是CRC16就是2字节的校验码，如果是CRC32就是4字节的校验码，切记注意校验码数据要记入包头的数据大小参数中。</p>
+<p>CRC16校验算法为MODBUS CRC16,点击此处查看参考函数代码 CRC32校验算法为标准CRC32。</p>
+<p>屏幕收到一个完整的包数据后，如果处理成功会返回0x05(单字节，没有结束符),此时可进入下一个包的发送。</p>
+<p>如果包ID不按规则累加或者包数据出错，屏幕将会返回本包处理失败的错误:0x04（单字节，无结束符）。</p>
+<p>所有包发送完成后，屏幕会返回0xfd+结束符。并自动退出透传模式转为指令模式。</p>
+<p>如果本包透传失败（超过500ms没有收到屏幕回应或者收到屏幕返回本包校验失败的错误信息），重新发本包数据，重发本包数据时包ID无需加1。</p>
+<p>如果数据包发了一半后悔了，停顿20ms以上重新发本包数据即可。</p>
+<p>如果透传文件中途想停止透传，请发一个包ID为65535，无校验，数据大小为0的数据包,即:3a a1 bb 44 7f ff fe 00 ff ff 00 00 屏幕收到这样的包数据后会立刻强制结束透传，并返回透传结束的数据：0xfd+结束符</p>
+<p>如果你的文件数据中包含退出包数据是不用担心的，因为这个数据的前面满足不了20ms以上的停顿，屏幕只会把他当数据储存，不会当结束包来处理。</p>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="crc2.html" class="btn btn-neutral float-left" title="程序中使用CRC校验数据" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="SDcard.html" class="btn btn-neutral float-right" title="SD卡读写文件流程" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

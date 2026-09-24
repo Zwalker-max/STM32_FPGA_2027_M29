@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>上位机使用入门 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="串口屏调试入门" href="nuedc3.html" />
+    <link rel="prev" title="电赛快速入门" href="nuedc1.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grammar/index.html">书写语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nuedc1.html">电赛快速入门</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">上位机使用入门</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1、新建工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2、文本控件显示数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3、动态修改文本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4、下载工程</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nuedc3.html">串口屏调试入门</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">电赛专题</a> &raquo;</li>
+      <li>上位机使用入门</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>上位机使用入门<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="id2">
+<h2>1、新建工程<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>点击新建工程-&gt;选择工程路径-&gt;填写工程名称</p>
+<img alt="../_images/hmi1.jpg" src="../_images/hmi1.jpg" />
+<p>选择型号，例如现在串口屏的型号为TJC4832T135_011R(3.5寸电阻屏)，则选择TJC4832T135_011即可，不需要管它是电容屏电阻屏还是无触摸的屏，都是选择这个型号即可</p>
+<img alt="../_images/hmi2.jpg" src="../_images/hmi2.jpg" />
+<p>根据需求选择横屏或者竖屏，字符编码需要与单片机的字符编码一致</p>
+<img alt="../_images/hmi3.jpg" src="../_images/hmi3.jpg" />
+</section>
+<section id="id3">
+<h2>2、文本控件显示数据<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>点击左侧的文本控件，即可在界面上新建一个文本控件，文本控件的名称为t0</p>
+<img alt="../_images/hmi4.jpg" src="../_images/hmi4.jpg" />
+<p>需要创建并导入字库，才能显示文字</p>
+<img alt="../_images/hmi5.jpg" src="../_images/hmi5.jpg" />
+<p>选择对应的字高，编码，字体，字库名称，点击生成字库</p>
+<img alt="../_images/hmi6.jpg" src="../_images/hmi6.jpg" />
+<p>就可以在底部的字库界面看到对应的字库了</p>
+<img alt="../_images/hmi7.jpg" src="../_images/hmi7.jpg" />
+<p>txt属性可以显示文本，修改txt属性可以显示不同的文本</p>
+<img alt="../_images/hmi8.jpg" src="../_images/hmi8.jpg" />
+<p>选择控件的属性，可以在底部看到对应的注释</p>
+<img alt="../_images/hmi9.jpg" src="../_images/hmi9.jpg" />
+<img alt="../_images/hmi10.jpg" src="../_images/hmi10.jpg" />
+<img alt="../_images/hmi11.jpg" src="../_images/hmi11.jpg" />
+</section>
+<section id="id4">
+<h2>3、动态修改文本<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>新建一个按钮控件，可以看到控件有“按下事件”和“弹起事件”</p>
+<p>按下事件即手指按下屏幕时触发的事件</p>
+<p>弹起事件即手指离开屏幕时触发的事件</p>
+<img alt="../_images/hmi12.jpg" src="../_images/hmi12.jpg" />
+<p>在按下事件中修改文本控件t0显示的文本，注意等号两边不要有空格，否则会报错</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="o">.</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;123&quot;</span>
+</pre></div>
+</div>
+<img alt="../_images/hmi13.jpg" src="../_images/hmi13.jpg" />
+<p>点击调试，即可调用模拟器，在模拟器上点击按钮控件，就能看到文本被修改了</p>
+<img alt="../_images/hmi14.jpg" src="../_images/hmi14.jpg" />
+<p>调试界面也可以直接输入指令来控制屏幕上的控件</p>
+<img alt="../_images/hmi15.jpg" src="../_images/hmi15.jpg" />
+<p>如果数据源来自串口（单片机），也可以选择“用户MCU输入”</p>
+<img alt="../_images/hmi15-2.jpg" src="../_images/hmi15-2.jpg" />
+</section>
+<section id="id5">
+<h2>4、下载工程<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>点击“下载”按钮就能下载工程，选择对应的串口号（在设备管理器里查看），波特率直接选择最高的921600即可，点击“联机并开始下载”即可自动下载</p>
+<img alt="../_images/hmi16.jpg" src="../_images/hmi16.jpg" />
+<p>如果提示信息，点击确定即可</p>
+<img alt="../_images/hmi17.jpg" src="../_images/hmi17.jpg" />
+<p>也可以使用sd卡来下载工程，参考 <a class="reference internal" href="../start/create_project/create_project_10.html#sd"><span class="std std-ref">通过SD卡下载工程到串口屏</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nuedc1.html" class="btn btn-neutral float-left" title="电赛快速入门" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="nuedc3.html" class="btn btn-neutral float-right" title="串口屏调试入门" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

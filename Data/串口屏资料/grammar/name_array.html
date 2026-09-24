@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数组/名称组使用说明 &mdash; 淘晶驰串口屏资料中心 1.1.0-2026-07-20 10:12:06 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css\rtd_sphinx_search.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+        <script src="../_static/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="串口屏返回数据格式" href="../return/index.html" />
+    <link rel="prev" title="HMI逻辑语句" href="hmi_logic.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- <style>
+      a:link {color: #3091d1}
+      a:visited {color: #3091d1}
+      a:hover {color: #3091d1}
+      a:active {color: #3091d1}
+  </style> --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 淘晶驰串口屏资料中心
+            <img src="../_static/tjc.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">淘晶驰教程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start/index.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug/index.html">串口屏调试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">控件详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">基本指令集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/index.html">系统变量</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">书写语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="assignment_operation.html">赋值操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arithmetic_operation.html">运算操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global_variable.html">跨页面赋值，全局变量操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmi_logic.html">HMI逻辑语句</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">数组/名称组使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">什么是名称组,名称组和数组什么关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">名称组的使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">怎么使用名称组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">名称组应用-实现数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">名称组常见操作方式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">批量读取掉电存储空间数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n0-n99">批量隐藏控件n0～n99</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t0-t5">批量清空文本控件t0～t5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">批量将文本控件t0～t5赋值为“淘晶驰”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n0-n50">批量将数字控件n0～n5赋值为0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">名称组使用-样例工程下载</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../return/index.html">串口屏返回数据格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">串口屏高级应用详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download/index.html">资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video.html">视频教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QA/index.html">常见问题</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">产品选型和规格书</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../product/index.html">产品选型和规格书</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">电赛专题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nuedc/index.html">入门</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">淘晶驰串口屏资料中心</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">书写语法</a> &raquo;</li>
+      <li>数组/名称组使用说明</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound">
+</div>
+<section id="id1">
+<h1>数组/名称组使用说明<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="id2">
+<h2>什么是名称组,名称组和数组什么关系<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>名称组功能即创建一系列连续的控件来达到数组的效果</p>
+</section>
+<section id="id3">
+<h2>名称组的使用<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>大多数情况下，我们操作控件属性是这样的(这也是我们推荐的控件操作方式)：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//给t0控件的txt属性赋值<span class="s2">&quot;123&quot;</span>
+t0.txt<span class="o">=</span><span class="s2">&quot;123&quot;</span>
+
+//给n0控件的val属性赋值15
+n0.val<span class="o">=</span><span class="m">15</span>
+
+//给z0控件的val属性赋值185
+z0.val<span class="o">=</span><span class="m">185</span>
+</pre></div>
+</div>
+<img alt="../_images/name_array_1.jpg" src="../_images/name_array_1.jpg" />
+<p>假如我们不知道控件名字，只知道控件ID怎么操作呢？这就需要名称组来实现</p>
+<p>控件名称组格式:  p[页面DP号].b[控件ID].属性</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>这里的p是page（页面）的缩写，b是object（对象）的缩写，而不是指button（按钮），名称组访问控件，只有控件id的概念，没有控件类型的概念</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>这里的p是page（页面）的缩写，b是object（对象）的缩写，而不是指button（按钮），名称组访问控件，只有控件id的概念，没有控件类型的概念</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>这里的p是page（页面）的缩写，b是object（对象）的缩写，而不是指button（按钮），名称组访问控件，只有控件id的概念，没有控件类型的概念</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>这里的p是page（页面）的缩写，b是object（对象）的缩写，而不是指button（按钮），名称组访问控件，只有控件id的概念，没有控件类型的概念</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>这里的p是page（页面）的缩写，b是object（对象）的缩写，而不是指button（按钮），名称组访问控件，只有控件id的概念，没有控件类型的概念</p>
+</div>
+<p>例如我们知道了n0的id号是1</p>
+<img alt="../_images/name_array_2.jpg" src="../_images/name_array_2.jpg" />
+<p>那么我们就可以使用以下两种方式来操作n0</p>
+<img alt="../_images/name_array_3.jpg" src="../_images/name_array_3.jpg" />
+<p>页面名称组格式:p[页面DP号].b[控件ID号].属性</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//ID为2的页面中，ID为4的控件的txt属性赋值为<span class="s2">&quot;淘晶驰&quot;</span>
+p<span class="o">[</span><span class="m">2</span><span class="o">]</span>.b<span class="o">[</span><span class="m">4</span><span class="o">]</span>.txt<span class="o">=</span><span class="s2">&quot;淘晶驰&quot;</span>
+//ID为n0.val的页面中，ID为n1.val的控件的txt属性赋值为<span class="s2">&quot;哈哈哈&quot;</span>
+p<span class="o">[</span>n0.val<span class="o">]</span>.b<span class="o">[</span>n1.val<span class="o">]</span>.txt<span class="o">=</span><span class="s2">&quot;哈哈哈&quot;</span>
+</pre></div>
+</div>
+<img alt="../_images/name_array_4.jpg" src="../_images/name_array_4.jpg" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>必须确保此页面中的此控件具有对应的属性,否则赋值会失败,例如你不能给数值控件赋值txt属性,虽然能编译通过,但是实际赋值时会返回错误信息</p>
+</div>
+</section>
+<section id="id4">
+<h2>怎么使用名称组<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>例如我们要创建一个长度为20的名称组,于是我们添加了20个数字控件,</p>
+<p>有n0-n19共20个控件，如果要把他们全部初始化为0，第一种方法是逐个赋值为0。</p>
+<img alt="../_images/name_array_5.jpg" src="../_images/name_array_5.jpg" />
+<p>第二种方法，使用名称组进行操作，代码如下</p>
+<img alt="../_images/name_array_6.jpg" src="../_images/name_array_6.jpg" />
+<p>以下展示几种等价的写法：</p>
+<p>等价写法一:</p>
+<img alt="../_images/name_array_7.jpg" src="../_images/name_array_7.jpg" />
+<p>等价写法二:</p>
+<img alt="../_images/name_array_8.jpg" src="../_images/name_array_8.jpg" />
+<p>等价写法三:</p>
+<img alt="../_images/name_array_9.jpg" src="../_images/name_array_9.jpg" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>当前演示的工程中,n0-n19的id号是连续且递增的，n0的id号最小，n19的id号最大</p>
+</div>
+</section>
+<section id="id5">
+<h2>名称组应用-实现数组<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p>示例：创建一个长度为20的数组</p>
+<p>在page0页面新建20个数字控件，将所有变量控件设置为全局，这样才能跨页面访问</p>
+<img alt="../_images/name_array_11.jpg" src="../_images/name_array_11.jpg" />
+<p>n0的id是1，n1的id是2，以此类推，n19的id是20</p>
+<p>此时就可以通过名称组的方式来实现数组</p>
+<p>代码示例：配合for语句批量将整个数组赋值为100</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">sys0</span><span class="o">=</span><span class="n">n0</span><span class="o">.</span><span class="n">id</span><span class="p">;</span><span class="n">sys0</span><span class="o">&lt;=</span><span class="n">n19</span><span class="o">.</span><span class="n">id</span><span class="p">;</span><span class="n">sys0</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">page0</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">sys0</span><span class="p">]</span><span class="o">.</span><span class="n">val</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>名称组常见操作方式<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<section id="id7">
+<h3>批量读取掉电存储空间数据<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<p>将掉电存储空间地址100开始连续的值加载到数值控件va0～va19，请确保va0～va19的id号是连续的</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//设置掉电存储空间读取位置
+<span class="nv">sys1</span><span class="o">=</span><span class="m">100</span>
+
+//for循环读取掉电存储空间并赋值给数值控件
+<span class="k">for</span><span class="o">(</span><span class="nv">sys0</span><span class="o">=</span>n0.id<span class="p">;</span>sys0&lt;<span class="o">=</span>n19.id<span class="p">;</span>sys0++<span class="o">)</span>
+<span class="o">{</span>
+   //读取指定位置的掉电存储空间数据
+   repo b<span class="o">[</span>sys0<span class="o">]</span>.val,sys1
+
+   //掉电存储空间读取地址加4，因为一个数值类型占用4byte空间。
+   <span class="nv">sys1</span><span class="o">+=</span><span class="m">4</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>必须确保所操纵的控件都具有对应的属性,否则可能会报错</p>
+</div>
+</section>
+<section id="n0-n99">
+<h3>批量隐藏控件n0～n99<a class="headerlink" href="#n0-n99" title="此标题的永久链接"></a></h3>
+<p>请确保n0～n99的id号是连续的</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>//for循环读取掉电存储空间并赋值给数值控件
+<span class="k">for</span><span class="o">(</span><span class="nv">sys0</span><span class="o">=</span>n0.id<span class="p">;</span>sys0&lt;<span class="o">=</span>n99.id<span class="p">;</span>sys0++<span class="o">)</span>
+<span class="o">{</span>
+   vis b<span class="o">[</span>sys0<span class="o">]</span>,0
+<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="t0-t5">
+<h3>批量清空文本控件t0～t5<a class="headerlink" href="#t0-t5" title="此标题的永久链接"></a></h3>
+<p>请确保t0～t5的id号是连续的</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="o">(</span><span class="nv">sys0</span><span class="o">=</span>t0.id<span class="p">;</span>sys0&lt;<span class="o">=</span>t5.id<span class="p">;</span>sys0++<span class="o">)</span>
+<span class="o">{</span>
+   b<span class="o">[</span>sys0<span class="o">]</span>.txt<span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3>批量将文本控件t0～t5赋值为“淘晶驰”<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h3>
+<p>请确保t0～t5的id号是连续的</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="o">(</span><span class="nv">sys0</span><span class="o">=</span>t0.id<span class="p">;</span>sys0&lt;<span class="o">=</span>t5.id<span class="p">;</span>sys0++<span class="o">)</span>
+<span class="o">{</span>
+   b<span class="o">[</span>sys0<span class="o">]</span>.txt<span class="o">=</span><span class="s2">&quot;淘晶驰&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="n0-n50">
+<h3>批量将数字控件n0～n5赋值为0<a class="headerlink" href="#n0-n50" title="此标题的永久链接"></a></h3>
+<p>请确保n0～n5的id号是连续的</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="o">(</span><span class="nv">sys0</span><span class="o">=</span>n0.id<span class="p">;</span>sys0&lt;<span class="o">=</span>n5.id<span class="p">;</span>sys0++<span class="o">)</span>
+<span class="o">{</span>
+   b<span class="o">[</span>sys0<span class="o">]</span>.val<span class="o">=</span><span class="m">0</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>所有控件的ID号软件自动分配，不可手动设置，用户在编辑UI界面时，按顺序依次放置的控件，软件将连续分配ID。</p>
+<p>使用快捷栏的“置顶”、“置底”功能会使控件ID发生变化，因为图层的前后关系是跟控件ID关联的，ID最小的在最底层(所以页面ID是0),ID最大的在最上层，每个控件都有自己的图层，全部是通过ID来区别前后关系的。</p>
+<img alt="../_images/name_array_31.jpg" src="../_images/name_array_31.jpg" />
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>带有for的逻辑语句只能在上位编辑状态下写入控件的事件中，不支持串口传输逻辑语句。</p>
+</div>
+</section>
+</section>
+<section id="id9">
+<h2>名称组使用-样例工程下载<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h2>
+<p>演示工程下载链接：</p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/书写语法/名称组使用.HMI">《名称组使用》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/书写语法/名称组使用2.HMI">《名称组使用2》演示工程下载</a></p>
+<p><a class="reference external" href="http://filedown.tjc1688.com/tjcwiki/tjcwiki_resource_collection/书写语法/通过按键移动选择控件.HMI">《通过按键移动选择控件》演示工程下载</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hmi_logic.html" class="btn btn-neutral float-left" title="HMI逻辑语句" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../return/index.html" class="btn btn-neutral float-right" title="串口屏返回数据格式" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备13060496号-1</a>
+<br>
+<!-- <hr /> -->
+<a href="https://www.tjc1688.com/" target="_blank"> 
+<div id="current_date">
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        document.getElementById("current_date").innerHTML ="&#169;2013 - "+ year + "深圳市淘晶驰电子有限公司 www.tjc1688.com";
+    </script>
+</div>	
+</a>
+<!-- <hr /> -->
+<!-- <br> -->
+<a href="http://wiki.tjc1688.com/download/development_doc.html" target="_blank">开发文档下载</a>
+&nbsp
+<a href="http://wiki.tjc1688.com/download/usart_hmi.html" target="_blank">上位机下载</a>
+&nbsp
+<a href="https://space.bilibili.com/2009481000/channel/collectiondetail?sid=106537" target="_blank">视频教程</a>
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
